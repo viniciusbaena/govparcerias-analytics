@@ -1,49 +1,26 @@
 # GovParcerias Analytics
 
-Plataforma **independente, experimental e open source** para consulta e análise de dados públicos relacionados a parcerias e transferências governamentais.
+Plataforma independente e open source para consulta, organização e análise de dados públicos de parcerias e transferências.
 
-> Status: `0.2.0-alpha`. A versão publicada atualmente utiliza dados demonstrativos e não substitui as fontes oficiais.
+> Projeto experimental e não oficial. Não representa nem possui vínculo institucional com os órgãos responsáveis pelas fontes consultadas.
 
-## Demonstração
+## Publicação imediata
 
-A interface estática pode ser publicada no GitHub Pages. Ela não contém login, anúncios, cookies de rastreamento, scripts de terceiros ou coleta de credenciais.
+O GitHub Actions publica a pasta `site/`. Ela já contém a aplicação funcional e não exige compilação.
 
-## Funcionalidades atuais
-
-- Dashboard demonstrativo
-- Pesquisa de municípios e parcerias
-- Alertas visuais de vigência
-- Exportação CSV
-- Catálogo pesquisável do modelo de dados
-- Área demonstrativa do assistente de IA
-- Páginas públicas de privacidade, termos e segurança
+1. Remova os arquivos antigos do repositório.
+2. Envie **todo o conteúdo desta pasta**, incluindo `.github`, `site`, `frontend`, `backend`, `database`, `docs`, `scripts` e `tests`.
+3. Em Settings → Pages, mantenha Source = GitHub Actions.
+4. Abra Actions e acompanhe `Publicar aplicação`.
 
 ## Estrutura
 
-```text
-frontend/       Aplicação estática publicada no GitHub Pages
-backend/        Fundação da API FastAPI para implantação futura
-docs/           Requisitos, arquitetura e catálogo técnico
-.github/        Publicação e validações automatizadas
-```
-
-## Publicação no GitHub Pages
-
-1. Envie o conteúdo para a branch `main`.
-2. Em **Settings > Pages**, selecione **GitHub Actions**.
-3. O workflow `.github/workflows/deploy-pages.yml` publicará a pasta `frontend`.
+- `site/`: versão pública pronta para GitHub Pages.
+- `frontend/`: evolução React + TypeScript + Vite.
+- `backend/`: API FastAPI.
+- `database/`: modelo PostgreSQL inicial.
+- `docs/`: arquitetura, catálogo e decisões.
 
 ## Segurança
 
-- Nunca coloque chaves de API no frontend.
-- Não versione arquivos `.env`.
-- Dados reais deverão indicar fonte e data de atualização.
-- Vulnerabilidades devem ser relatadas pelo procedimento descrito em [SECURITY.md](SECURITY.md).
-
-## Roadmap
-
-Consulte [ROADMAP.md](ROADMAP.md).
-
-## Licença
-
-MIT. Consulte [LICENSE](LICENSE).
+Não coloque chaves de IA ou credenciais no frontend. O assistente real será executado no backend.

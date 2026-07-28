@@ -1,0 +1,84 @@
+{
+  "updated_at": "2026-07-28T20:00:00-03:00",
+  "is_demo": true,
+  "municipios": [
+    {
+      "nome": "Município Alfa",
+      "uf": "PR",
+      "ibge": "4100012",
+      "populacao": 118420,
+      "parcerias": 18,
+      "valor": 76400000,
+      "vigencias": 3,
+      "status": "atenção"
+    },
+    {
+      "nome": "Município Beta",
+      "uf": "PR",
+      "ibge": "4100020",
+      "populacao": 84210,
+      "parcerias": 11,
+      "valor": 43800000,
+      "vigencias": 1,
+      "status": "regular"
+    },
+    {
+      "nome": "Município Gama",
+      "uf": "PR",
+      "ibge": "4100038",
+      "populacao": 52780,
+      "parcerias": 9,
+      "valor": 27100000,
+      "vigencias": 2,
+      "status": "atenção"
+    },
+    {
+      "nome": "Município Delta",
+      "uf": "PR",
+      "ibge": "4100046",
+      "populacao": 33140,
+      "parcerias": 6,
+      "valor": 14300000,
+      "vigencias": 0,
+      "status": "regular"
+    }
+  ],
+  "parcerias": [
+    {
+      "numero": "900001/2025",
+      "municipio": "Município Alfa",
+      "orgao": "Órgão Federal A",
+      "objeto": "Implantação de infraestrutura urbana",
+      "situacao": "Em execução",
+      "valor": 12800000,
+      "fim": "2026-09-30"
+    },
+    {
+      "numero": "900145/2024",
+      "municipio": "Município Beta",
+      "orgao": "Órgão Federal B",
+      "objeto": "Modernização de equipamento público",
+      "situacao": "Em execução",
+      "valor": 4600000,
+      "fim": "2026-12-15"
+    },
+    {
+      "numero": "901020/2023",
+      "municipio": "Município Gama",
+      "orgao": "Órgão Federal A",
+      "objeto": "Ampliação do sistema de saneamento",
+      "situacao": "Prestação de contas",
+      "valor": 9300000,
+      "fim": "2026-08-31"
+    },
+    {
+      "numero": "901830/2025",
+      "municipio": "Município Alfa",
+      "orgao": "Órgão Federal C",
+      "objeto": "Construção de unidade pública",
+      "situacao": "Celebrada",
+      "valor": 7200000,
+      "fim": "2027-04-10"
+    }
+  ]
+}

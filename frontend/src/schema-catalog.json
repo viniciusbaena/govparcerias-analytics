@@ -1,0 +1,3905 @@
+[
+  {
+    "table": "analise_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_analise_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da análise da proposta (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta analisada (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_fase_analise",
+        "type": "varchar",
+        "size": "65",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Fase da análise (ex: Proposta e Plano de Trabalho).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_resultado_analise",
+        "type": "varchar",
+        "size": "30",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Resultado da análise (ex: Aprovada, Rejeitada).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_parecer",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Parecer/detalhamento da análise.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dh_analise_proposta",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data/hora da realização da análise.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 6
+  },
+  {
+    "table": "beneficiario_emenda_parlamentar_programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_beneficiario_emenda_parlamentar_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do registro de beneficiário",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa vinculado à emenda parlamentar",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_cnpj_beneficiario_emenda",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ do beneficiário da emenda parlamentar",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_beneficiario_emenda",
+        "type": "varchar",
+        "size": "100",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do beneficiário da emenda parlamentar",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_municipio_beneficiario_emenda",
+        "type": "varchar",
+        "size": "35",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do município onde está localizado o beneficiário",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_uf_beneficiario_emenda",
+        "type": "varchar",
+        "size": "2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla da Unidade Federativa onde está localizado o beneficiário",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_natureza_juridica_beneficiario_emenda",
+        "type": "varchar",
+        "size": "80",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da natureza jurídica do beneficiário",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "aa_emenda",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Ano da emenda parlamentar",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_parlamentar",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código do parlamentar autor da emenda",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_emenda",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da emenda parlamentar",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_parlamentar",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do parlamentar autor da emenda",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_tipo_emenda_parlamentar",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador do tipo de emenda parlamentar",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_gnd3",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor da emenda para GND3",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_gnd4",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor da emenda para GND4",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_total_emenda",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor total da emenda parlamentar",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 15
+  },
+  {
+    "table": "categoria_despesa_programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_categoria_despesa_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do registro de categoria de despesa do programa (chave primária)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa (chave estrangeira para tabela programa)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "categoria_despesa_programa",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Categoria principal de despesa do programa (ex: Pessoal, Material, Serviços, etc.)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "subcategoria_despesa_programa",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Subcategoria específica de despesa dentro da categoria principal (detalhamento da classificação orçamentária)",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 4
+  },
+  {
+    "table": "categoria_despesa_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_categoria_despesa_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do registro de categoria de despesa da proposta (chave primária)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta (chave estrangeira para tabela proposta)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "categoria_despesa_proposta",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Categoria principal de despesa da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "subcategoria_despesa_proposta",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Subcategoria específica de despesa dentro da categoria principal.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 4
+  },
+  {
+    "table": "classificacao_despesa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_classificacao_despesa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da classificação de despesa (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_classificacao_despesa_pai",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da classificação de despesa pai (FK para a própria tabela).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_classificacao_despesa_1",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do primeiro nível da classificação de despesa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_classificacao_despesa_2",
+        "type": "varchar",
+        "size": "65",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do segundo nível da classificação de despesa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "parent_name",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da classificação pai (campo descritivo).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_classificacao_despesa_path",
+        "type": "varchar",
+        "size": "125",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Caminho completo da classificação (breadcrumb).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_classificacao_despesa",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da própria classificação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_classificacao_despesa_profundidade",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nível de profundidade da classificação na hierarquia.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 8
+  },
+  {
+    "table": "classificacao_ingresso",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_parceria_conta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da conta da parceria (FK para parceria_conta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_extrato_lancamento",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do lançamento no extrato bancário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificador_lancamento",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número identificador do lançamento no sistema bancário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "identificacao_depositante",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código ou tipo de identificação do depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nome_depositante",
+        "type": "varchar",
+        "size": "110",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do depositante conforme extrato.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificacao_depositante",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número de documento (CPF/CNPJ) do depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_nome_depositante",
+        "type": "varchar",
+        "size": "110",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome tratado/normalizado do depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_movimento_lancamento",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data do movimento no extrato.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_lancamento",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor do lançamento (crédito) no extrato.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dh_classificacao",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data/hora em que o ingresso foi classificado.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_descricao_classificacao_ingresso",
+        "type": "varchar",
+        "size": "30",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da classificação do ingresso.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_classificado",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor classificado como ingresso válido.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_classificacao_ingresso_tipo",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do tipo de classificação do ingresso.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_descricao_classificao_ingresso_tipo",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do tipo de classificação do ingresso.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dh_analise",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data/hora da análise do ingresso.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_desc_classificacao_analise_situacao",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação da análise de classificação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_nao_classificado",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor que não pôde ser classificado.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_captado_aprovado",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor captado e aprovado.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_aguardando_analise",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor em processo de análise.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 19
+  },
+  {
+    "table": "cronograma_desembolso",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_proposta_cronograma_item",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do item de cronograma de desembolso (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta ao qual o cronograma pertence (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_ref_mes_data_especif",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Mês de referência para o desembolso (quando há data específica).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_ref_ano_data_especif",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Ano de referência para o desembolso (quando há data específica).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_ref_mes_sazonalidade",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Mês de referência para fins de sazonalidade (1–12).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_cronograma_desembolso",
+        "type": "float8",
+        "size": "17,17",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor previsto para o desembolso na data/mês indicado.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "origem_recurso",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Origem dos recursos (ex: tesouro, contrapartida, etc.).",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 7
+  },
+  {
+    "table": "distribuicao_recurso_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_distribuicao_recurso_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da distribuição de recurso (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_tipo_distribuicao",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo da distribuição (ex: Emenda, Especifico).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_tipo_gnd",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo de GND (ex: GND3, GND4).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_emenda_proposta",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da emenda.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_parlamentar_proposta",
+        "type": "varchar",
+        "size": "100",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do parlamentar.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_tipo_emenda_parlamentar_proposta",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo de emenda parlamentar.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "valor_emenda",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor da emenda.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 8
+  },
+  {
+    "table": "documento_habil",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_documento_habil",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do documento hábil (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da parceria (FK para parceria).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_minuta_dh",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da minuta do documento hábil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_documento_habil",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do documento hábil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_ug_emitente_dh",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código da unidade gestora emitente.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_documento_habil",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo do documento hábil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_documento_habil",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor do documento hábil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_emissao",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de emissão.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ano_emissao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Ano de emissão.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "mes_emissao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Mês de emissão.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_dh",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação do documento hábil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_credor_devedor",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ/CPF do credor/devedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_credor_devedor",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do credor/devedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_observacao",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Observação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_empenho_dh",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do empenho associado.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 15
+  },
+  {
+    "table": "empenho_parceria",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_empenho_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do empenho (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da parceria (FK para parceria).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_empenho",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_ug_emitente",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código da unidade gestora emitente.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "aa_empenho",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Ano de referência do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_siafi",
+        "type": "varchar",
+        "size": "60",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação do empenho no SIAFI.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_minuta",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da minuta do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "data_emissao",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de emissão do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_tipo_empenho",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do tipo de empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nome_tipo_empenho",
+        "type": "varchar",
+        "size": "30",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do tipo de empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ug_emitente",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Unidade gestora emitente.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nome_favorecido",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do favorecido.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "identificacao_favorecido",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ/CPF do favorecido.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ug_responsavel",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Unidade gestora responsável.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "autor_emenda",
+        "type": "varchar",
+        "size": "255",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Autor da emenda.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "descricao_empenho",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "numero_empenho",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "numero_nota_empenho_gerada",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da nota de empenho gerada.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "numro",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do processo/RO.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nome_situacao_minuta",
+        "type": "varchar",
+        "size": "30",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da situação da minuta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_pre_empenho",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do pré-empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "valor_empenho",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor do empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_pre_empenho",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do pré-empenho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "valor_operacao_empenho",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor da operação do empenho.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 24
+  },
+  {
+    "table": "etapa_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_etapa_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da etapa da proposta (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_meta_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da meta da proposta à qual esta etapa pertence (FK para meta_proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_etapa",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código sequencial da etapa dentro da meta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_etapa",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome/título da etapa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_etapa",
+        "type": "varchar",
+        "size": "1000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição detalhada da etapa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_inicio",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de início prevista para a etapa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_fim",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de término prevista para a etapa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_inicio",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número ou ordem de início da etapa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_fim",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número ou ordem de fim da etapa.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 9
+  },
+  {
+    "table": "extrato_bancario",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_extrato_bancario",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do extrato bancário (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_parceria_conta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da conta da parceria (FK para parceria_conta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificador_lancamento_extrato_bancario",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número identificador do lançamento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_interno_referencia",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número interno de referência.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_transacao",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo de transação (ex: Crédito, Débito).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_tipo_operacao",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código do tipo de operação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_tipo_operacao",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do tipo de operação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_banco_depositante",
+        "type": "bpchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código do banco depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_agencia_depositante",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Agência depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_conta_depositante",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Conta depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificacao_depositante_extrato_bancario",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ/CPF do depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificacao_depositante_mascarado_extrato_bancario",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ/CPF mascarado do depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_nome_depositante_extrato_bancario",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do depositante.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_banco_beneficiario",
+        "type": "bpchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código do banco beneficiário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_agencia_beneficiario",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Agência beneficiária.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_conta_beneficiario",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Conta beneficiária.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificacao_beneficiario",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ/CPF do beneficiário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_identificacao_beneficiario_mascarado",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ/CPF mascarado do beneficiário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_nome_beneficiario",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do beneficiário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_movimento_lancamento_extrato_bancario",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data do movimento do lançamento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_lancamento_extrato_bancario",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor do lançamento.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 21
+  },
+  {
+    "table": "indicacao_beneficiario_emenda_parlamentar_programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_indicacao_beneficiario_emenda_parlamentar_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da indicação do beneficiário da emenda parlamentar (chave primária)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_beneficiario_emenda_parlamentar_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do beneficiário da emenda parlamentar (chave estrangeira para tabela beneficiario_emenda_parlamentar_programa)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_solicitante",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do solicitante",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_solicitante_mascarado",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do solicitante mascarado (anonimizado)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_solicitante",
+        "type": "varchar",
+        "size": "40",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do solicitante",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_solicitante",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo do solicitante",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 6
+  },
+  {
+    "table": "indicador_programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_indicador_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Chave primária do indicador do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa (chave estrangeira para tabela programa).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_indicador_programa",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do indicador do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_unidade_medida_indicador_programa",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da unidade de medida do indicador do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_indicador_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor do indicador do programa.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 5
+  },
+  {
+    "table": "interveniente_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_interveniente_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do registro de interveniente (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta a qual este interveniente está vinculado (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cnpj_interveniente",
+        "type": "varchar",
+        "size": "14",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ do interveniente na proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_interveniente",
+        "type": "varchar",
+        "size": "100",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome ou razão social do interveniente.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 4
+  },
+  {
+    "table": "item_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_item_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do item da proposta (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_classificacao_despesa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da classificação da despesa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_etapa_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da etapa da proposta à qual este item pertence (FK para etapa_proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_item",
+        "type": "varchar",
+        "size": "80",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome/título do item de despesa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_item",
+        "type": "varchar",
+        "size": "1000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição detalhada do item.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_unidade_medida",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da unidade de medida do item.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_unitario_item",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor unitário do item.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "qt_quantidade",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Quantidade do item.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_ocorrencia",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número de ocorrências do item.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_total_item",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor total do item (quantidade × valor unitário × ocorrências).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_classificacao_despesa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código da classificação da despesa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_categoria_despesa",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador da categoria da despesa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_classificacao_despesa",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da classificação da despesa.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 13
+  },
+  {
+    "table": "meta_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_meta_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da meta da proposta (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta a qual esta meta pertence (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_meta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código da meta dentro do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_meta",
+        "type": "varchar",
+        "size": "200",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome/título da meta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_meta",
+        "type": "varchar",
+        "size": "1000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição detalhada da meta.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 5
+  },
+  {
+    "table": "ordem_pagamento",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_op",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da ordem de pagamento (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_documento_habil",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do documento hábil (FK para documento_habil).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_ug_emitente_op",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código da unidade gestora emitente.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_minuta_op",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da minuta da ordem de pagamento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_ordem_pagamento",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da ordem de pagamento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_op",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação da ordem de pagamento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_emissao_op",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de emissão.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_ordem_pagamento",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor da ordem de pagamento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_ordem_bancaria",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da ordem bancária.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_emissao_ordem_bancaria",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de emissão da ordem bancária.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_observacao_op",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Observação.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 11
+  },
+  {
+    "table": "parceria",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da parceria (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código sequencial da parceria.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nu_externo",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número externo de identificação da parceria.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta a qual a parceria pertence (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_parceria",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação atual da parceria.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_origem",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo de origem da parceria.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_processo_sei",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do processo no SEI.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_assinatura_manual",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador se a assinatura foi manual.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dh_assinatura",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data/hora da assinatura da parceria.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_justificativa",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Texto de justificativa associada.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_autorizacao_execucao",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação da autorização de execução.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dh_solicitacao_execucao",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data/hora da solicitação de execução.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_justificativa_solicitacao",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da justificativa da solicitação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dh_autorizacao_execucao",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data/hora da autorização de execução.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_justificativa_autorizacao",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da justificativa da autorização.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 15
+  },
+  {
+    "table": "parceria_conta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_parceria_conta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da conta da parceria (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da parceria à qual a conta está vinculada (FK para parceria).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_conta_gf",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da conta no sistema GF.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_conta",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número ou código da conta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_conta",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo da conta (ex: corrente, poupança, aplic.).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_conta",
+        "type": "varchar",
+        "size": "30",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome ou título da conta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_abertura",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de abertura da conta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_descricao",
+        "type": "varchar",
+        "size": "55",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Breve descrição da conta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_detalhamento",
+        "type": "varchar",
+        "size": "270",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Detalhamento adicional sobre a conta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_banco",
+        "type": "varchar",
+        "size": "35",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do banco ou instituição financeira.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tx_numero",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da agência/conta (campo curto).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_agencia",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da agência bancária.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_municipio_agencia",
+        "type": "varchar",
+        "size": "45",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Município onde está localizada a agência.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_uf_agencia",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla da UF da agência.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_justificativa",
+        "type": "text",
+        "size": "2147483647",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Justificativa para o uso desta conta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_historico_gf",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador de histórico no sistema GF.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_programa_bb_agil",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código do programa BB Ágil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_personalizado_conta_bb_agil",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome personalizado da conta no BB Ágil.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_saldo_conta_corrente",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Saldo atual da conta corrente.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_referencia_saldo_conta_corrente",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de referência do saldo da conta corrente.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_saldo_conta_investimento",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Saldo atual da conta investimento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_referencia_saldo_conta_investimento",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de referência do saldo da conta investimento.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 22
+  },
+  {
+    "table": "programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Chave primária do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ano_programa",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Ano de referência do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_programa",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código identificador do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_instrumento",
+        "type": "varchar",
+        "size": "65",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo de instrumento do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_tipo_instrumento",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código do tipo de instrumento.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_categoria",
+        "type": "varchar",
+        "size": "45",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador de categoria.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_ente_superior",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla do ente superior.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_ente_superior",
+        "type": "varchar",
+        "size": "80",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do ente superior.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_nome_ente_superior",
+        "type": "varchar",
+        "size": "85",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla/Nome estendido do ente superior.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_ente_repassador",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla do ente repassador.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_ente_repassador",
+        "type": "varchar",
+        "size": "100",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do ente repassador.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_nome_ente_repassador",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla/Nome do ente repassador.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_programa",
+        "type": "varchar",
+        "size": "160",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "qualificacao_beneficiario",
+        "type": "varchar",
+        "size": "35",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Qualificação do beneficiário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_objetivo",
+        "type": "varchar",
+        "size": "2690",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do objetivo do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_problema",
+        "type": "varchar",
+        "size": "1195",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do problema/endereço pelo programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_publico_alvo",
+        "type": "varchar",
+        "size": "585",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do público-alvo.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_resultado_esperado",
+        "type": "varchar",
+        "size": "1260",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição dos resultados esperados.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_inicio_beneficiario_espontaneo",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de início para beneficiário espontâneo.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_fim_beneficiario_espontaneo",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de fim para beneficiário espontâneo.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "expiracao_prog_beneficiario_espotaneo",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Regra/expiração para beneficiário espontâneo.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "pc_meia_entrada",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador/percentual de meia-entrada",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "situacao_programa",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_tem_meta_padrao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se o programa possui meta padrão.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_permite_meta_proponente",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se o proponente pode definir metas.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_tem_visao_produto",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se há visão por produto.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_exige_plano_distribuicao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se exige plano de distribuição.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_dispensa_plano_trabalho",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se dispensa plano de trabalho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_inicio_beneficiario_especifico",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de início para beneficiário específico.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_fim_beneficiario_especifico",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de fim para beneficiário específico.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "expiracao_prog_beneficiario_especifico",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Regra/expiração para beneficiário específico",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_vinc_indicadores_resultados_esperados",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se há vínculo com indicadores de resultados esperados.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_sazonalidade_plano_trabalho",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se há sazonalidade no plano de trabalho.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_existe_publico_alvo_padrao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se existe público-alvo padrão.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_utiliza_cauc_na_habilitacao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se utiliza CAUC na habilitação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_vlr_global",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor global do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_permite_anexo_tipo_outros",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se permite anexos do tipo “outros”.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_inicio_beneficiario_emenda",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de início para beneficiário por emenda.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_fim_beneficiario_emenda",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de fim para beneficiário por emenda.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "expiracao_prog_beneficiario_emenda",
+        "type": "varchar",
+        "size": "25",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Regra/expiração para beneficiário por emenda",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_prazo_captacao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Prazo de captação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_todos_cnaes",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indica se abrange todos os CNAEs.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_finalidade",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador de finalidade.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vincula_resultados_esperados_indicadores_progama",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador de vínculo com resultados esperados/indicadores.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sn_projeto_estruturante_calamidade",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador de projeto estruturante/calamidade.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "modalidade_projeto",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Modalidade do projeto.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_justificativa_tipo_projeto",
+        "type": "varchar",
+        "size": "3430",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da justificativa do tipo de projeto.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 47
+  },
+  {
+    "table": "programa_atende_a",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_programa_atende_a",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do registro programa atende a (chave primária)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa (chave estrangeira para tabela programa)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_atende_a",
+        "type": "varchar",
+        "size": "60",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo de público-alvo ou beneficiário que o programa atende",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 3
+  },
+  {
+    "table": "proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa relacionado (chave estrangeira para tabela programa).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cnpj_ente_recebedor",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ do ente recebedor da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_ente_recebedor",
+        "type": "varchar",
+        "size": "145",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do ente recebedor da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ed_cep",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CEP do endereço do ente recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ed_logradouro",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Logradouro do endereço do ente recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ed_numero",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do endereço do ente recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ed_complemento",
+        "type": "varchar",
+        "size": "100",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Complemento do endereço do ente recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ed_bairro",
+        "type": "varchar",
+        "size": "50",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Bairro do endereço do ente recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_ibge_recebedor",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código IBGE do município recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_municipio_recebedor",
+        "type": "varchar",
+        "size": "35",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do município recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_uf_recebedor",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do estado (UF) recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_uf_recebedor",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla do estado (UF) recebedor.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_pais",
+        "type": "varchar",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do país.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_natureza_juridica",
+        "type": "varchar",
+        "size": "70",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da natureza jurídica.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cnpj_executor",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ do executor da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_executor",
+        "type": "varchar",
+        "size": "140",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do executor da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cnpj_terceiro_signatario",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "CNPJ do terceiro signatário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_terceiro_signatario",
+        "type": "varchar",
+        "size": "130",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do terceiro signatário.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa_unidade_gestora",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da unidade gestora do programa.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_unidade_gestora",
+        "type": "varchar",
+        "size": "85",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome da unidade gestora.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_objeto",
+        "type": "varchar",
+        "size": "5000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do objeto da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_problema_proposta",
+        "type": "varchar",
+        "size": "5000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do problema da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_relacao_proposta_objetivo_diretrizes",
+        "type": "varchar",
+        "size": "5000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da relação da proposta com o objetivo e diretrizes.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_caracterizacao_interesses_reciprocos",
+        "type": "varchar",
+        "size": "5000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição da caracterização dos interesses recíprocos.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "situacao_proposta",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Situação atual da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_analise",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador se a proposta está em análise.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_resultado_esperado_proposta",
+        "type": "varchar",
+        "size": "5000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do resultado esperado da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_formato_etapas",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador do formato em etapas.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_vlr_total",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número do valor total.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_envio_analise",
+        "type": "timestamp",
+        "size": "29,6",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data de envio para análise.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_antes_inativar",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador da situação antes de inativar.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_situacao_analise_antes_inativar",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador da situação de análise antes de inativar.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_tipo_prazo_captacao",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador do tipo de prazo de captação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_limite_captacao",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data limite para captação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "in_formato_etapas_antes_recalculo",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Indicador do formato em etapas antes do recálculo.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_total_planejamento_gastos",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor total do planejamento de gastos.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_publico_alvo_proposta",
+        "type": "varchar",
+        "size": "5000",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do público-alvo da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "mes_proposta",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Mês da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ano_proposta",
+        "type": "int4",
+        "size": "10",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Ano da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_proposta",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data da proposta.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 41
+  },
+  {
+    "table": "proposta_resultado_indicador",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_proposta_resultado_indicador",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do resultado/indicador da proposta (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da proposta (FK para proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_resultado_esperado_proposta_resultado_indicador",
+        "type": "varchar",
+        "size": "500",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do resultado esperado.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_indicador_proposta",
+        "type": "varchar",
+        "size": "500",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome do indicador da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "vl_indicador_proposta",
+        "type": "numeric",
+        "size": "15,2",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Valor do indicador da proposta.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_unidade_medida_indicador_proposta",
+        "type": "varchar",
+        "size": "30",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Unidade de medida do indicador.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 6
+  },
+  {
+    "table": "publicacao_parceria",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_publicacao_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da publicação da parceria (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_parceria",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da parceria publicada (FK para parceria).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_publicacao",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data em que a parceria foi publicada no DOU.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_numero_dou",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da edição do Diário Oficial da União (DOU) onde foi publicada.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nr_pagina_dou",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Número da página do DOU onde consta a publicação.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_documento_publicado",
+        "type": "varchar",
+        "size": "150",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição/tipo do documento publicado (ex: Extrato de Contrato, Aditivo, etc.).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_url_documento_publicado",
+        "type": "varchar",
+        "size": "120",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "URL oficial onde o documento pode ser acessado.",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "dt_inicio_captacao",
+        "type": "date",
+        "size": "13",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Data a partir da qual a captação de recursos pode ser iniciada.",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 8
+  },
+  {
+    "table": "resultado_esperado_programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_resultado_esperado_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do resultado esperado do programa (chave primária)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa (chave estrangeira para tabela programa)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "ds_resultado_esperado_programa",
+        "type": "varchar",
+        "size": "110",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Descrição do resultado esperado do programa",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 3
+  },
+  {
+    "table": "tipo_analise_proposta",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_analise_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador da análise (FK para analise_proposta).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_tipo_analise_proposta",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único do tipo de análise (PK).",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "tp_analise",
+        "type": "varchar",
+        "size": "15",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Tipo da análise (ex: Financeira, Técnica, Mérito).",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 3
+  },
+  {
+    "table": "uf_habilitada_programa",
+    "description": "",
+    "columns": [
+      {
+        "name": "id_uf_habilitada_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador único da UF habilitada no programa (chave primária)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "id_programa",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Identificador do programa (chave estrangeira para tabela programa)",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "nm_uf",
+        "type": "varchar",
+        "size": "20",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Nome completo da Unidade Federativa",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "sg_uf",
+        "type": "varchar",
+        "size": "5",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Sigla da Unidade Federativa",
+        "children": [],
+        "parents": []
+      },
+      {
+        "name": "cd_ibge",
+        "type": "int8",
+        "size": "19",
+        "nullable": false,
+        "auto": "",
+        "default": "null",
+        "comments": "Código IBGE da Unidade Federativa",
+        "children": [],
+        "parents": []
+      }
+    ],
+    "column_count": 5
+  }
+]
