@@ -87,6 +87,9 @@ def test_pagination_checkpoint_and_upsert_preserve_previous_records(tmp_path):
     assert {row["source_record_id"] for row in records} == {"1", "2", "99"}
     assert checkpoint["completed"] is True
     assert status["records_published"] == 3
+    assert status["resume_from_index"] == 0
+    assert status["municipalities_processed_this_run"] == 1
+    assert status["municipalities_completed_total"] == 1
     normalized = next(row for row in records if row["source_record_id"] == "1")
     assert normalized["receiver_name"] == "Não informado pela fonte"
 
@@ -172,6 +175,24 @@ def test_incomplete_checkpoint_from_another_scope_is_rejected(tmp_path):
         assert "outro escopo" in str(exc)
     else:
         raise AssertionError("Checkpoint ambíguo deveria ser recusado.")
+
+
+def test_atomic_write_retries_transient_permission_error(monkeypatch, tmp_path):
+    original = Path.replace
+    attempts = []
+
+    def flaky_replace(path, target):
+        attempts.append(str(target))
+        if len(attempts) < 3:
+            raise PermissionError("arquivo temporariamente bloqueado")
+        return original(path, target)
+
+    monkeypatch.setattr(Path, "replace", flaky_replace)
+    monkeypatch.setattr(module.time, "sleep", lambda _: None)
+    target = tmp_path / "status.json"
+    module.write_json(target, {"ok": True})
+    assert json.loads(target.read_text(encoding="utf-8")) == {"ok": True}
+    assert len(attempts) == 3
 
 
 def test_ibge_mismatch_stops_without_publishing(tmp_path):
