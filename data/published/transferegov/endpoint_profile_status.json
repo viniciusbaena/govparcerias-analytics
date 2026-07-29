@@ -1,0 +1,9 @@
+{
+  "profiled_at": "2026-07-29T14:19:52.336451+00:00",
+  "apis": 2,
+  "get_endpoints": 37,
+  "probed": 37,
+  "skipped": 0,
+  "errors": 0,
+  "policy": "official_only"
+}

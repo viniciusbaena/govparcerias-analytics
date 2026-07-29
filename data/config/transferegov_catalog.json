@@ -1,0 +1,251 @@
+{
+  "source": "Transferegov",
+  "discovered_at": "2026-07-29T13:59:42.661353+00:00",
+  "api_count": 2,
+  "apis": [
+    {
+      "title": "API de dados abertos do módulo de Transferências Especiais do Transferegov",
+      "version": "1.0",
+      "openapi_url": "https://api-publica.transferegov.gestao.gov.br/especiais/openapi.json",
+      "fetched_at": "2026-07-29T13:59:41.340519+00:00",
+      "sha256": "3f408dc613a1af16896c75648d1787a192bc5c792f24efe2597bd4b672a78220",
+      "endpoint_count": 21,
+      "endpoints": [
+        {
+          "path": "/data-atualizacao",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/plano_trabalho_analise_historico_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/programas_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/planos_acao_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/planos_acao_historico_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/beneficiarios_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/planos_trabalho_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/planos_trabalho_analises_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/relatorios_gestao_novos_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/relatorios_gestao_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/empenhos_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/documentos_habeis_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/ordens_pagamentos_ordens_bancarias_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/executores_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/meta_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/finalidade_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/gestao_financeira_lancamentos_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/gestao_financeira_subtransacoes_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/orgaos_analises_pendentes_especiais",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/planos_trabalho_historico",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/saldo_conta_gestao_financeira_especiais",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "API de dados abertos do módulo de Gestão de Parcerias do Transferegov",
+      "version": "1.0",
+      "openapi_url": "https://api-publica.transferegov.gestao.gov.br/parcerias/openapi.json",
+      "fetched_at": "2026-07-29T13:59:42.660380+00:00",
+      "sha256": "fdb47f78abda99f57c59538bd0b5a57b06c51d17d4d5833c79c5d209f1d071e7",
+      "endpoint_count": 16,
+      "endpoints": [
+        {
+          "path": "/programa",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/proposta",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/meta-proposta",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/item-proposta",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/cronograma-desembolso",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/parceria",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/parceria-conta",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/data-atualizacao",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/analise-proposta",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/proposta-resultado-indicador",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/distribuicao-recurso-proposta",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/empenho-parceria",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/documento-habil",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/ordem-pagamento",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/extrato-bancario",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/beneficiario_emenda_parlamentar",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "policy": "official_only"
+}
