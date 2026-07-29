@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "policy": "official_only",
+  "sections": [
+    {"id":"identificacao","title":"Identificação e enquadramento","fields":["numero_instrumento","numero_proposta","tipo_instrumento","situacao","objeto","orgao_concedente","convenente","cnpj_convenente","municipio","uf","datas_assinatura_publicacao_inicio_fim"]},
+    {"id":"financeiro","title":"Resumo financeiro","fields":["valor_global","valor_repasse","valor_contrapartida","contrapartida_financeira","contrapartida_bens_servicos","rendimentos","valor_empenhado","valor_liberado","valor_pago","valor_executado","saldo_conta_corrente","saldo_investimento","saldo_disponivel","saldo_comprometido"]},
+    {"id":"origens","title":"Origem dos recursos e emendas","fields":["numero_emenda","ano_emenda","tipo_emenda","autor_emenda","codigo_parlamentar","nome_parlamentar","partido","uf_parlamentar","valor_emenda","gnd3","gnd4","beneficiario"]},
+    {"id":"empenhos","title":"Empenhos","fields":["numero_empenho","ano","unidade_gestora","data_emissao","tipo","situacao_siafi","favorecido","cnpj_cpf_favorecido","descricao","valor"]},
+    {"id":"documentos_habeis","title":"Documentos hábeis","fields":["numero_documento","tipo_documento","unidade_gestora","data_emissao","situacao","credor_devedor","identificacao_credor","valor","observacoes","empenhos_vinculados"]},
+    {"id":"ordens_pagamento","title":"Ordens de pagamento","fields":["numero_ordem","numero_minuta","situacao","data_emissao","valor","numero_ordem_bancaria","data_ordem_bancaria","observacoes"]},
+    {"id":"contas","title":"Contas bancárias vinculadas","fields":["banco","agencia","municipio_agencia","uf_agencia","numero_conta","tipo_conta","nome_conta","data_abertura","situacao","saldo_conta_corrente","data_saldo_corrente","saldo_investimento","data_saldo_investimento"]},
+    {"id":"extratos","title":"Extratos e movimentações","fields":["data_movimento","tipo_transacao","tipo_operacao","valor","depositante","identificacao_depositante_mascarada","beneficiario","identificacao_beneficiario_mascarada","banco_agencia_conta_origem","banco_agencia_conta_destino","historico"]},
+    {"id":"plano_trabalho","title":"Plano de trabalho","fields":["metas","etapas","itens","quantidade","unidade_medida","valor_unitario","valor_total","natureza_despesa","categoria","subcategoria","cronograma_desembolso","origem_recurso"]},
+    {"id":"obras","title":"Obras e engenharia","fields":["identificador_obra","nome_obra","tipo_obra","endereco","latitude","longitude","situacao_obra","percentual_execucao_fisica","percentual_execucao_financeira","data_inicio_prevista","data_inicio_real","data_fim_prevista","data_fim_real","responsavel_tecnico","art_rrt","empresa_executora","cnpj_empresa","contrato_execucao","valor_contrato_obra"]},
+    {"id":"documentos_engenharia","title":"Documentos técnicos e de engenharia","fields":["projeto_basico","projeto_executivo","memorial_descritivo","planilha_orcamentaria","cronograma_fisico_financeiro","composicoes_custos","bdi","art_rrt","licencas","alvaras","laudos","relatorios_fotograficos","medicoes","boletins_medicao","atestes","termos_recebimento_provisorio_definitivo","aditivos","ordens_servico","paralisacoes_reinicios"]},
+    {"id":"vistorias","title":"Vistorias e acompanhamento","fields":["data_vistoria","tipo_vistoria","orgao_responsavel","fiscal","participantes","percentual_constatado","achados","pendencias","recomendacoes","prazo_saneamento","registro_fotografico","georreferenciamento","documentos_anexos"]},
+    {"id":"licitacoes_contratos","title":"Licitações e contratos de execução","fields":["modalidade","numero_processo","numero_edital","data_publicacao","data_homologacao","vencedor","cnpj_vencedor","valor_adjudicado","numero_contrato","vigencia_contrato","garantias","aditivos","apostilamentos","subcontratacoes"]},
+    {"id":"prestacao_contas","title":"Prestação de contas","fields":["situacao_prestacao_contas","data_envio","data_analise","resultado","pareceres","glosas","devolucoes","tomada_contas_especial","documentos_comprobatorios"]},
+    {"id":"documentos","title":"Documentos e anexos","fields":["titulo","tipo","data","orgao_emissor","url_oficial","hash_arquivo","mime_type","tamanho","classificacao","texto_extraido","metadados"]},
+    {"id":"proveniencia","title":"Fonte e rastreabilidade","fields":["sistema_origem","endpoint_origem","identificador_origem","url_consulta_oficial","data_hora_coleta","hash_payload","campo_original","transformacao_aplicada","versao_conector","status_validacao"]}
+  ]
+}
