@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.3.0-alpha
+
+- Adiciona sincronizador incremental do grafo Transferegov com 11 entidades relacionadas por IDs oficiais.
+- Gera visão integrada por proposta, parceria, município e execução financeira.
+- Torna funcionais o dossiê contratual, inteligência financeira, centro de proveniência, timeline e conformidade.
+- Mantém checkpoint, retry, paginação, raw, upsert preservador e bloqueio de relações ambíguas.
+- Adiciona descoberta territorial ObrasGov por `cod_ibge` e grafo de projetos por identificador oficial.
+- Publica 1.935 parcerias, 2.048 itens de cronograma e 1.517 empenhos do Transferegov.
+- Publica 1.411 geometrias, 891 projetos, 65 contratos e 825 empenhos do ObrasGov.
+- Separa valores financeiros por fonte para impedir dupla contagem entre empenhos de parcerias e de obras.
+- Marca sincronizações parciais na interface e documenta a ausência de chave própria nas múltiplas medições de execução física.
+
 ## v1.2.0-alpha
 
 - Corrige paginação, navegação interna, cartões, abas, paleta e demais botões bloqueados pela CSP.

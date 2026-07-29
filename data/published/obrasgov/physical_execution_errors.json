@@ -1,0 +1,9 @@
+[
+  {
+    "entity": "physical_execution",
+    "root": "3106.41-04",
+    "page": 1,
+    "error": "AmbiguousOfficialKey",
+    "message": "A fonte retornou múltiplos registros sem identificador próprio além de id_projeto_investimento."
+  }
+]

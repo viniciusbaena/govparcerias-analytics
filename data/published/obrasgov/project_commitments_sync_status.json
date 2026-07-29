@@ -1,0 +1,12 @@
+{
+  "entity": "project_commitments",
+  "records": 825,
+  "roots_total": 891,
+  "pages_this_run": 887,
+  "errors": 0,
+  "partial": false,
+  "completed": true,
+  "primary_key": "nr_empenho",
+  "parent_key": "id_projeto_investimento",
+  "policy": "official_only"
+}

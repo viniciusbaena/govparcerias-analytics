@@ -1,4 +1,4 @@
-const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],view:'inicio',homeQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,municipalityQuery:'',municipalityPage:1,pageSize:18};
+const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,pageSize:18};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-action]');
@@ -19,6 +19,7 @@ document.addEventListener('click',event=>{
     'open-contract':()=>openContractResult(Number(value)),
     'open-proposal':()=>openProposalResult(Number(value)),
     'select-section':()=>selectSection(value),
+    'select-dossier-contract':()=>{S.selectedOfficialContract=(S.contracts||[])[Number(value)];S.selectedSection='identificacao';dossie()},
     'open-chat':openChat,
   };
   if(actions[action]){
@@ -51,12 +52,13 @@ async function boot(){
       return fallback
     }
   };
-  [S.data,S.contract,S.portfolio,S.contracts,S.proposals]=await Promise.all([
+  [S.data,S.contract,S.portfolio,S.contracts,S.proposals,S.integrated]=await Promise.all([
     safeJson('data/demo.json',{}),
     safeJson('data/dossier-contract.json',{sections:[]}),
     safeJson('data/municipalities.json',{manifest:{record_count:0},municipalities:[]}),
     safeJson('data/contracts.json',[]),
-    safeJson('data/proposals.json',[])
+    safeJson('data/proposals.json',[]),
+    safeJson('data/integrated.json',{counts:{},financial:{records:{}},timeline:[],integrity:{rules:[]}})
   ]);
   if(!Array.isArray(S.contracts))S.contracts=S.contracts.items||S.contracts.contracts||S.contracts.data||[];
   if(!Array.isArray(S.proposals))S.proposals=S.proposals.items||S.proposals.proposals||S.proposals.data||[];
@@ -65,7 +67,7 @@ async function boot(){
   show('inicio')
 }
 const nav=[['inicio','Visão integrada'],['municipios','Municípios'],['territorial','Gestão territorial'],['instrumentos','Contratos e propostas'],['dossie','Dossiê por contrato'],['financeiro','Inteligência financeira'],['engenharia','Obras e engenharia'],['documentos','Centro de documentos'],['timeline','Timeline integrada'],['riscos','Risco e conformidade'],['copiloto','Copiloto']];
-function renderShell(){$('#app').innerHTML=`<div class="layout"><aside class="sidebar"><div class="brand"><div class="logo">GP</div><div><strong>GovParcerias</strong><small>Intelligence</small></div></div><nav>${nav.map(([id,t])=>`<button data-view="${id}" data-action="show" data-value="${id}">${t}</button>`).join('')}</nav><div class="policy">Integridade official-only<br><small>Carteira administrativa separada da base pública oficial.</small></div></aside><main><header class="topbar"><div><strong>Operação por contrato · gestão por território</strong><small> Uma base, duas jornadas complementares</small></div><div><button id="cmd" data-action="open-palette">Ctrl K</button><button id="theme" data-action="toggle-theme">${S.theme==='dark'?'Claro':'Escuro'}</button><span class="badge">v1.2.0-alpha</span></div></header><section id="content"></section><footer>121 municípios · ${(S.proposals||[]).length} propostas Transferegov · ${(S.contracts||[]).length} contratos PNCP · official-only</footer></main></div><aside id="chat" class="chat"><header><div><strong>Copiloto verificável</strong><small>Território, município e contrato</small></div><button data-action="close-chat" aria-label="Fechar copiloto">×</button></header><div class="chat-body" id="chatBody"><div class="notice"><strong>Política ativa.</strong> A carteira identifica o universo de trabalho. Respostas sobre contratos, propostas, valores, obras e documentos exigem evidência pública oficial.</div></div><div class="chat-input"><input id="chatInput" placeholder="Pergunte por município, proposta ou contrato"><button data-action="assistant-query">Enviar</button></div></aside><div id="palette" class="palette"><div class="palette-box"><input id="paletteInput" placeholder="Digite uma página ou comando"><div>${nav.map(([id,t])=>`<button data-action="close-palette" data-value="${id}">${t}</button>`).join('')}</div></div></div>`}
+function renderShell(){$('#app').innerHTML=`<div class="layout"><aside class="sidebar"><div class="brand"><div class="logo">GP</div><div><strong>GovParcerias</strong><small>Intelligence</small></div></div><nav>${nav.map(([id,t])=>`<button data-view="${id}" data-action="show" data-value="${id}">${t}</button>`).join('')}</nav><div class="policy">Integridade official-only<br><small>Carteira administrativa separada da base pública oficial.</small></div></aside><main><header class="topbar"><div><strong>Operação por contrato · gestão por território</strong><small> Uma base, duas jornadas complementares</small></div><div><button id="cmd" data-action="open-palette">Ctrl K</button><button id="theme" data-action="toggle-theme">${S.theme==='dark'?'Claro':'Escuro'}</button><span class="badge">v1.3.0-alpha</span></div></header><section id="content"></section><footer>121 municípios · ${(S.proposals||[]).length} propostas Transferegov · ${(S.contracts||[]).length} contratos PNCP · official-only</footer></main></div><aside id="chat" class="chat"><header><div><strong>Copiloto verificável</strong><small>Território, município e contrato</small></div><button data-action="close-chat" aria-label="Fechar copiloto">×</button></header><div class="chat-body" id="chatBody"><div class="notice"><strong>Política ativa.</strong> A carteira identifica o universo de trabalho. Respostas sobre contratos, propostas, valores, obras e documentos exigem evidência pública oficial.</div></div><div class="chat-input"><input id="chatInput" placeholder="Pergunte por município, proposta ou contrato"><button data-action="assistant-query">Enviar</button></div></aside><div id="palette" class="palette"><div class="palette-box"><input id="paletteInput" placeholder="Digite uma página ou comando"><div>${nav.map(([id,t])=>`<button data-action="close-palette" data-value="${id}">${t}</button>`).join('')}</div></div></div>`}
 function toggleTheme(){S.theme=S.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=S.theme;localStorage.setItem('gpa:theme',S.theme);renderShell();show(S.view)}
 function show(v){S.view=v;document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));({inicio,municipios,territorial,instrumentos,dossie,financeiro,engenharia,documentos,timeline,riscos,copiloto}[v]||inicio)()}
 const head=(t,p,a='')=>`<div class="hero"><div><h1>${t}</h1><p>${p}</p></div>${a}</div>`;
@@ -152,9 +154,11 @@ function municipalityProfile(){
   if(!m)return show('municipios');
   const proposals=(S.proposals||[]).filter(p=>String(p.ibge_code)===String(m.ibge_code));
   const contracts=(S.contracts||[]).filter(c=>String(c.ibge_code||'')===String(m.ibge_code));
+  const works=(S.integrated?.engineering||[]).filter(project=>(project.municipalities||[]).some(item=>String(item.ibge_code)===String(m.ibge_code)));
+  const interruptedWorks=works.filter(project=>project.interruption_count>0||/paralisa|cancel/i.test(project.situation||''));
   $('#content').innerHTML=head(m.name,'Visão municipal com propostas Transferegov e contratos PNCP oficialmente sincronizados.',`<button data-action="show" data-value="municipios">← Voltar à carteira</button>`)
     +`<div class="profile-head"><div class="profile-mark">${esc(m.name.slice(0,2).toUpperCase())}</div><div><span class="eyebrow">Município da carteira</span><h2>${esc(m.name)}</h2><p>CNPJ ${esc(m.cnpj)} · Código IBGE ${esc(m.ibge_code)}</p></div><span class="source-pill">Carteira de trabalho</span></div>
-      <div class="metric-grid">${card('Propostas oficiais',proposals.length,'Transferegov')}${card('Contratos oficiais',contracts.length,'PNCP')}${card('Obras oficiais','—','Fonte ainda não sincronizada')}${card('Alertas verificáveis','—','Motor aguarda evidências')}</div>
+      <div class="metric-grid">${card('Propostas oficiais',proposals.length,'Transferegov')}${card('Contratos oficiais',contracts.length,'PNCP')}${card('Obras oficiais',works.length,'ObrasGov por código IBGE')}${card('Situações de atenção',interruptedWorks.length,'Paralisada/cancelada informada pela fonte')}</div>
       <div class="tabs-inline"><button data-action="municipality-tab" data-value="propostas">Propostas</button><button data-action="municipality-tab" data-value="contratos">Contratos</button><button data-action="municipality-tab" data-value="obras">Obras</button><button data-action="municipality-tab" data-value="documentos">Documentos</button></div>
       <div id="municipalityTab"></div>
       <div class="provenance-box"><strong>Proveniência do cadastro</strong><p>Arquivo: ${esc(S.portfolio?.manifest?.source_file||'source-data/Planilha 121 municipios.xlsx')} · classificação: carteira administrativa. Propostas e contratos são identificados separadamente por suas fontes oficiais.</p></div>`;
@@ -177,10 +181,42 @@ function showMunicipalityTab(t){
       :empty('Nenhum contrato oficial vinculado','Nenhum contrato PNCP da base atual possui este código IBGE.');
     return
   }
-  const names={obras:'obra',documentos:'documento'};
-  $('#municipalityTab').innerHTML=empty(`Nenhum ${names[t]} oficial vinculado`,'A plataforma não criará registros sintéticos para preencher esta área.')
+  if(t==='obras'){
+    const works=(S.integrated?.engineering||[]).filter(project=>(project.municipalities||[]).some(item=>String(item.ibge_code)===String(m.ibge_code)));
+    $('#municipalityTab').innerHTML=works.length
+      ?`<div class="cards">${works.map(project=>`<article><span class="eyebrow">ObrasGov · ${esc(project.project_id)}</span><h3>${esc(project.name)}</h3><p>${esc(clipText(project.description,180))}</p><small>Situação: ${esc(project.situation)} · Contratos: ${project.contract_count||0} · Empenhos: ${project.commitment_count||0} · Execuções: ${project.physical_execution_count||0}</small></article>`).join('')}</div>`
+      :empty('Nenhuma obra oficial vinculada','A consulta territorial ObrasGov não retornou projeto para este código IBGE.');
+    return
+  }
+  $('#municipalityTab').innerHTML=empty('Nenhum documento oficial vinculado','A plataforma não criará registros sintéticos para preencher esta área.')
 }
-function territorial(){$('#content').innerHTML=head('Gestão territorial e municipal','Visão macro para gerência sem perder a rastreabilidade até o contrato de origem.')+`<div class="metric-grid">${card('Carteira atual','121 municípios','Recorte administrativo')}${card('Regiões oficiais','—','Aguardando fonte territorial')}${card('Contratos consolidados',(S.contracts||[]).length,'PNCP')}${card('Recursos consolidados','—','Nenhum total sem fonte')}</div><div class="cards"><article><h3>Carteira completa</h3><p>Consolidação dos 121 municípios cadastrados, com filtros e acesso ao perfil individual.</p><button data-action="show" data-value="municipios">Explorar municípios</button></article><article><h3>Comparação municipal</h3><p>Comparações financeiras, físicas e de risco serão habilitadas somente após a coleta oficial.</p><button disabled>Sem dados oficiais</button></article><article><h3>Recortes territoriais</h3><p>Regiões imediatas, intermediárias e outros agrupamentos serão obtidos de fonte pública oficial.</p><button disabled>Aguardando conector</button></article></div>${empty('Indicadores territoriais ainda indisponíveis','O único agregado liberado nesta versão é a contagem dos 121 registros da carteira fornecida.')}`}
+function territorial(){
+  const municipalities=S.portfolio?.municipalities||[];
+  const proposals=S.proposals||[];
+  const contracts=S.contracts||[];
+  const projects=S.integrated?.engineering||[];
+  const summaries=municipalities.map(m=>{
+    const municipalContracts=contracts.filter(row=>String(row.ibge_code||'')===String(m.ibge_code));
+    const municipalProjects=projects.filter(project=>(project.municipalities||[]).some(item=>String(item.ibge_code)===String(m.ibge_code)));
+    return {
+      ...m,
+      proposals:proposals.filter(row=>String(row.ibge_code)===String(m.ibge_code)).length,
+      contracts:municipalContracts.length,
+      contractValue:municipalContracts.reduce((total,row)=>total+(Number(row.valor_global)||0),0),
+      projects:municipalProjects.length,
+      attention:municipalProjects.filter(project=>project.interruption_count>0||/paralisa|cancel/i.test(project.situation||'')).length
+    }
+  });
+  const ranked=[...summaries].sort((a,b)=>(b.contracts+b.proposals+b.projects)-(a.contracts+a.proposals+a.projects)||a.name.localeCompare(b.name,'pt-BR'));
+  const withContracts=summaries.filter(row=>row.contracts>0).length;
+  const withProjects=summaries.filter(row=>row.projects>0).length;
+  const totalValue=summaries.reduce((total,row)=>total+row.contractValue,0);
+  $('#content').innerHTML=head('Gestão territorial e municipal','Consolidação rastreável das fontes oficiais já sincronizadas, limitada aos 121 municípios.')
+    +`<div class="metric-grid">${card('Carteira atual','121 municípios','Recorte administrativo')}${card('Com contratos PNCP',withContracts,'Código IBGE oficial')}${card('Com projetos ObrasGov',withProjects,'Geometria por código IBGE')}${card('Valor contratual',moneyBR(totalValue),'Soma dos contratos PNCP carregados')}</div>
+      <div class="cards"><article><h3>Carteira completa</h3><p>Consulte propostas, contratos e obras de cada município.</p><button data-action="show" data-value="municipios">Explorar municípios</button></article></div>
+      <div class="portfolio-meta"><span>Comparação dos 121 municípios</span><span>Exibindo 30 com maior cobertura sincronizada</span><span>Sem classificação subjetiva</span></div>
+      <div class="cards">${ranked.slice(0,30).map(row=>`<article><span class="eyebrow">IBGE ${esc(row.ibge_code)}</span><h3>${esc(row.name)}</h3><p>Propostas: ${row.proposals} · Contratos: ${row.contracts} · Obras: ${row.projects}</p><small>Valor contratual: ${moneyBR(row.contractValue)} · Situações de atenção na fonte: ${row.attention}</small><button data-action="open-municipality" data-value="${esc(row.ibge_code)}">Abrir município</button></article>`).join('')}</div>`
+}
 function contractResults(){const q=(S.homeQuery||'').trim().toLocaleLowerCase('pt-BR');return (S.contracts||[]).filter(c=>!q||JSON.stringify(c).toLocaleLowerCase('pt-BR').includes(q))}
 function normalizeSearch(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR')}
 function moneyBR(v){if(v===null||v===undefined||v==='')return 'Não informado pela fonte';const n=Number(v);return Number.isFinite(n)?n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}):esc(v)}
@@ -348,14 +384,90 @@ function contractDetail(){
       <div class="field-grid">${fields.map(([label,value])=>`<div class="field"><label>${esc(label)}</label><strong>${label.includes('Valor')?value:esc(value)}</strong></div>`).join('')}</div>`
 }
 
-function dossie(){$('#content').innerHTML=head('Dossiê integral por contrato','Núcleo operacional para analistas, engenheiros, arquitetos, fiscais e equipes financeiras.')+`<div class="dossier"><aside class="tabs">${S.contract.sections.map(s=>`<button class="${S.selectedSection===s.id?'active':''}" data-action="select-section" data-value="${esc(s.id)}">${esc(s.title)}</button>`).join('')}</aside><section class="dossier-main">${sectionView()}</section></div>`}
-function selectSection(id){S.selectedSection=id;dossie()} function sectionView(){const s=S.contract.sections.find(x=>x.id===S.selectedSection);return `<div class="section-head"><div><span class="eyebrow">Contrato não selecionado</span><h2>${s.title}</h2><p>Campos previstos. O preenchimento exige registro oficial validado.</p></div><span class="source-pill">Sem evidência</span></div><div class="field-grid">${s.fields.map(f=>`<div class="field"><label>${f.replaceAll('_',' ')}</label><strong>Não informado pela fonte</strong><small>Sem registro oficial sincronizado</small></div>`).join('')}</div>`}
+function dossie(){
+  const c=S.selectedOfficialContract;
+  if(!c){
+    const cards=(S.contracts||[]).slice(0,100).map((contract,index)=>`<article><span class="eyebrow">Contrato oficial · PNCP</span><h3>${esc(contractTitle(contract))}</h3><p><strong>${esc(contractMunicipality(contract))}</strong></p><p>${esc(clipText(contractObject(contract),180))}</p><button data-action="select-dossier-contract" data-value="${index}">Abrir dossiê</button></article>`).join('');
+    $('#content').innerHTML=head('Dossiê integral por contrato','Selecione um contrato oficial para consultar identificação, valores, vigência e proveniência.')+`<div class="portfolio-meta"><span>${(S.contracts||[]).length} contrato(s) disponível(is)</span><span>Exibindo os primeiros 100</span></div><div class="cards">${cards}</div>`;
+    return
+  }
+  const sections=[
+    ['identificacao','Identificação'],
+    ['financeiro','Financeiro'],
+    ['vigencia','Vigência'],
+    ['proveniencia','Proveniência']
+  ];
+  $('#content').innerHTML=head(`Dossiê do contrato ${esc(contractTitle(c))}`,'Dados oficiais sincronizados do PNCP.',`<button data-action="show" data-value="instrumentos">← Consulta unificada</button>`)
+    +`<div class="dossier"><aside class="tabs">${sections.map(([id,title])=>`<button class="${S.selectedSection===id?'active':''}" data-action="select-section" data-value="${id}">${title}</button>`).join('')}</aside><section class="dossier-main">${sectionView()}</section></div>`
+}
+function selectSection(id){S.selectedSection=id;dossie()}
+function field(label,value){return `<div class="field"><label>${esc(label)}</label><strong>${esc(value??'Não informado pela fonte')}</strong></div>`}
+function sectionView(){
+  const c=S.selectedOfficialContract;
+  if(!c)return empty('Contrato não selecionado','Selecione um contrato oficial para abrir o dossiê.');
+  const sections={
+    identificacao:[
+      ['Identificador PNCP',c.source_record_id],['Número',contractTitle(c)],['Município',contractMunicipality(c)],
+      ['CNPJ do órgão',c.orgao_cnpj],['Órgão',c.orgao_nome],['Processo',c.processo],['Fornecedor',c.fornecedor_nome],
+      ['Documento do fornecedor',c.fornecedor_documento],['Objeto',contractObject(c)]
+    ],
+    financeiro:[
+      ['Valor inicial',moneyBR(c.valor_inicial)],['Valor global',moneyBR(c.valor_global)],['Valor acumulado',moneyBR(c.valor_acumulado)]
+    ],
+    vigencia:[
+      ['Assinatura',c.data_assinatura],['Início da vigência',c.vigencia_inicio],['Fim da vigência',c.vigencia_fim],
+      ['Publicação no PNCP',c.data_publicacao_pncp],['Atualização na fonte',c.data_atualizacao]
+    ],
+    proveniencia:[
+      ['Fonte',c.source],['URL oficial',c.source_url],['Coletado em',c.fetched_at],['Hash SHA-256',c.sha256]
+    ]
+  };
+  const current=sections[S.selectedSection]||sections.identificacao;
+  return `<div class="section-head"><div><span class="eyebrow">Contrato oficial</span><h2>${esc(contractTitle(c))}</h2><p>${esc(contractMunicipality(c))}</p></div><span class="source-pill">PNCP</span></div><div class="field-grid">${current.map(([label,value])=>field(label,value)).join('')}</div>`
+}
 function generic(title,desc,detail){$('#content').innerHTML=head(title,desc)+empty(detail)}
-function financeiro(){generic('Inteligência financeira','Repasse, contrapartida, empenhos, pagamentos, contas, extratos e conciliação por contrato.','Nenhum registro financeiro oficial carregado')}
-function engenharia(){generic('Obras e engenharia','Projetos, medições, vistorias, ART/RRT, cronogramas, fotos, aditivos e recebimentos.','Nenhuma obra ou vistoria oficial carregada')}
-function documentos(){generic('Centro de documentos','Pesquisa, versionamento, comparação, hash e citações de documentos públicos.','Nenhum documento oficial indexado')}
-function timeline(){generic('Timeline integrada','Eventos contratuais, financeiros, físicos, documentais e de fiscalização em sequência auditável.','Nenhum evento oficial carregado')}
-function riscos(){generic('Risco e conformidade','Regras determinísticas, requisitos explícitos e evidências reproduzíveis.','Nenhum alerta calculado sem evidência')}
+function financeiro(){
+  const f=S.integrated?.financial||{records:{}};
+  const r=f.records||{};
+  const commitmentSync=S.integrated?.sync_status?.commitments||{};
+  const commitmentLabel=`${r.commitments||0} registro(s)${commitmentSync.completed?'':' · sincronização parcial'}`;
+  $('#content').innerHTML=head('Inteligência financeira','Valores agregados exclusivamente dos registros oficiais sincronizados.')
+    +`<div class="metric-grid">${card('Valor global dos contratos',moneyBR(f.contract_value_total),'PNCP')}${card('Cronograma de desembolso',moneyBR(f.scheduled_disbursement_total),`${r.schedules||0} registro(s)`)}${card('Empenhos',moneyBR(f.commitment_total),commitmentLabel)}${card('Ordens de pagamento',moneyBR(f.payment_order_total),`${r.payment_orders||0} registro(s)`)}</div>
+      <div class="cards"><article><h3>Empenhos de obras</h3><p>${moneyBR(f.obrasgov_commitment_total)}</p><small>${r.project_commitments||0} registro(s) ObrasGov; não somados aos empenhos de parcerias</small></article><article><h3>Documentos hábeis</h3><p>${moneyBR(f.payable_document_total)}</p><small>${r.payable_documents||0} registro(s) oficial(is)</small></article><article><h3>Movimentação bancária</h3><p>${moneyBR(f.bank_movement_total)}</p><small>${r.bank_statements||0} lançamento(s) oficial(is)</small></article><article><h3>Contratos considerados</h3><p>${r.contracts||0}</p><small>Registros PNCP com valor informado pela fonte</small></article></div>
+      ${!(r.schedules||r.commitments||r.payment_orders)?empty('Execução financeira do Transferegov em sincronização','Os valores PNCP já estão disponíveis; cronogramas, empenhos e pagamentos serão incorporados por checkpoint.'):''}`
+}
+function engenharia(){
+  const projects=S.integrated?.engineering||[];
+  const geometryCount=S.integrated?.counts?.obrasgov_geometries||0;
+  $('#content').innerHTML=head('Obras e engenharia','Projetos de investimento localizados oficialmente pelo código IBGE no ObrasGov.')
+    +`<div class="metric-grid">${card('Projetos identificados',projects.length,'ObrasGov')}${card('Geometrias oficiais',geometryCount,'Filtro cod_ibge')}${card('Com contratos de obra',projects.filter(row=>row.contract_count>0).length,'Vínculo oficial por projeto')}${card('Com execução física',projects.filter(row=>row.physical_execution_count>0).length,'Carga parcial quando indicada pela fonte')}</div>
+      <div class="portfolio-meta"><span>${projects.length} projeto(s) na carteira</span><span>Exibindo até 200</span><span>Sem consulta nacional</span></div>
+      ${projects.length?`<div class="cards">${projects.slice(0,200).map(project=>`<article><span class="eyebrow">ObrasGov · ${esc(project.project_id)}</span><h3>${esc(project.name)}</h3><p>${esc(clipText(project.description,180))}</p><small>${esc(project.municipalities.map(m=>m.name).join(', '))} · Situação: ${esc(project.situation)}</small><small>Contratos: ${project.contract_count||0} · Empenhos: ${project.commitment_count||0} · Execuções: ${project.physical_execution_count||0} · Interrupções: ${project.interruption_count||0}</small></article>`).join('')}</div>`:empty('Nenhum projeto ObrasGov sincronizado','A coleta territorial por código IBGE ainda não retornou registros.')}`
+}
+function documentos(){
+  const contracts=(S.contracts||[]).slice(0,100);
+  const financial=S.integrated?.financial||{records:{}};
+  const records=financial.records||{};
+  const documentSync=S.integrated?.sync_status?.payable_documents||{};
+  const documentStatus=documentSync.completed?'Carga concluída':`${documentSync.processed_roots||0}/${documentSync.roots_total||1935} parcerias`;
+  $('#content').innerHTML=head('Centro de documentos e proveniência','Referências oficiais, URLs de origem, horários de coleta e hashes verificáveis.')
+    +`<div class="metric-grid">${card('Registros avaliados',S.integrated?.integrity?.records_assessed||0,'PNCP + Transferegov + ObrasGov')}${card('Contratos PNCP',(S.contracts||[]).length,'Exibindo até 100 referências')}${card('Propostas Transferegov',(S.proposals||[]).length,'Hashes preservados')}${card('Documentos hábeis',records.payable_documents||0,documentStatus)}</div>
+      <div class="cards">${contracts.map(c=>`<article><span class="eyebrow">PNCP · contrato ${esc(contractTitle(c))}</span><h3>${esc(contractMunicipality(c))}</h3><p>${esc(clipText(contractObject(c),160))}</p><small>SHA-256: ${esc(c.sha256||'Não informado pela fonte')}</small><button data-action="open-contract" data-value="${(S.contracts||[]).indexOf(c)}">Ver proveniência</button></article>`).join('')}</div>`
+}
+function timeline(){
+  const rows=S.integrated?.timeline||[];
+  $('#content').innerHTML=head('Timeline integrada','Eventos ordenados por datas fornecidas pelas fontes oficiais.')
+    +`<div class="portfolio-meta"><span>${rows.length} evento(s) verificável(is)</span><span>Exibindo até 200</span></div>
+      ${rows.length?`<div class="cards">${rows.slice(0,200).map(row=>`<article><span class="eyebrow">${esc(row.occurred_at)} · ${esc(row.event_type)}</span><h3>${esc(row.title)}</h3><p>${esc(row.municipality_name)}</p>${row.detail?`<p>${esc(clipText(row.detail,220))}</p>`:''}<small>Entidade: ${esc(row.entity)} ${esc(row.entity_id)}</small></article>`).join('')}</div>`:empty('Nenhum evento oficial carregado')}`
+}
+function riscos(){
+  const integrity=S.integrated?.integrity||{rules:[]};
+  const signals=integrity.signals||[];
+  $('#content').innerHTML=head('Risco e conformidade','Controles determinísticos sobre chaves e relacionamentos oficiais; nenhuma inferência subjetiva.')
+    +`<div class="metric-grid">${card('Registros avaliados',integrity.records_assessed||0,'Grafos oficiais')}${card('Relações ambíguas',integrity.ambiguous_relationships||0,'Registros ambíguos não são publicados')}${card('Regras ativas',(integrity.rules||[]).length,'Determinísticas')}${card('Sinais operacionais',signals.reduce((sum,signal)=>sum+(signal.count||0),0),'Não presumem irregularidade')}</div>
+      <h2>Integridade das relações</h2><div class="cards">${(integrity.rules||[]).map(rule=>`<article><span class="eyebrow">Regra ${esc(rule.id)}</span><h3>${rule.violations||0} violação(ões)</h3><p>${esc(rule.description)}</p></article>`).join('')}</div>
+      <h2>Sinais baseados na fonte</h2><div class="cards">${signals.map(signal=>`<article><span class="eyebrow">${esc(signal.id)}</span><h3>${signal.count||0} registro(s)</h3><p>${esc(signal.label)}</p><small>${esc(signal.basis)} ${esc(signal.classification)}</small></article>`).join('')}</div>`
+}
 function copiloto(){$('#content').innerHTML=head('Copiloto territorial e contratual','O mesmo agente atende perguntas operacionais por contrato e perguntas gerenciais por município ou território.')+`<div class="ai-policy"><h2>Escopo de consulta</h2><ol><li>Contrato individual: detalhe técnico, financeiro, documental e histórico.</li><li>Município: consolidação de todos os contratos oficialmente vinculados.</li><li>Território: agregação rastreável dos municípios e contratos componentes.</li><li>Ausência de evidência: resposta explícita, sem inferência factual.</li></ol><button class="primary" data-action="open-chat">Abrir copiloto</button></div>`}
 function openChat(){$('#chat').classList.add('open')} function closeChat(){$('#chat').classList.remove('open')} function openPalette(){$('#palette').classList.add('open');setTimeout(()=>$('#paletteInput')?.focus(),20)} function closePalette(){$('#palette').classList.remove('open')}
 function assistantQuery(){

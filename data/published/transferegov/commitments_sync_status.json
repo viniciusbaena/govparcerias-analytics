@@ -1,0 +1,14 @@
+{
+  "entity": "commitments",
+  "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/empenho-parceria",
+  "finished_at": "2026-07-29T23:20:47.320061+00:00",
+  "roots_total": 1935,
+  "records": 1517,
+  "errors": 0,
+  "pages_this_run": 1930,
+  "partial": false,
+  "completed": true,
+  "primary_key": "id_empenho_parceria",
+  "parent_key": "id_parceria",
+  "policy": "official_only"
+}

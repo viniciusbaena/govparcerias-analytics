@@ -14,7 +14,7 @@ jobs:
       - name: Executar testes
         run: python -m pytest -q
       - name: Validar JSON
-        run: python -m json.tool site/data/demo.json >/dev/null && python -m json.tool site/data/schema-catalog.json >/dev/null
+        run: python -m json.tool site/data/demo.json >/dev/null && python -m json.tool site/data/schema-catalog.json >/dev/null && python -m json.tool site/data/integrated.json >/dev/null
       - name: Validar Python
         run: python -m compileall -q backend/app
       - name: Validar JavaScript
