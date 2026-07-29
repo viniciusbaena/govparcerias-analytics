@@ -8,8 +8,8 @@ from .base import PublicApiConnector
 class PNCPConnector(PublicApiConnector):
     """Conector de leitura para a API pública de consultas do PNCP."""
 
-    def __init__(self, raw_dir: str = "data/raw"):
-        super().__init__("pncp", "https://pncp.gov.br/api/consulta", raw_dir)
+    def __init__(self, raw_dir: str = "data/raw", retries: int = 5, min_delay: float = 0.25):
+        super().__init__("pncp", "https://pncp.gov.br/api/consulta", raw_dir, retries=retries, min_delay=min_delay)
 
     async def contracts_by_period(
         self,

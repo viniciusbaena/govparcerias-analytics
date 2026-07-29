@@ -1,12 +1,17 @@
 {
-  "finished_at": "2026-07-29T12:29:14.492503+00:00",
+  "finished_at": "2026-07-29T17:42:46.643695+00:00",
   "source": "PNCP",
+  "endpoint": "https://pncp.gov.br/api/consulta/v1/contratos",
   "period": {
-    "start": "20260701",
-    "end": "20260729"
+    "start": "2021-01-01",
+    "end": "2026-07-29"
   },
   "municipalities_total": 121,
-  "contracts": 45,
-  "errors": 116,
-  "policy": "official_only"
+  "contracts": 3118,
+  "errors": 0,
+  "partial": true,
+  "completed": false,
+  "pages_this_run": 1,
+  "policy": "official_only",
+  "upsert_key": "numeroControlePNCP"
 }
