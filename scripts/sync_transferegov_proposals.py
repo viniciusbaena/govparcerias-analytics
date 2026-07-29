@@ -6,6 +6,7 @@ import asyncio
 import hashlib
 import json
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -116,7 +117,14 @@ def write_json(path: Path, payload: Any) -> None:
         json.dumps(payload, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    temporary.replace(path)
+    for attempt in range(5):
+        try:
+            temporary.replace(path)
+            return
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.05 * (2**attempt))
 
 
 def checkpoint_scope(municipalities: list[dict[str, str]]) -> str:
@@ -188,6 +196,8 @@ async def synchronize(
 
     pages_fetched = 0
     records_seen = 0
+    municipalities_processed = 0
+    municipalities_completed = start_index
     errors: list[dict[str, Any]] = []
     stopped_by_page_limit = False
     started_at = datetime.now(timezone.utc).isoformat()
@@ -259,6 +269,8 @@ async def synchronize(
                     "completed": index + 1 >= len(selected),
                 },
             )
+            municipalities_processed += 1
+            municipalities_completed = index + 1
         except Exception as exc:
             errors.append(
                 {
@@ -277,6 +289,9 @@ async def synchronize(
         "finished_at": datetime.now(timezone.utc).isoformat(),
         "portfolio_size": len(municipalities),
         "municipalities_selected": len(selected),
+        "resume_from_index": start_index,
+        "municipalities_processed_this_run": municipalities_processed,
+        "municipalities_completed_total": municipalities_completed,
         "pages_fetched": pages_fetched,
         "records_seen": records_seen,
         "records_published": len(existing),

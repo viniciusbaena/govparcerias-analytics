@@ -30,6 +30,8 @@ Esta etapa consulta exclusivamente a API oficial de Gestão de Parcerias:
 - Checkpoint gravado após cada página e retomada pela próxima página.
 - Arquivo normalizado atualizado por upsert; registros antigos que não aparecem
   numa execução parcial não são apagados.
+- A substituição atômica dos JSONs repete bloqueios transitórios de arquivo no
+  Windows antes de interromper a execução.
 - Resposta bruta, URL final, horário UTC e SHA-256 são preservados por página.
 - Campos normalizados ausentes recebem `Não informado pela fonte`; o objeto bruto
   continua inalterado.
@@ -59,3 +61,12 @@ Arquivos operacionais:
 `--only-ibge`, `--max-municipalities` e `--max-pages` existem para validações
 parciais. `--only-ibge` recusa códigos fora da carteira. Uma execução parcial
 preserva tudo que já estiver em `proposals.json`.
+
+## Carga completa validada em 29/07/2026
+
+- 121 municípios concluídos e 121 códigos IBGE cobertos;
+- 1.935 propostas únicas publicadas;
+- nenhum registro fora da carteira;
+- zero erros finais;
+- retomada validada após bloqueio transitório de arquivo no Windows;
+- 45 contratos PNCP preservados sem alteração.
