@@ -1,8 +1,12 @@
 # Changelog
 
-## 0.7.0-alpha
-- Remove integralmente dados demonstrativos e ativa modo official-only.
-- Cria dossiê financeiro e de engenharia completo.
-- Adiciona contrato de dados para emendas, empenhos, pagamentos, contas, extratos, obras, vistorias e documentos.
-- Expande PostgreSQL com proveniência obrigatória.
-- Bloqueia respostas factuais do copiloto sem evidência oficial.
+## v0.8.0-alpha
+
+- Time Machine e timeline integrada.
+- Grafo de relacionamentos.
+- Centro e comparador de documentos.
+- Motor de risco determinístico.
+- Agentes especialistas e IA explicável.
+- Observabilidade operacional.
+- Arquitetura de plugins oficiais.
+- Camada unificada de conhecimento com bloqueio por ausência de evidência.

@@ -1,7 +1,11 @@
 # GovParcerias Intelligence
 
-Plataforma independente de inteligência para transferências públicas, em modo **official-only**.
+Plataforma independente e open source para inteligência em transferências públicas, com dados oficiais, proveniência por campo, documentos, engenharia, histórico e IA explicável.
 
-A versão 0.7 estrutura o dossiê integral de cada instrumento: finanças, emendas, contas, extratos, plano de trabalho, obras, engenharia, vistorias, medições, licitações, documentos e proveniência. Nenhum dado fictício é exibido.
+## Versão
 
-Consulte `docs/OFFICIAL_DATA_POLICY.md` e `docs/AI_KNOWLEDGE_BASE.md`.
+v0.8.0-alpha
+
+## Política essencial
+
+Nenhum dado fictício, estimado ou inferido pode substituir informação oficial ausente. Consulte `docs/OFFICIAL_DATA_POLICY.md`, `docs/EXPLAINABLE_AI.md` e `docs/PLUGIN_ARCHITECTURE.md`.
