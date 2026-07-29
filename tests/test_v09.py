@@ -28,4 +28,4 @@ def test_portfolio_is_not_mislabeled_as_official():
 def test_contract_axis_remains_present():
     app = (ROOT / 'site/assets/app.js').read_text(encoding='utf-8')
     assert 'Dossiê integral por contrato' in app
-    assert 'Contratos e instrumentos' in app
+    assert 'Contratos e propostas' in app
