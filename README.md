@@ -16,3 +16,8 @@ A versão estática pronta para publicação está em `site/`.
 
 ## Integrações v1
 A página inicial possui consulta por contrato e por município. O pipeline oficial está em `scripts/sync_official_data.py`.
+
+O primeiro sincronizador incremental do Transferegov cobre propostas e é
+estritamente limitado aos códigos IBGE da carteira canônica. Consulte
+[`docs/TRANSFEREGOV_PROPOSTAS.md`](docs/TRANSFEREGOV_PROPOSTAS.md) para decisões
+de identidade, retomada por checkpoint e execução segura.
