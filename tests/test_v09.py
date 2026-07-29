@@ -1,5 +1,8 @@
 import json
+import re
 from pathlib import Path
+
+from backend.app.services.portfolio import is_valid_cnpj
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -8,18 +11,18 @@ def test_portfolio_has_121_unique_municipalities():
     rows = data['municipalities']
     assert len(rows) == 121
     assert len({r['ibge_code'] for r in rows}) == 121
-    assert len({r['cnpj_digits'] for r in rows}) == 121
+    assert len({re.sub(r'\D', '', r['cnpj']) for r in rows}) == 121
+    assert all(set(r) == {'name', 'cnpj', 'ibge_code'} for r in rows)
 
 
 def test_all_cnpj_checksums_are_valid():
     data = json.loads((ROOT / 'site/data/municipalities.json').read_text(encoding='utf-8'))
-    assert all(r['cnpj_checksum_valid'] for r in data['municipalities'])
+    assert all(is_valid_cnpj(r['cnpj']) for r in data['municipalities'])
 
 
 def test_portfolio_is_not_mislabeled_as_official():
-    data = json.loads((ROOT / 'site/data/municipalities.json').read_text(encoding='utf-8'))
-    assert all(r['data_classification'] == 'carteira_de_trabalho' for r in data['municipalities'])
-    assert 'Não equivalem' in data['manifest']['provenance_note']
+    manifest = json.loads((ROOT / 'source-data/manifest.json').read_text(encoding='utf-8'))
+    assert 'Não equivalem' in manifest['provenance_note']
 
 
 def test_contract_axis_remains_present():
