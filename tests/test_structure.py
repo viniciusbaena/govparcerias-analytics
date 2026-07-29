@@ -18,3 +18,14 @@ def test_no_fictitious_entities_in_public_data():
     text=(ROOT/'site/data/demo.json').read_text(encoding='utf-8').casefold()
     for term in ['município alfa','órgão federal a','900001/2025']:
         assert term not in text
+
+
+def test_v110_publishes_official_proposals():
+    proposals = json.loads((ROOT / 'site/data/proposals.json').read_text(encoding='utf-8'))
+    app = (ROOT / 'site/assets/app.js').read_text(encoding='utf-8')
+    assert len(proposals) == 1935
+    assert len({row['source_record_id'] for row in proposals}) == 1935
+    assert all(row['source'] == 'Transferegov - Gestão de Parcerias' for row in proposals)
+    assert 'v1.1.0-alpha' in app
+    assert "safeJson('data/proposals.json',[])" in app
+    assert 'proposalHaystack' in app
