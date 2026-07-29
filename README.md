@@ -2,7 +2,7 @@
 
 Plataforma web independente e experimental para consulta e análise de dados públicos de transferências e parcerias.
 
-## Versão 0.4.0-alpha
+## Versão 0.6.0-alpha
 
 Inclui:
 
@@ -45,3 +45,8 @@ python scripts/import_municipalities.py scripts/modelo-carteira.csv
 ```
 
 A versão pública não possui login nem coleta credenciais. Os dados atuais são demonstrativos.
+
+
+## Módulos de inteligência v0.6
+
+A versão inclui sincronização incremental demonstrativa, histórico de alterações, central de alertas, qualidade dos dados, relatórios, notificações, paleta de comandos, modo escuro, comparador, mapa, radar e copiloto contextual. As integrações reais dependem da ativação do back-end hospedado e das fontes oficiais.
