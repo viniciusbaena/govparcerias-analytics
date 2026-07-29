@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0-alpha
+- Copiloto em painel lateral e campo de destaque na página inicial.
+- Modo claro e escuro persistente.
+- Central de alertas, pesquisa global, favoritos, mapa demonstrativo, comparador e radar.
+- Dashboard executivo, alterações recentes e ações rápidas.
+- Navegação e identidade atualizadas para GovParcerias Intelligence.
+
+
 ## 0.4.0-alpha — 2026-07-28
 
 - importador CSV local da carteira municipal;

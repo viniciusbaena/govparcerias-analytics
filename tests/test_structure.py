@@ -8,7 +8,7 @@ def test_public_site_files():
 
 def test_demo_data_contract():
     data=json.loads((ROOT/"site/data/demo.json").read_text(encoding="utf-8"))
-    assert data["version"]=="0.4.0-alpha"
+    assert data["version"]=="0.5.0-alpha"
     assert data["municipios"] and data["parcerias"]
     assert all("valor_per_capita" in x for x in data["municipios"])
     assert all("eventos" in x for x in data["parcerias"])

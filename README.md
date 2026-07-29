@@ -1,4 +1,4 @@
-# GovParcerias Analytics
+# GovParcerias Intelligence
 
 Plataforma web independente e experimental para consulta e análise de dados públicos de transferências e parcerias.
 
