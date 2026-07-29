@@ -1,11 +1,14 @@
-# GovParcerias Intelligence
+# GovParcerias Intelligence — v0.9.0-alpha
 
-Plataforma independente e open source para inteligência em transferências públicas, com dados oficiais, proveniência por campo, documentos, engenharia, histórico e IA explicável.
+Plataforma independente de inteligência para transferências públicas, organizada em dois eixos complementares:
 
-## Versão
+- **Contrato:** núcleo operacional para finanças, engenharia, documentos, vistorias e prestação de contas.
+- **Município e território:** núcleo gerencial para consolidação, comparação e visão macro.
 
-v0.8.0-alpha
+## Carteira v1
 
-## Política essencial
+Esta versão incorpora os 121 municípios da planilha `Planilha 121 municipios.xlsx`.
 
-Nenhum dado fictício, estimado ou inferido pode substituir informação oficial ausente. Consulte `docs/OFFICIAL_DATA_POLICY.md`, `docs/EXPLAINABLE_AI.md` e `docs/PLUGIN_ARCHITECTURE.md`.
+Os registros da planilha são classificados como **carteira administrativa fornecida pela equipe**. Eles não são confundidos com dados sincronizados de fontes públicas oficiais. Contratos, valores, obras, documentos, indicadores e conclusões permanecem vazios até que conectores oficiais validados forneçam evidências.
+
+A versão estática pronta para publicação está em `site/`.

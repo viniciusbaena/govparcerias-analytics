@@ -106,3 +106,28 @@ CREATE TABLE IF NOT EXISTS official_document (
   extracted_text TEXT, metadata JSONB NOT NULL DEFAULT '{}'::jsonb, source_record_id BIGINT NOT NULL REFERENCES source_record(id)
 );
 CREATE INDEX IF NOT EXISTS idx_document_search ON official_document USING gin (to_tsvector('portuguese', coalesce(title,'') || ' ' || coalesce(extracted_text,'')));
+
+-- v0.9: carteira administrativa e visão territorial, separadas da base oficial
+CREATE TABLE IF NOT EXISTS portfolio_version (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  version TEXT NOT NULL,
+  source_file_name TEXT NOT NULL,
+  source_file_sha256 CHAR(64) NOT NULL,
+  imported_at TIMESTAMPTZ NOT NULL,
+  record_count INTEGER NOT NULL,
+  provenance_note TEXT NOT NULL,
+  UNIQUE(name, version)
+);
+CREATE TABLE IF NOT EXISTS portfolio_municipality (
+  portfolio_version_id BIGINT NOT NULL REFERENCES portfolio_version(id),
+  municipality_ibge CHAR(7) NOT NULL,
+  municipality_name TEXT NOT NULL,
+  recipient_document CHAR(14) NOT NULL,
+  status TEXT NOT NULL DEFAULT 'active',
+  source_row INTEGER NOT NULL,
+  PRIMARY KEY(portfolio_version_id, municipality_ibge),
+  UNIQUE(portfolio_version_id, recipient_document)
+);
+CREATE INDEX IF NOT EXISTS ix_portfolio_municipality_name ON portfolio_municipality(municipality_name);
+COMMENT ON TABLE portfolio_municipality IS 'Recorte administrativo fornecido pela equipe. Não substitui validação cadastral em fonte pública oficial.';

@@ -1,0 +1,20 @@
+{
+  "dataset": "Carteira de Trabalho — 121 Municípios",
+  "version": "1.0.0",
+  "record_count": 121,
+  "source_file": "Planilha 121 municipios.xlsx",
+  "source_file_sha256": "f08d1192f958d4a076b40921dafcfb04894656fe4f5b3e15aecb92c390a448d0",
+  "imported_at": "2026-07-29T08:43:00-03:00",
+  "provenance_note": "Dados cadastrais fornecidos pelo usuário para delimitação da carteira. Não equivalem, por si só, a validação em fonte pública oficial.",
+  "fields": [
+    "Municipio",
+    "CNPJ",
+    "IBGE"
+  ],
+  "validation": {
+    "duplicate_ibge": 0,
+    "duplicate_cnpj": 0,
+    "blank_required_fields": 0,
+    "cnpj_checksum_invalid": 0
+  }
+}
