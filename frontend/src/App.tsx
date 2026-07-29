@@ -1,2 +1,2 @@
-import {useState} from 'react';import demo from './demo.json';import schema from './schema-catalog.json';
-export default function App(){const[page,setPage]=useState('dashboard');return <div className='layout'><aside><h2>GovParcerias</h2>{['dashboard','municipios','parcerias','catalogo','assistente'].map(x=><button key={x} onClick={()=>setPage(x)}>{x}</button>)}</aside><main><header><b>GovParcerias Analytics</b><span>v0.3.0-alpha</span></header><section><h1>{page}</h1><p>Base React/TypeScript preparada para evolução. Dados demonstrativos: {demo.municipios.length} municípios. Catálogo: {schema.length} entidades.</p></section></main></div>}
+import './styles.css'
+export default function App(){return <main><h1>GovParcerias Analytics</h1><p>Fonte React/TypeScript da versão 0.4.0-alpha. A versão estática compilada está na pasta <code>site</code>.</p></main>}

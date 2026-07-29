@@ -10,7 +10,10 @@
       "parcerias": 18,
       "valor": 76400000,
       "vigencias": 3,
-      "status": "atenção"
+      "status": "atenção",
+      "area_km2": 487.2,
+      "valor_per_capita": 645.16,
+      "ultima_atualizacao": "2026-07-28"
     },
     {
       "nome": "Município Beta",
@@ -20,7 +23,10 @@
       "parcerias": 11,
       "valor": 43800000,
       "vigencias": 1,
-      "status": "regular"
+      "status": "regular",
+      "area_km2": 312.8,
+      "valor_per_capita": 520.13,
+      "ultima_atualizacao": "2026-07-28"
     },
     {
       "nome": "Município Gama",
@@ -30,7 +36,10 @@
       "parcerias": 9,
       "valor": 27100000,
       "vigencias": 2,
-      "status": "atenção"
+      "status": "atenção",
+      "area_km2": 228.4,
+      "valor_per_capita": 513.45,
+      "ultima_atualizacao": "2026-07-28"
     },
     {
       "nome": "Município Delta",
@@ -40,7 +49,10 @@
       "parcerias": 6,
       "valor": 14300000,
       "vigencias": 0,
-      "status": "regular"
+      "status": "regular",
+      "area_km2": 171.9,
+      "valor_per_capita": 431.5,
+      "ultima_atualizacao": "2026-07-28"
     }
   ],
   "parcerias": [
@@ -51,7 +63,31 @@
       "objeto": "Implantação de infraestrutura urbana",
       "situacao": "Em execução",
       "valor": 12800000,
-      "fim": "2026-09-30"
+      "fim": "2026-09-30",
+      "inicio": "2025-03-14",
+      "tema": "Infraestrutura",
+      "eventos": [
+        {
+          "data": "2025-03-14",
+          "tipo": "Proposta",
+          "descricao": "Proposta registrada na fonte pública."
+        },
+        {
+          "data": "2025-03-14",
+          "tipo": "Análise",
+          "descricao": "Registro encaminhado para análise."
+        },
+        {
+          "data": "2025-03-14",
+          "tipo": "Celebração",
+          "descricao": "Instrumento formalizado."
+        },
+        {
+          "data": "2026-09-30",
+          "tipo": "Vigência",
+          "descricao": "Data final de vigência registrada."
+        }
+      ]
     },
     {
       "numero": "900145/2024",
@@ -60,7 +96,31 @@
       "objeto": "Modernização de equipamento público",
       "situacao": "Em execução",
       "valor": 4600000,
-      "fim": "2026-12-15"
+      "fim": "2026-12-15",
+      "inicio": "2024-06-05",
+      "tema": "Gestão pública",
+      "eventos": [
+        {
+          "data": "2024-06-05",
+          "tipo": "Proposta",
+          "descricao": "Proposta registrada na fonte pública."
+        },
+        {
+          "data": "2024-06-05",
+          "tipo": "Análise",
+          "descricao": "Registro encaminhado para análise."
+        },
+        {
+          "data": "2024-06-05",
+          "tipo": "Celebração",
+          "descricao": "Instrumento formalizado."
+        },
+        {
+          "data": "2026-12-15",
+          "tipo": "Vigência",
+          "descricao": "Data final de vigência registrada."
+        }
+      ]
     },
     {
       "numero": "901020/2023",
@@ -69,7 +129,31 @@
       "objeto": "Ampliação do sistema de saneamento",
       "situacao": "Prestação de contas",
       "valor": 9300000,
-      "fim": "2026-08-31"
+      "fim": "2026-08-31",
+      "inicio": "2023-02-20",
+      "tema": "Saneamento",
+      "eventos": [
+        {
+          "data": "2023-02-20",
+          "tipo": "Proposta",
+          "descricao": "Proposta registrada na fonte pública."
+        },
+        {
+          "data": "2023-02-20",
+          "tipo": "Análise",
+          "descricao": "Registro encaminhado para análise."
+        },
+        {
+          "data": "2023-02-20",
+          "tipo": "Celebração",
+          "descricao": "Instrumento formalizado."
+        },
+        {
+          "data": "2026-08-31",
+          "tipo": "Vigência",
+          "descricao": "Data final de vigência registrada."
+        }
+      ]
     },
     {
       "numero": "901830/2025",
@@ -78,7 +162,32 @@
       "objeto": "Construção de unidade pública",
       "situacao": "Celebrada",
       "valor": 7200000,
-      "fim": "2027-04-10"
+      "fim": "2027-04-10",
+      "inicio": "2025-09-01",
+      "tema": "Equipamentos públicos",
+      "eventos": [
+        {
+          "data": "2025-09-01",
+          "tipo": "Proposta",
+          "descricao": "Proposta registrada na fonte pública."
+        },
+        {
+          "data": "2025-09-01",
+          "tipo": "Análise",
+          "descricao": "Registro encaminhado para análise."
+        },
+        {
+          "data": "2025-09-01",
+          "tipo": "Celebração",
+          "descricao": "Instrumento formalizado."
+        },
+        {
+          "data": "2027-04-10",
+          "tipo": "Vigência",
+          "descricao": "Data final de vigência registrada."
+        }
+      ]
     }
-  ]
+  ],
+  "version": "0.4.0-alpha"
 }

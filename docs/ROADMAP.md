@@ -1,22 +1,20 @@
 # Roadmap
 
-## v0.3
-- Site navegável e publicável
-- Catálogo oficial pesquisável
-- Base React, FastAPI e PostgreSQL
+## Concluído
 
-## v0.4
-- Importação dos 121 municípios
-- Chaves IBGE e dados oficiais
-- Primeiro conector real
+- fundação do repositório e GitHub Pages;
+- catálogo do modelo oficial;
+- dashboard demonstrativo;
+- importador local de carteira;
+- detalhe municipal e linha do tempo;
+- API demonstrativa.
 
-## v0.5
-- Sincronização e histórico de alterações
-- Indicadores e relatórios
-- Assistente com consultas estruturadas
+## Próxima sprint
 
-## Futuro
-- Transferências Especiais
-- Discricionárias e Legais
-- Obras
-- Mapas e domínio próprio
+1. importar e validar os 121 municípios;
+2. associar códigos IBGE;
+3. inventariar e testar os endpoints reais da API de Gestão de Parcerias;
+4. implementar sincronização incremental;
+5. substituir a amostra por dados públicos reais;
+6. integrar indicadores territoriais oficiais;
+7. ativar o assistente com consultas estruturadas no back-end.

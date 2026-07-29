@@ -1,26 +1,47 @@
 # GovParcerias Analytics
 
-Plataforma independente e open source para consulta, organização e análise de dados públicos de parcerias e transferências.
+Plataforma web independente e experimental para consulta e análise de dados públicos de transferências e parcerias.
 
-> Projeto experimental e não oficial. Não representa nem possui vínculo institucional com os órgãos responsáveis pelas fontes consultadas.
+## Versão 0.4.0-alpha
 
-## Publicação imediata
+Inclui:
 
-O GitHub Actions publica a pasta `site/`. Ela já contém a aplicação funcional e não exige compilação.
+- aplicação estática publicada no GitHub Pages;
+- dashboard, municípios, parcerias, financeiro e catálogo de dados;
+- página municipal com indicadores e linha do tempo;
+- cronograma público consolidado;
+- importador local de carteira municipal em CSV;
+- modelo CSV pronto para os 121 municípios;
+- API FastAPI demonstrativa com filtros;
+- catálogo de 28 entidades do modelo oficial;
+- workflows de publicação e qualidade.
 
-1. Remova os arquivos antigos do repositório.
-2. Envie **todo o conteúdo desta pasta**, incluindo `.github`, `site`, `frontend`, `backend`, `database`, `docs`, `scripts` e `tests`.
-3. Em Settings → Pages, mantenha Source = GitHub Actions.
-4. Abra Actions e acompanhe `Publicar aplicação`.
+## Executar o site localmente
 
-## Estrutura
+Abra `site/index.html` com um servidor HTTP local. Exemplo:
 
-- `site/`: versão pública pronta para GitHub Pages.
-- `frontend/`: evolução React + TypeScript + Vite.
-- `backend/`: API FastAPI.
-- `database/`: modelo PostgreSQL inicial.
-- `docs/`: arquitetura, catálogo e decisões.
+```bash
+python -m http.server 8000 --directory site
+```
 
-## Segurança
+## Executar a API
 
-Não coloque chaves de IA ou credenciais no frontend. O assistente real será executado no backend.
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -e .
+uvicorn app.main:app --reload
+```
+
+Documentação local: `http://127.0.0.1:8000/docs`.
+
+## Importar a carteira
+
+A interface pública possui o módulo **Preparar carteira**. Também é possível usar:
+
+```bash
+python scripts/import_municipalities.py scripts/modelo-carteira.csv
+```
+
+A versão pública não possui login nem coleta credenciais. Os dados atuais são demonstrativos.
