@@ -1,0 +1,9 @@
+{
+  "endpoint": "https://pncp.gov.br/api/consulta/v1/contratos",
+  "scope_sha256": "c126f9fa48552a13cdc170eafe2dca7fe8c3eee192c160cb4c1cad2e972872fc",
+  "municipality_index": 13,
+  "window_index": 5,
+  "next_page": 1,
+  "completed": false,
+  "updated_at": "2026-07-29T17:42:46.640575+00:00"
+}

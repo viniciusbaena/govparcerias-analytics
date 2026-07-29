@@ -1,4 +1,4 @@
-# GovParcerias Intelligence — v1.1.0-alpha
+# GovParcerias Intelligence — v1.2.0-alpha
 
 Plataforma independente de inteligência para transferências públicas, organizada em dois eixos complementares:
 
@@ -21,3 +21,7 @@ O primeiro sincronizador incremental do Transferegov cobre propostas e é
 estritamente limitado aos códigos IBGE da carteira canônica. Consulte
 [`docs/TRANSFEREGOV_PROPOSTAS.md`](docs/TRANSFEREGOV_PROPOSTAS.md) para decisões
 de identidade, retomada por checkpoint e execução segura.
+
+O sincronizador incremental do PNCP cobre contratos dos mesmos 121 municípios,
+com filtro por CNPJ, paginação, retry exponencial, checkpoint e upsert pela chave
+oficial `numeroControlePNCP`. Consulte [`docs/PNCP_CONTRATOS.md`](docs/PNCP_CONTRATOS.md).

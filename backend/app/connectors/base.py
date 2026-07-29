@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
 from typing import Any
+import asyncio
 import json
 import httpx
 
@@ -17,12 +18,30 @@ class FetchResult:
     sha256: str
 
 class PublicApiConnector:
-    def __init__(self, source: str, base_url: str, raw_dir: str = "data/raw", timeout: float = 60.0):
-        self.source=source; self.base_url=base_url.rstrip('/'); self.raw_dir=Path(raw_dir); self.timeout=timeout
+    def __init__(self, source: str, base_url: str, raw_dir: str = "data/raw", timeout: float = 60.0, retries: int = 5, min_delay: float = 0.25):
+        self.source=source; self.base_url=base_url.rstrip('/'); self.raw_dir=Path(raw_dir); self.timeout=timeout; self.retries=retries; self.min_delay=min_delay
     async def get(self, path: str, params: dict[str, Any] | None=None) -> FetchResult:
         url=f"{self.base_url}/{path.lstrip('/')}"
         async with httpx.AsyncClient(timeout=self.timeout,follow_redirects=True,headers={"User-Agent":"GovParcerias-Intelligence/1.0"}) as client:
-            response=await client.get(url,params=params); response.raise_for_status(); payload=response.json()
+            for attempt in range(self.retries + 1):
+                try:
+                    response=await client.get(url,params=params)
+                except httpx.RequestError:
+                    if attempt >= self.retries:
+                        raise
+                    await asyncio.sleep(min(60.0, 2 ** attempt))
+                    continue
+                if response.status_code != 429 and response.status_code < 500:
+                    response.raise_for_status()
+                    break
+                if attempt >= self.retries:
+                    response.raise_for_status()
+                retry_after=response.headers.get("Retry-After")
+                delay=float(retry_after) if retry_after and retry_after.replace(".","",1).isdigit() else min(60.0, 2 ** attempt)
+                await asyncio.sleep(delay)
+            payload=[] if response.status_code == 204 or not response.content else response.json()
+        if self.min_delay:
+            await asyncio.sleep(self.min_delay)
         canonical=json.dumps(payload,ensure_ascii=False,sort_keys=True,separators=(",",":")); digest=sha256(canonical.encode()).hexdigest(); fetched_at=datetime.now(timezone.utc).isoformat()
         self._persist(path,params or {},payload,digest,fetched_at)
         return FetchResult(self.source,str(response.url),fetched_at,response.status_code,payload,digest)

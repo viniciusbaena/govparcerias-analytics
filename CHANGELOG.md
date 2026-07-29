@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.0-alpha
+
+- Corrige paginação, navegação interna, cartões, abas, paleta e demais botões bloqueados pela CSP.
+- Centraliza ações da interface sem manipuladores JavaScript inline.
+- Exibe a contagem PNCP já sincronizada na gestão territorial.
+- Torna a coleta de contratos PNCP incremental e preservadora.
+- Adiciona retry exponencial para 429/5xx, checkpoint, janelas de data e upsert por `numeroControlePNCP`.
+
 ## v1.1.0-alpha
 
 - Integra 1.935 propostas oficiais do Transferegov à interface publicada.

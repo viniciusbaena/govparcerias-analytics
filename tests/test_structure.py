@@ -20,12 +20,22 @@ def test_no_fictitious_entities_in_public_data():
         assert term not in text
 
 
-def test_v110_publishes_official_proposals():
+def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     proposals = json.loads((ROOT / 'site/data/proposals.json').read_text(encoding='utf-8'))
+    contracts = json.loads((ROOT / 'site/data/contracts.json').read_text(encoding='utf-8'))
     app = (ROOT / 'site/assets/app.js').read_text(encoding='utf-8')
     assert len(proposals) == 1935
     assert len({row['source_record_id'] for row in proposals}) == 1935
     assert all(row['source'] == 'Transferegov - Gestão de Parcerias' for row in proposals)
-    assert 'v1.1.0-alpha' in app
+    assert len(contracts) >= 45
+    assert len({row['source_record_id'] for row in contracts}) == len(contracts)
+    assert all(row['source'] == 'PNCP' for row in contracts)
+    assert 'v1.2.0-alpha' in app
     assert "safeJson('data/proposals.json',[])" in app
     assert 'proposalHaystack' in app
+    assert 'data-action="municipality-page"' in app
+    assert 'data-action="open-contract"' in app
+    assert 'data-action="open-proposal"' in app
+    assert 'data-action="show"' in app
+    assert 'data-action="assistant-query"' in app
+    assert ' onclick="' not in app
