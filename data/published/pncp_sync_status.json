@@ -1,0 +1,12 @@
+{
+  "finished_at": "2026-07-29T12:29:14.492503+00:00",
+  "source": "PNCP",
+  "period": {
+    "start": "20260701",
+    "end": "20260729"
+  },
+  "municipalities_total": 121,
+  "contracts": 45,
+  "errors": 116,
+  "policy": "official_only"
+}

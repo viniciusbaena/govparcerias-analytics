@@ -1,1 +1,7 @@
-{"finished_at":null,"municipalities_total":121,"municipalities_enriched":0,"contracts":0,"policy":"official_only"}
+{
+  "finished_at": "2026-07-29T12:19:32.011721+00:00",
+  "municipalities_total": 121,
+  "municipalities_enriched": 121,
+  "contracts": 0,
+  "policy": "official_only"
+}

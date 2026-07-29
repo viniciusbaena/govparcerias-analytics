@@ -1,0 +1,24 @@
+[
+  {
+    "source": "transferegov",
+    "base_url": "https://api-publica.transferegov.gestao.gov.br",
+    "status": "Não informado pela fonte",
+    "errors": [
+      "openapi.json: HTTPStatusError",
+      "api/openapi.json: HTTPStatusError",
+      "v3/api-docs: HTTPStatusError",
+      "swagger/v1/swagger.json: HTTPStatusError"
+    ]
+  },
+  {
+    "source": "obrasgov",
+    "base_url": "https://api-publica.obrasgov.gestao.gov.br",
+    "status": "Não informado pela fonte",
+    "errors": [
+      "openapi.json: HTTPStatusError",
+      "api/openapi.json: HTTPStatusError",
+      "v3/api-docs: HTTPStatusError",
+      "swagger/v1/swagger.json: HTTPStatusError"
+    ]
+  }
+]
