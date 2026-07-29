@@ -1,4 +1,4 @@
-# GovParcerias Intelligence — v0.9.0-alpha
+# GovParcerias Intelligence — v1.0.0-alpha
 
 Plataforma independente de inteligência para transferências públicas, organizada em dois eixos complementares:
 
@@ -12,3 +12,7 @@ Esta versão incorpora os 121 municípios da planilha `Planilha 121 municipios.x
 Os registros da planilha são classificados como **carteira administrativa fornecida pela equipe**. Eles não são confundidos com dados sincronizados de fontes públicas oficiais. Contratos, valores, obras, documentos, indicadores e conclusões permanecem vazios até que conectores oficiais validados forneçam evidências.
 
 A versão estática pronta para publicação está em `site/`.
+
+
+## Integrações v1
+A página inicial possui consulta por contrato e por município. O pipeline oficial está em `scripts/sync_official_data.py`.
