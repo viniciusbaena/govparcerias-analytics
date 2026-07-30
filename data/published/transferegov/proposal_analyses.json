@@ -1,0 +1,117 @@
+[
+  {
+    "source": "Transferegov - Gestão de Parcerias",
+    "source_record_id": "708",
+    "id_analise_proposta": 708,
+    "id_proposta": 24,
+    "in_fase_analise": "Proposta e Plano de Trabalho",
+    "in_resultado_analise": "Rejeitada",
+    "ds_parecer": "Parecer de Mérito nº 602/2024-CGSPD/DAET/SAES/MS",
+    "dh_analise_proposta": "2024-12-10T10:40:57",
+    "tipos_analise": [
+      {
+        "id_tipo_analise_proposta": 1422,
+        "tp_analise": "Técnica"
+      },
+      {
+        "id_tipo_analise_proposta": 1423,
+        "tp_analise": "Financeira"
+      }
+    ],
+    "source_url": "https://api-publica.transferegov.gestao.gov.br/parcerias/analise-proposta?id_proposta=24&pagina=1&tamanho_da_pagina=200",
+    "fetched_at": "2026-07-30T01:15:55.455963+00:00",
+    "sha256": "a78f4b7401554cbac26ed8ae4b5f817b8560fc60c21cbb527a851428886db501"
+  },
+  {
+    "source": "Transferegov - Gestão de Parcerias",
+    "source_record_id": "731",
+    "id_analise_proposta": 731,
+    "id_proposta": 57,
+    "in_fase_analise": "Proposta e Plano de Trabalho",
+    "in_resultado_analise": "Rejeitada",
+    "ds_parecer": "Parecer de Mérito nº 578/2024-CGSPD/DAET/SAES/MS",
+    "dh_analise_proposta": "2024-12-10T12:27:59",
+    "tipos_analise": [
+      {
+        "id_tipo_analise_proposta": 1468,
+        "tp_analise": "Técnica"
+      },
+      {
+        "id_tipo_analise_proposta": 1469,
+        "tp_analise": "Financeira"
+      }
+    ],
+    "source_url": "https://api-publica.transferegov.gestao.gov.br/parcerias/analise-proposta?id_proposta=57&pagina=1&tamanho_da_pagina=200",
+    "fetched_at": "2026-07-30T01:15:57.075699+00:00",
+    "sha256": "58e4740b87d8ffb82dd1780bca372d1138248a4aa9ef25bd3fabc7a93f8c4e85"
+  },
+  {
+    "source": "Transferegov - Gestão de Parcerias",
+    "source_record_id": "747",
+    "id_analise_proposta": 747,
+    "id_proposta": 75,
+    "in_fase_analise": "Proposta e Plano de Trabalho",
+    "in_resultado_analise": "Aprovada",
+    "ds_parecer": "Parecer Técnico nº 171/2024-SAES/CGPROJ/SAES/MS",
+    "dh_analise_proposta": "2024-12-10T12:51:22",
+    "tipos_analise": [
+      {
+        "id_tipo_analise_proposta": 1500,
+        "tp_analise": "Técnica"
+      },
+      {
+        "id_tipo_analise_proposta": 1501,
+        "tp_analise": "Financeira"
+      }
+    ],
+    "source_url": "https://api-publica.transferegov.gestao.gov.br/parcerias/analise-proposta?id_proposta=75&pagina=1&tamanho_da_pagina=200",
+    "fetched_at": "2026-07-30T01:15:58.904313+00:00",
+    "sha256": "90e023d6a2bca20f400da05e58349d1c3ee72c42061c84514b7536885e30e525"
+  },
+  {
+    "source": "Transferegov - Gestão de Parcerias",
+    "source_record_id": "856",
+    "id_analise_proposta": 856,
+    "id_proposta": 132,
+    "in_fase_analise": "Proposta e Plano de Trabalho",
+    "in_resultado_analise": "Rejeitada",
+    "ds_parecer": "Parecer de Mérito nº 535/2024-CGSPD/DAET/SAES/MS",
+    "dh_analise_proposta": "2024-12-10T16:42:45.999999",
+    "tipos_analise": [
+      {
+        "id_tipo_analise_proposta": 1718,
+        "tp_analise": "Financeira"
+      },
+      {
+        "id_tipo_analise_proposta": 1717,
+        "tp_analise": "Técnica"
+      }
+    ],
+    "source_url": "https://api-publica.transferegov.gestao.gov.br/parcerias/analise-proposta?id_proposta=132&pagina=1&tamanho_da_pagina=200",
+    "fetched_at": "2026-07-30T01:16:00.634894+00:00",
+    "sha256": "303b8875279db50d9591af1f6a09998c573f247d04368f6552d3f472721938a7"
+  },
+  {
+    "source": "Transferegov - Gestão de Parcerias",
+    "source_record_id": "863",
+    "id_analise_proposta": 863,
+    "id_proposta": 133,
+    "in_fase_analise": "Proposta e Plano de Trabalho",
+    "in_resultado_analise": "Rejeitada",
+    "ds_parecer": "Parecer de Mérito nº 491/2024-CGSPD/DAET/SAES/MS",
+    "dh_analise_proposta": "2024-12-10T16:52:33",
+    "tipos_analise": [
+      {
+        "id_tipo_analise_proposta": 1732,
+        "tp_analise": "Financeira"
+      },
+      {
+        "id_tipo_analise_proposta": 1731,
+        "tp_analise": "Técnica"
+      }
+    ],
+    "source_url": "https://api-publica.transferegov.gestao.gov.br/parcerias/analise-proposta?id_proposta=133&pagina=1&tamanho_da_pagina=200",
+    "fetched_at": "2026-07-30T01:16:02.712235+00:00",
+    "sha256": "16dd58587e9d8d4a3d141e38ff645915278c7c33c35e75affa7841edc8e776c8"
+  }
+]

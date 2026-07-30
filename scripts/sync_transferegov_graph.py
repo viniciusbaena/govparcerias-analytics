@@ -149,6 +149,20 @@ async def synchronize_entity(
     errors = read_json(errors_path, []) if not checkpoint.get("completed", False) else []
     pages_this_run = 0
     partial = False
+    checkpoint_root = root_index
+    checkpoint_page = next_page
+
+    def persist_progress(*, completed: bool = False) -> None:
+        write_json(output, sorted(records.values(), key=lambda row: row["source_record_id"]))
+        write_json(errors_path, errors)
+        write_json(checkpoint_path, {
+            "entity": spec.name,
+            "root_index": len(roots) if completed else checkpoint_root,
+            "next_page": 1 if completed else checkpoint_page,
+            "roots_total": len(roots),
+            "completed": completed,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        })
 
     for index in range(root_index, len(roots)):
         root = roots[index]
@@ -200,16 +214,8 @@ async def synchronize_entity(
                 else:
                     checkpoint_root, checkpoint_page = index + 1, 1
                 pages_this_run += 1
-                write_json(output, sorted(records.values(), key=lambda row: row["source_record_id"]))
-                write_json(errors_path, errors)
-                write_json(checkpoint_path, {
-                    "entity": spec.name,
-                    "root_index": checkpoint_root,
-                    "next_page": checkpoint_page,
-                    "roots_total": len(roots),
-                    "completed": False,
-                    "updated_at": datetime.now(timezone.utc).isoformat(),
-                })
+                if pages_this_run % 25 == 0 or (max_pages and pages_this_run >= max_pages):
+                    persist_progress()
                 print(f"{spec.name} {index + 1}/{len(roots)} raiz {root} página {page}/{pages} — {len(rows)}")
                 if max_pages and pages_this_run >= max_pages:
                     partial = True
@@ -225,15 +231,8 @@ async def synchronize_entity(
                     "error": type(exc).__name__,
                     "message": str(exc)[:500] or MISSING,
                 })
-                write_json(errors_path, errors)
-                write_json(checkpoint_path, {
-                    "entity": spec.name,
-                    "root_index": index,
-                    "next_page": page,
-                    "roots_total": len(roots),
-                    "completed": False,
-                    "updated_at": datetime.now(timezone.utc).isoformat(),
-                })
+                checkpoint_root, checkpoint_page = index, page
+                persist_progress()
                 partial = True
                 break
         if partial:
@@ -241,15 +240,7 @@ async def synchronize_entity(
         next_page = 1
 
     completed = not partial
-    if completed:
-        write_json(checkpoint_path, {
-            "entity": spec.name,
-            "root_index": len(roots),
-            "next_page": 1,
-            "roots_total": len(roots),
-            "completed": True,
-            "updated_at": datetime.now(timezone.utc).isoformat(),
-        })
+    persist_progress(completed=completed)
     status = {
         "entity": spec.name,
         "endpoint": f"{BASE_URL}/{spec.endpoint}",

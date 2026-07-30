@@ -1,0 +1,14 @@
+{
+  "entity": "payment_orders",
+  "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/ordem-pagamento",
+  "finished_at": "2026-07-30T00:20:59.881059+00:00",
+  "roots_total": 1143,
+  "records": 1142,
+  "errors": 0,
+  "pages_this_run": 1138,
+  "partial": false,
+  "completed": true,
+  "primary_key": "id_op",
+  "parent_key": "id_documento_habil",
+  "policy": "official_only"
+}

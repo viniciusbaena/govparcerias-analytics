@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-29T23:34:22.579127+00:00",
+  "generated_at": "2026-07-30T01:33:24.008516+00:00",
   "counts": {
     "municipalities": 121,
     "proposals": 1935,
     "partnerships": 1935,
     "instruments": 1935,
-    "timeline_events": 2938,
+    "timeline_events": 9675,
     "engineering_projects": 891,
     "obrasgov_geometries": 1411
   },
@@ -14,13 +14,14 @@
     "schedules": 2048,
     "commitments": 1517,
     "project_commitments": 825,
-    "payable_documents": 178,
-    "payment_orders": 0,
-    "bank_statements": 0
+    "payable_documents": 1143,
+    "payment_orders": 1142,
+    "partnership_accounts": 1963,
+    "bank_statements": 21657
   },
   "integrity": {
-    "records_assessed": 11246,
-    "ambiguous_relationships": 0,
+    "records_assessed": 37557,
+    "ambiguous_relationships": 2,
     "rules": [
       {
         "id": "official-primary-key",

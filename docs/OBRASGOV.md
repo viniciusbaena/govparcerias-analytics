@@ -40,6 +40,12 @@ inequívocas coletadas antes desse ponto foram preservadas, mas a entidade
 permanece marcada como parcial. Não foi criada chave sintética nem inferida
 ordem entre as medições.
 
+Em 30/07/2026, a carga de estudos de viabilidade foi interrompida no projeto
+`103239.41-90`. A resposta oficial trouxe quatro estudos distintos para o mesmo
+projeto, incluindo tipos Ambiental, Econômica e Social, mas não forneceu
+identificador próprio para cada estudo. O tipo não foi assumido como chave e
+nenhuma chave composta ou posicional foi criada.
+
 Durante o perfil controlado, alguns endpoints filhos responderam HTTP 404 para
 um projeto válido, embora o OpenAPI documente apenas 200 e 422. Esse 404 não é
 tratado automaticamente como lista vazia. Ele permanece registrado como

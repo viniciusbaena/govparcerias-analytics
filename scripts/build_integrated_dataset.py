@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import os
+import time
 from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -21,9 +23,16 @@ def read_json(path: Path, fallback: Any) -> Any:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary = path.with_suffix(path.suffix + f".{os.getpid()}.tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
-    temporary.replace(path)
+    for attempt in range(6):
+        try:
+            temporary.replace(path)
+            return
+        except PermissionError:
+            if attempt == 5:
+                raise
+            time.sleep(0.05 * (2**attempt))
 
 
 def index_many(rows: list[dict[str, Any]], key: str) -> dict[str, list[dict[str, Any]]]:
@@ -132,6 +141,23 @@ def build() -> dict[str, Any]:
         direct_event = event("proposal", proposal_id, "proposal_created", proposal.get("proposal_date"), f"Proposta {proposal_id} registrada", proposal.get("source_url"))
         if direct_event:
             timeline.append({**direct_event, "ibge_code": ibge, "municipality_name": municipality["name"], "proposal_id": proposal_id})
+        for analysis in linked_analyses:
+            analysis_event = event(
+                "analise_proposta",
+                analysis.get("id_analise_proposta"),
+                "proposal_analysis_recorded",
+                analysis.get("dh_analise_proposta"),
+                f"Análise da proposta: {analysis.get('in_resultado_analise') or MISSING}",
+                analysis.get("source_url"),
+            )
+            if analysis_event:
+                timeline.append({
+                    **analysis_event,
+                    "ibge_code": ibge,
+                    "municipality_name": municipality["name"],
+                    "proposal_id": proposal_id,
+                    "detail": analysis.get("ds_parecer") or MISSING,
+                })
 
         partnership_details = []
         for partnership in linked_partnerships:
@@ -165,16 +191,79 @@ def build() -> dict[str, Any]:
                 linked_event = event("partnership", partnership_id, event_type, partnership.get(date_key), title, partnership.get("source_url"))
                 if linked_event:
                     timeline.append({**linked_event, "ibge_code": ibge, "municipality_name": municipality["name"], "proposal_id": proposal_id})
+            for commitment in linked_commitments:
+                linked_event = event(
+                    "empenho",
+                    commitment.get("id_empenho_parceria"),
+                    "commitment_issued",
+                    commitment.get("data_emissao"),
+                    f"Empenho {commitment.get('numero_nota_empenho_gerada') or commitment.get('nr_empenho') or MISSING} emitido",
+                    commitment.get("source_url"),
+                )
+                if linked_event:
+                    timeline.append({**linked_event, "ibge_code": ibge, "municipality_name": municipality["name"], "proposal_id": proposal_id, "partnership_id": partnership_id})
+            for document in linked_documents:
+                linked_event = event(
+                    "documento_habil",
+                    document.get("id_documento_habil"),
+                    "payable_document_issued",
+                    document.get("dt_emissao"),
+                    f"Documento hábil {document.get('nr_documento_habil') or MISSING} emitido",
+                    document.get("source_url"),
+                )
+                if linked_event:
+                    timeline.append({**linked_event, "ibge_code": ibge, "municipality_name": municipality["name"], "proposal_id": proposal_id, "partnership_id": partnership_id})
+            for order in linked_orders:
+                for event_type, date_key, title in (
+                    ("payment_order_issued", "dt_emissao_op", f"Ordem de pagamento {order.get('nr_ordem_pagamento') or MISSING} emitida"),
+                    ("bank_order_issued", "dt_emissao_ordem_bancaria", f"Ordem bancária {order.get('nr_ordem_bancaria') or MISSING} emitida"),
+                ):
+                    linked_event = event("ordem_pagamento", order.get("id_op"), event_type, order.get(date_key), title, order.get("source_url"))
+                    if linked_event:
+                        timeline.append({**linked_event, "ibge_code": ibge, "municipality_name": municipality["name"], "proposal_id": proposal_id, "partnership_id": partnership_id})
+            for account in linked_accounts:
+                linked_event = event(
+                    "conta_parceria",
+                    account.get("id_parceria_conta"),
+                    "partnership_account_opened",
+                    account.get("dt_abertura"),
+                    f"Conta {account.get('tp_conta') or MISSING} aberta",
+                    account.get("source_url"),
+                )
+                if linked_event:
+                    timeline.append({**linked_event, "ibge_code": ibge, "municipality_name": municipality["name"], "proposal_id": proposal_id, "partnership_id": partnership_id})
 
         instruments.append({
             "proposal_id": proposal_id,
             "ibge_code": ibge,
             "partnership_ids": [str(row["id_parceria"]) for row in partnership_details],
             "goal_count": len(linked_goals),
+            "goals": [{
+                "goal_id": str(row["id_meta_proposta"]),
+                "code": row.get("cd_meta") or MISSING,
+                "name": row.get("nm_meta") or MISSING,
+                "description": row.get("ds_meta") or MISSING,
+                "stage_count": len(row.get("etapas_proposta") or []),
+                "source_url": row.get("source_url") or MISSING,
+            } for row in linked_goals if row.get("id_meta_proposta") is not None],
             "schedule_count": len(linked_schedules),
             "analysis_count": len(linked_analyses),
+            "analyses": [{
+                "analysis_id": str(row["id_analise_proposta"]),
+                "recorded_at": row.get("dh_analise_proposta") or MISSING,
+                "phase": row.get("in_fase_analise") or MISSING,
+                "result": row.get("in_resultado_analise") or MISSING,
+                "opinion": row.get("ds_parecer") or MISSING,
+                "analysis_type_count": len(row.get("tipos_analise") or []),
+                "source_url": row.get("source_url") or MISSING,
+            } for row in linked_analyses if row.get("id_analise_proposta") is not None],
             "indicator_count": len(linked_indicators),
             "resource_count": len(linked_resources),
+            "commitment_count": sum(len(row["commitments"]) for row in partnership_details),
+            "payable_document_count": sum(len(row["payable_documents"]) for row in partnership_details),
+            "account_count": sum(len(row["accounts"]) for row in partnership_details),
+            "payment_order_count": sum(len(row["payment_orders"]) for row in partnership_details),
+            "bank_statement_count": sum(len(row["bank_statements"]) for row in partnership_details),
         })
 
     engineering = []
@@ -241,6 +330,16 @@ def build() -> dict[str, Any]:
         "payable_document_total": sum(value for row in payable_documents if (value := numeric(row.get("vl_documento_habil"))) is not None),
         "payment_order_total": sum(value for row in payment_orders if (value := numeric(row.get("vl_ordem_pagamento"))) is not None),
         "bank_movement_total": sum(value for row in statements if (value := numeric(row.get("vl_lancamento_extrato_bancario"))) is not None),
+        "bank_credit_total": sum(
+            value for row in statements
+            if str(row.get("in_transacao") or "").casefold() == "crédito"
+            and (value := numeric(row.get("vl_lancamento_extrato_bancario"))) is not None
+        ),
+        "bank_debit_total": sum(
+            value for row in statements
+            if str(row.get("in_transacao") or "").casefold() == "débito"
+            and (value := numeric(row.get("vl_lancamento_extrato_bancario"))) is not None
+        ),
         "records": {
             "contracts": len(contracts),
             "schedules": len(schedules),
@@ -248,9 +347,106 @@ def build() -> dict[str, Any]:
             "project_commitments": len(project_commitments),
             "payable_documents": len(payable_documents),
             "payment_orders": len(payment_orders),
+            "partnership_accounts": len(accounts),
             "bank_statements": len(statements),
         },
     }
+    documents = [
+        {
+            "document_id": str(row["id_documento_habil"]),
+            "partnership_id": str(row["id_parceria"]),
+            "number": row.get("nr_documento_habil") or MISSING,
+            "document_type": row.get("tp_documento_habil") or MISSING,
+            "issued_at": row.get("dt_emissao") or MISSING,
+            "value": numeric(row.get("vl_documento_habil")),
+            "status": row.get("in_situacao_dh") or MISSING,
+            "creditor_id": row.get("cd_credor_devedor") or MISSING,
+            "creditor_name": row.get("nm_credor_devedor") or MISSING,
+            "observation": row.get("tx_observacao") or MISSING,
+            "commitment_number": row.get("nr_empenho_dh") or MISSING,
+            "payment_order_count": len(orders_by_document.get(str(row["id_documento_habil"]), [])),
+            "source": row.get("source") or "Transferegov - Gestão de Parcerias",
+            "source_url": row.get("source_url") or MISSING,
+            "fetched_at": row.get("fetched_at") or MISSING,
+            "sha256": row.get("sha256") or MISSING,
+        }
+        for row in payable_documents
+        if row.get("id_documento_habil") is not None and row.get("id_parceria") is not None
+    ]
+    payment_order_references = [
+        {
+            "payment_order_id": str(row["id_op"]),
+            "document_id": str(row["id_documento_habil"]),
+            "number": row.get("nr_ordem_pagamento") or MISSING,
+            "status": row.get("in_situacao_op") or MISSING,
+            "issued_at": row.get("dt_emissao_op") or MISSING,
+            "value": numeric(row.get("vl_ordem_pagamento")),
+            "bank_order_number": row.get("nr_ordem_bancaria") or MISSING,
+            "bank_order_issued_at": row.get("dt_emissao_ordem_bancaria") or MISSING,
+            "observation": row.get("tx_observacao_op") or MISSING,
+            "source": row.get("source") or "Transferegov - Gestão de Parcerias",
+            "source_url": row.get("source_url") or MISSING,
+            "fetched_at": row.get("fetched_at") or MISSING,
+            "sha256": row.get("sha256") or MISSING,
+        }
+        for row in payment_orders
+        if row.get("id_op") is not None and row.get("id_documento_habil") is not None
+    ]
+    account_references = [
+        {
+            "account_id": str(row["id_parceria_conta"]),
+            "partnership_id": str(row["id_parceria"]),
+            "type": row.get("tp_conta") or MISSING,
+            "name": row.get("nm_conta") or MISSING,
+            "opened_at": row.get("dt_abertura") or MISSING,
+            "status": row.get("tx_descricao") or MISSING,
+            "status_detail": row.get("tx_detalhamento") or MISSING,
+            "bank": row.get("nm_banco") or MISSING,
+            "account_number": row.get("tx_conta") or MISSING,
+            "branch_number": row.get("tx_numero") or MISSING,
+            "branch_name": row.get("nm_agencia") or MISSING,
+            "branch_municipality": row.get("nm_municipio_agencia") or MISSING,
+            "branch_state": row.get("sg_uf_agencia") or MISSING,
+            "current_balance": numeric(row.get("vl_saldo_conta_corrente")),
+            "current_balance_at": row.get("dt_referencia_saldo_conta_corrente") or MISSING,
+            "investment_balance": numeric(row.get("vl_saldo_conta_investimento")),
+            "investment_balance_at": row.get("dt_referencia_saldo_conta_investimento") or MISSING,
+            "income_classification_count": len(row.get("classificacoes_ingresso") or []),
+            "bank_statement_count": len(statements_by_account.get(str(row["id_parceria_conta"]), [])),
+            "bank_credit_total": sum(
+                value for statement in statements_by_account.get(str(row["id_parceria_conta"]), [])
+                if str(statement.get("in_transacao") or "").casefold() == "crédito"
+                and (value := numeric(statement.get("vl_lancamento_extrato_bancario"))) is not None
+            ),
+            "bank_debit_total": sum(
+                value for statement in statements_by_account.get(str(row["id_parceria_conta"]), [])
+                if str(statement.get("in_transacao") or "").casefold() == "débito"
+                and (value := numeric(statement.get("vl_lancamento_extrato_bancario"))) is not None
+            ),
+            "bank_statement_first_at": min(
+                (
+                    statement["dt_movimento_lancamento_extrato_bancario"]
+                    for statement in statements_by_account.get(str(row["id_parceria_conta"]), [])
+                    if statement.get("dt_movimento_lancamento_extrato_bancario")
+                ),
+                default=MISSING,
+            ),
+            "bank_statement_last_at": max(
+                (
+                    statement["dt_movimento_lancamento_extrato_bancario"]
+                    for statement in statements_by_account.get(str(row["id_parceria_conta"]), [])
+                    if statement.get("dt_movimento_lancamento_extrato_bancario")
+                ),
+                default=MISSING,
+            ),
+            "source": row.get("source") or "Transferegov - Gestão de Parcerias",
+            "source_url": row.get("source_url") or MISSING,
+            "fetched_at": row.get("fetched_at") or MISSING,
+            "sha256": row.get("sha256") or MISSING,
+        }
+        for row in accounts
+        if row.get("id_parceria_conta") is not None and row.get("id_parceria") is not None
+    ]
     today = date.today().isoformat()
     expired_contracts = [
         row for row in contracts
@@ -262,9 +458,16 @@ def build() -> dict[str, Any]:
         row for row in projects
         if any(term in str(row.get("situacao") or "").casefold() for term in ("paralis", "cancel"))
     ]
+    ambiguity_errors = []
+    for directory in (PUBLISHED, obras):
+        for errors_path in directory.glob("*_errors.json"):
+            ambiguity_errors.extend(
+                row for row in read_json(errors_path, [])
+                if str(row.get("error", "")).startswith("Ambiguous")
+            )
     integrity = {
         "records_assessed": sum(len(rows) for rows in (proposals, partnerships, goals, schedules, analyses, indicators, resources, commitments, payable_documents, accounts, payment_orders, statements, geometries, projects, physical_execution, project_contracts, project_commitments, project_interruptions, feasibility_studies)),
-        "ambiguous_relationships": 0,
+        "ambiguous_relationships": len(ambiguity_errors),
         "rules": [
             {
                 "id": "official-primary-key",
@@ -306,19 +509,28 @@ def build() -> dict[str, Any]:
         "policy": "official_only",
         "sync_status": {
             "partnerships": sync_state(PUBLISHED, "partnerships", partnerships),
+            "proposal_goals": sync_state(PUBLISHED, "proposal_goals", goals),
             "disbursement_schedule": sync_state(PUBLISHED, "disbursement_schedule", schedules),
+            "proposal_analyses": sync_state(PUBLISHED, "proposal_analyses", analyses),
+            "proposal_indicators": sync_state(PUBLISHED, "proposal_indicators", indicators),
+            "proposal_resources": sync_state(PUBLISHED, "proposal_resources", resources),
             "commitments": sync_state(PUBLISHED, "commitments", commitments),
             "payable_documents": sync_state(PUBLISHED, "payable_documents", payable_documents),
+            "partnership_accounts": sync_state(PUBLISHED, "partnership_accounts", accounts),
             "payment_orders": sync_state(PUBLISHED, "payment_orders", payment_orders),
             "bank_statements": sync_state(PUBLISHED, "bank_statements", statements),
             "physical_execution": sync_state(obras, "physical_execution", physical_execution),
             "project_contracts": sync_state(obras, "project_contracts", project_contracts),
             "project_commitments": sync_state(obras, "project_commitments", project_commitments),
             "project_interruptions": sync_state(obras, "project_interruptions", project_interruptions),
+            "feasibility_studies": sync_state(obras, "feasibility_studies", feasibility_studies),
         },
         "instrument_relations": instruments,
         "timeline": sorted(timeline, key=lambda row: row["occurred_at"], reverse=True),
         "engineering": sorted(engineering, key=lambda row: row["project_id"]),
+        "documents": sorted(documents, key=lambda row: row["document_id"]),
+        "payment_orders": sorted(payment_order_references, key=lambda row: row["payment_order_id"]),
+        "accounts": sorted(account_references, key=lambda row: row["account_id"]),
         "financial": financial,
         "integrity": integrity,
         "counts": {

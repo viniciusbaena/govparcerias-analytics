@@ -90,9 +90,18 @@ proveniência e conformidade.
 - 1.517 empenhos, vinculados às 1.935 parcerias, sem chave duplicada, sem vínculo
   órfão e sem erro;
 - total empenhado publicado: R$ 422.753.821,00.
-- checkpoint parcial de documentos hábeis em 578/1.935 parcerias, com 178
-  registros preservados; a projeção identifica explicitamente que a carga ainda
-  não é total.
+- 1.143 documentos hábeis, vinculados às 1.935 parcerias, sem chave duplicada,
+  sem vínculo órfão e sem erro;
+- total dos documentos hábeis publicado: R$ 300.621.710,00.
+- 1.142 ordens de pagamento, vinculadas aos 1.143 documentos hábeis, sem chave
+  duplicada, sem vínculo órfão e sem erro;
+- total das ordens de pagamento publicado: R$ 299.975.085,00.
+- 1.963 contas de parceria, vinculadas às 1.935 parcerias, sem chave duplicada,
+  sem vínculo órfão e sem erro.
+
+Os saldos das contas não são somados entre si: as datas de referência informadas
+pela fonte podem divergir. A interface preserva e exibe cada saldo com sua
+respectiva data.
 
 Essas contagens descrevem somente a carteira dos 121 municípios. Não houve
 consulta nacional seguida de filtragem.

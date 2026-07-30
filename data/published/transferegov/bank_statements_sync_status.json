@@ -1,0 +1,14 @@
+{
+  "entity": "bank_statements",
+  "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/extrato-bancario",
+  "finished_at": "2026-07-30T01:02:53.715031+00:00",
+  "roots_total": 1963,
+  "records": 31,
+  "errors": 0,
+  "pages_this_run": 5,
+  "partial": true,
+  "completed": false,
+  "primary_key": "id_extrato_bancario",
+  "parent_key": "id_parceria_conta",
+  "policy": "official_only"
+}
