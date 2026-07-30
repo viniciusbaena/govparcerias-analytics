@@ -1,0 +1,12 @@
+{
+  "entity": "project_contracts",
+  "records": 65,
+  "roots_total": 891,
+  "pages_this_run": 886,
+  "errors": 0,
+  "partial": false,
+  "completed": true,
+  "primary_key": "id_contrato",
+  "parent_key": "id_projeto_investimento",
+  "policy": "official_only"
+}

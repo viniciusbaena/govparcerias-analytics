@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validar arquivos públicos
-        run: test -f site/index.html && test -f site/assets/app.js && test -f site/data/schema-catalog.json && test -f site/data/proposals.json
+        run: test -f site/index.html && test -f site/assets/app.js && test -f site/data/schema-catalog.json && test -f site/data/proposals.json && test -f site/data/contracts.json && test -f site/data/integrated.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

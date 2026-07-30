@@ -1,0 +1,14 @@
+{
+  "entity": "payable_documents",
+  "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/documento-habil",
+  "finished_at": "2026-07-30T00:01:55.752851+00:00",
+  "roots_total": 1935,
+  "records": 1143,
+  "errors": 0,
+  "pages_this_run": 1357,
+  "partial": false,
+  "completed": true,
+  "primary_key": "id_documento_habil",
+  "parent_key": "id_parceria",
+  "policy": "official_only"
+}

@@ -1,0 +1,12 @@
+{
+  "entity": "projects",
+  "records": 891,
+  "roots_total": 891,
+  "pages_this_run": 890,
+  "errors": 0,
+  "partial": false,
+  "completed": true,
+  "primary_key": "id_projeto_investimento",
+  "parent_key": "id_projeto_investimento",
+  "policy": "official_only"
+}

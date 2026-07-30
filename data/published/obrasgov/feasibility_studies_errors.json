@@ -1,0 +1,9 @@
+[
+  {
+    "entity": "feasibility_studies",
+    "root": "103239.41-90",
+    "page": 1,
+    "error": "AmbiguousOfficialKey",
+    "message": "A fonte retornou múltiplos registros sem identificador próprio além de id_projeto_investimento."
+  }
+]

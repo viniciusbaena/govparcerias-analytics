@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-07-30T01:33:24.008516+00:00",
+  "counts": {
+    "municipalities": 121,
+    "proposals": 1935,
+    "partnerships": 1935,
+    "instruments": 1935,
+    "timeline_events": 9675,
+    "engineering_projects": 891,
+    "obrasgov_geometries": 1411
+  },
+  "financial_records": {
+    "contracts": 3118,
+    "schedules": 2048,
+    "commitments": 1517,
+    "project_commitments": 825,
+    "payable_documents": 1143,
+    "payment_orders": 1142,
+    "partnership_accounts": 1963,
+    "bank_statements": 21657
+  },
+  "integrity": {
+    "records_assessed": 37557,
+    "ambiguous_relationships": 2,
+    "rules": [
+      {
+        "id": "official-primary-key",
+        "description": "Todo registro publicado deve possuir a chave oficial declarada para sua entidade.",
+        "violations": 0
+      },
+      {
+        "id": "official-parent-key",
+        "description": "Todo relacionamento deve repetir exatamente a chave pai usada na consulta oficial.",
+        "violations": 0
+      }
+    ],
+    "signals": [
+      {
+        "id": "contract-term-ended",
+        "label": "Contratos com fim de vigência anterior à data de referência",
+        "count": 2286,
+        "basis": "Comparação determinística de vigencia_fim do PNCP com a data de geração.",
+        "classification": "Atenção operacional; não presume irregularidade."
+      },
+      {
+        "id": "project-source-status-interrupted",
+        "label": "Projetos com situação de paralisação ou cancelamento informada pela fonte",
+        "count": 34,
+        "basis": "Campo situacao do ObrasGov.",
+        "classification": "Situação oficial; não presume irregularidade."
+      },
+      {
+        "id": "project-official-interruption-history",
+        "label": "Eventos no histórico oficial de paralisação ou cancelamento",
+        "count": 110,
+        "basis": "Endpoint de histórico de situação cancelada/paralisada do ObrasGov.",
+        "classification": "Histórico oficial; não presume irregularidade."
+      }
+    ]
+  },
+  "policy": "official_only"
+}

@@ -1,0 +1,14 @@
+{
+  "entity": "partnership_accounts",
+  "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/parceria-conta",
+  "finished_at": "2026-07-30T01:02:04.162689+00:00",
+  "roots_total": 1935,
+  "records": 1963,
+  "errors": 0,
+  "pages_this_run": 1930,
+  "partial": false,
+  "completed": true,
+  "primary_key": "id_parceria_conta",
+  "parent_key": "id_parceria",
+  "policy": "official_only"
+}
