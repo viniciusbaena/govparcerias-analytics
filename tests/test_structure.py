@@ -8,6 +8,13 @@ def test_readme_links_published_manifest():
     assert manifest.exists()
     assert 'data/published/integrated_status.json' in readme
 
+def test_special_transferegov_graph_is_scoped_to_official_plan_ids():
+    script=(ROOT/'scripts/sync_transferencias_especiais_graph.py').read_text(encoding='utf-8')
+    assert "special_action_plans.json" in script
+    assert "id_plano_acao" in script
+    assert "executor_especial" in script and "plano_trabalho_especial" in script and "empenho_especial" in script
+    assert "api.transferegov.gestao.gov.br/transferenciasespeciais" in script
+
 def test_official_only_dataset():
     data=json.loads((ROOT/'site/data/demo.json').read_text(encoding='utf-8'))
     assert data['data_mode']=='official_only'
