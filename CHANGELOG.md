@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.0-alpha
+
+- Adiciona auditoria determinística da release, verificando carteira, política official-only, sincronizações, integridade e ambiguidades documentadas.
+
 ## v2.8.0-alpha
 
 - Atualiza o inventário de conectores para refletir o grafo completo de Transferências Especiais e as pendências de SICONFI/ObrasGov.
