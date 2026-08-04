@@ -78,14 +78,14 @@ function inicio(){
   const totalContracts=Array.isArray(S.contracts)?S.contracts.length:0;
   const totalProposals=Array.isArray(S.proposals)?S.proposals.length:0;
   $('#content').innerHTML=
-    head('Consulta unificada','Pesquise em um único campo por município, CNPJ, código IBGE, proposta, contrato, obra, documento, conta, processo, objeto, fornecedor, credor ou órgão.')
+    head('Consulta unificada','Comece pelo número do contrato/convênio ou pelo nome do município. CNPJ e IBGE são filtros secundários; propostas ficam disponíveis como consulta complementar.')
     +`<div class="home-search-grid">
       <article class="home-search-card">
         <span class="eyebrow">Busca integrada</span>
         <h2>Consultar propostas, contratos, obras, documentos e municípios</h2>
         <p>A pesquisa combina a carteira dos 121 municípios com registros oficiais do Transferegov, PNCP e ObrasGov.</p>
         <div class="home-search">
-          <input id="unifiedHomeSearch" value="${esc(S.homeQuery||'')}" placeholder="Ex.: Altamira, CNPJ, obra, documento, processo ou credor">
+          <input id="unifiedHomeSearch" value="${esc(S.homeQuery||'')}" placeholder="Ex.: contrato 123, Altamira, CNPJ, IBGE ou proposta">
           <button class="primary" id="unifiedSearchButton">Consultar</button>
         </div>
         <small>Resultados são exibidos somente quando existem nas bases oficiais sincronizadas.</small>
@@ -351,19 +351,19 @@ function instrumentos(){
     :`${proposals.length} proposta(s), ${contracts.length} contrato(s), ${projects.length} obra(s), ${documents.length} documento(s), ${paymentOrders.length} ordem(ns), ${accounts.length} conta(s) e ${municipalities.length} município(s) disponíveis.`;
 
   $('#content').innerHTML=
-    head('Consulta unificada','Pesquise por município, CNPJ, IBGE, proposta, contrato, obra, documento, conta, processo, objeto, fornecedor, credor ou órgão.',`<button id="backToHomeButton">← Voltar</button>`)
+    head('Consulta unificada','Ordem principal: contrato/convênio · município · CNPJ · IBGE · proposta. Obras, documentos, contas e pagamentos aparecem como evidências relacionadas.',`<button id="backToHomeButton">← Voltar</button>`)
     +`<div class="toolbar">
        <input id="contractSearch" value="${esc(query)}" placeholder="Digite qualquer termo da consulta">
        <button id="contractSearchButton">Pesquisar</button>
       </div>
       <div class="portfolio-meta"><span>${summary}</span><span>Propostas: ${(S.proposals||[]).length}</span><span>Contratos: ${(S.contracts||[]).length}</span><span>Modo: official-only</span></div>
-      ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
       ${contracts.length?`<h2>Contratos oficiais</h2><div class="cards">${contractCards}</div>`:''}
+      ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
+      ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
       ${projects.length?`<h2>Obras oficiais</h2><div class="cards">${projectCards}</div>`:''}
       ${documents.length?`<h2>Documentos hábeis oficiais</h2><div class="cards">${documentCards}</div>`:''}
       ${paymentOrders.length?`<h2>Ordens de pagamento oficiais</h2><div class="cards">${paymentOrderCards}</div>`:''}
       ${accounts.length?`<h2>Contas de parceria oficiais</h2><div class="cards">${accountCards}</div>`:''}
-      ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
       ${!proposals.length&&!contracts.length&&!projects.length&&!documents.length&&!paymentOrders.length&&!accounts.length&&!municipalities.length?empty('Nenhum resultado localizado',`A consulta por ${esc(query)} não encontrou registros oficiais na base sincronizada.`):''}`;
 
   $('#contractSearchButton').onclick=applyContractSearch;
