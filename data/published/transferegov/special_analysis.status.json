@@ -1,0 +1,15 @@
+{
+  "work_plans": 1368,
+  "entities": {
+    "work_plan_analyses": {
+      "records": 2989,
+      "errors": 0
+    },
+    "pending_organs": {
+      "records": 41,
+      "errors": 0
+    }
+  },
+  "errors": [],
+  "status": "completed"
+}

@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.4.0-alpha
+
+- Integra 2.989 análises de planos de trabalho e 41 pendências de órgãos das Transferências Especiais, sempre por `id_plano_trabalho` oficial.
+- Mantém proveniência, checkpoint, retry, paginação e upsert preservador; a carga continua restrita à carteira dos 121 municípios.
+- Registra explicitamente a ambiguidade inicial das chaves e só publica após confirmação no OpenAPI oficial.
+
 ## v1.8.0-alpha
 
 - Adiciona sincronizador oficial de Transferências Especiais por CNPJ da carteira.
