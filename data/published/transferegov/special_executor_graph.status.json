@@ -1,0 +1,15 @@
+{
+  "roots": 1367,
+  "entities": {
+    "purposes": {
+      "records": 1367,
+      "errors": 0
+    },
+    "goals": {
+      "records": 3830,
+      "errors": 0
+    }
+  },
+  "errors": [],
+  "status": "completed"
+}
