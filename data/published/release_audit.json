@@ -1,0 +1,283 @@
+{
+  "status": "passed",
+  "municipalities": 121,
+  "counts": {
+    "municipalities": 121,
+    "proposals": 1935,
+    "partnerships": 1935,
+    "instruments": 1935,
+    "timeline_events": 11582,
+    "engineering_projects": 891,
+    "obrasgov_geometries": 1411,
+    "special_action_plans": 1392,
+    "special_executors": 1367,
+    "special_work_plans": 1368,
+    "special_commitments": 1404,
+    "special_reports": 123,
+    "special_new_reports": 582,
+    "special_documents": 1337,
+    "special_orders": 1276,
+    "special_purposes": 1367,
+    "special_goals": 3830,
+    "special_work_plan_analyses": 2989,
+    "special_pending_organs": 41,
+    "special_payment_history": 6125,
+    "special_programs": 10
+  },
+  "sync_status": {
+    "partnerships": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 1935,
+      "errors": 0
+    },
+    "proposal_goals": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 2019,
+      "errors": 0
+    },
+    "disbursement_schedule": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 2048,
+      "errors": 0
+    },
+    "proposal_analyses": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 1912,
+      "errors": 0
+    },
+    "proposal_indicators": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 52,
+      "errors": 0
+    },
+    "proposal_resources": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 1885,
+      "errors": 0
+    },
+    "commitments": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 1517,
+      "errors": 0
+    },
+    "payable_documents": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 1143,
+      "errors": 0
+    },
+    "partnership_accounts": {
+      "completed": true,
+      "processed_roots": 1935,
+      "roots_total": 1935,
+      "records": 1963,
+      "errors": 0
+    },
+    "payment_orders": {
+      "completed": true,
+      "processed_roots": 1143,
+      "roots_total": 1143,
+      "records": 1142,
+      "errors": 0
+    },
+    "bank_statements": {
+      "completed": true,
+      "processed_roots": 1963,
+      "roots_total": 1963,
+      "records": 30634,
+      "errors": 0
+    },
+    "special_action_plans": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 121,
+      "records": 1392,
+      "errors": 0
+    },
+    "special_executors": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1392,
+      "records": 1367,
+      "errors": 0
+    },
+    "special_work_plans": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1392,
+      "records": 1368,
+      "errors": 0
+    },
+    "special_commitments": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1392,
+      "records": 1404,
+      "errors": 0
+    },
+    "special_reports": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1392,
+      "records": 123,
+      "errors": 0
+    },
+    "special_new_reports": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1392,
+      "records": 582,
+      "errors": 0
+    },
+    "special_documents": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1404,
+      "records": 1337,
+      "errors": 0
+    },
+    "special_orders": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1337,
+      "records": 1276,
+      "errors": 0
+    },
+    "special_purposes": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1367,
+      "records": 1367,
+      "errors": 0
+    },
+    "special_goals": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1367,
+      "records": 3830,
+      "errors": 0
+    },
+    "special_work_plan_analyses": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1368,
+      "records": 2989,
+      "errors": 0
+    },
+    "special_pending_organs": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1368,
+      "records": 41,
+      "errors": 0
+    },
+    "special_payment_history": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 1276,
+      "records": 6125,
+      "errors": 0
+    },
+    "special_programs": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 10,
+      "records": 10,
+      "errors": 0
+    },
+    "physical_execution": {
+      "completed": false,
+      "processed_roots": 589,
+      "roots_total": 891,
+      "records": 331,
+      "errors": 1
+    },
+    "project_contracts": {
+      "completed": true,
+      "processed_roots": 891,
+      "roots_total": 891,
+      "records": 65,
+      "errors": 0
+    },
+    "project_commitments": {
+      "completed": true,
+      "processed_roots": 891,
+      "roots_total": 891,
+      "records": 825,
+      "errors": 0
+    },
+    "project_interruptions": {
+      "completed": true,
+      "processed_roots": 891,
+      "roots_total": 891,
+      "records": 110,
+      "errors": 0
+    },
+    "feasibility_studies": {
+      "completed": false,
+      "processed_roots": 11,
+      "roots_total": 891,
+      "records": 0,
+      "errors": 1
+    }
+  },
+  "integrity": {
+    "records_assessed": 75029,
+    "ambiguous_relationships": 2,
+    "rules": [
+      {
+        "id": "official-primary-key",
+        "description": "Todo registro publicado deve possuir a chave oficial declarada para sua entidade.",
+        "violations": 0
+      },
+      {
+        "id": "official-parent-key",
+        "description": "Todo relacionamento deve repetir exatamente a chave pai usada na consulta oficial.",
+        "violations": 0
+      }
+    ],
+    "signals": [
+      {
+        "id": "contract-term-ended",
+        "label": "Contratos com fim de vigência anterior à data de referência",
+        "count": 2296,
+        "basis": "Comparação determinística de vigencia_fim do PNCP com a data de geração.",
+        "classification": "Atenção operacional; não presume irregularidade."
+      },
+      {
+        "id": "project-source-status-interrupted",
+        "label": "Projetos com situação de paralisação ou cancelamento informada pela fonte",
+        "count": 34,
+        "basis": "Campo situacao do ObrasGov.",
+        "classification": "Situação oficial; não presume irregularidade."
+      },
+      {
+        "id": "project-official-interruption-history",
+        "label": "Eventos no histórico oficial de paralisação ou cancelamento",
+        "count": 110,
+        "basis": "Endpoint de histórico de situação cancelada/paralisada do ObrasGov.",
+        "classification": "Histórico oficial; não presume irregularidade."
+      }
+    ]
+  },
+  "documented_ambiguities": [
+    "physical_execution",
+    "feasibility_studies"
+  ],
+  "errors": []
+}
