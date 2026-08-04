@@ -47,7 +47,7 @@ A versão integrada preserva 3.118 contratos PNCP e publica o grafo oficial do
 Transferegov com propostas, parcerias, cronogramas, empenhos, documentos hábeis,
 ordens de pagamento, contas, extratos bancários, metas, análises, indicadores e
 recursos. Os contadores e a proveniência estão em
-[`site/data/integrated_status.json`](site/data/integrated_status.json).
+ [`data/published/integrated_status.json`](data/published/integrated_status.json).
 
 SICONFI e Transferências Especiais foram auditados, mas não recebem carga até
 que as fontes confirmem uma chave de linha e o relacionamento territorial
