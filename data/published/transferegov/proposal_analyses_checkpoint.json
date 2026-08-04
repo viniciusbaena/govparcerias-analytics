@@ -1,8 +1,8 @@
 {
   "entity": "proposal_analyses",
-  "root_index": 5,
+  "root_index": 1935,
   "next_page": 1,
   "roots_total": 1935,
-  "completed": false,
-  "updated_at": "2026-07-30T01:16:02.724813+00:00"
+  "completed": true,
+  "updated_at": "2026-08-04T19:47:51.725898+00:00"
 }

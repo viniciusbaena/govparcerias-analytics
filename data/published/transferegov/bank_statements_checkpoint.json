@@ -1,8 +1,8 @@
 {
   "entity": "bank_statements",
-  "root_index": 837,
+  "root_index": 1963,
   "next_page": 1,
   "roots_total": 1963,
-  "completed": false,
-  "updated_at": "2026-07-30T01:27:35.040589+00:00"
+  "completed": true,
+  "updated_at": "2026-08-04T19:20:55.677456+00:00"
 }

@@ -1,8 +1,8 @@
 {
   "entity": "proposal_goals",
-  "root_index": 537,
+  "root_index": 1935,
   "next_page": 1,
   "roots_total": 1935,
-  "completed": false,
-  "updated_at": "2026-07-30T01:27:28.960009+00:00"
+  "completed": true,
+  "updated_at": "2026-08-04T19:29:01.852520+00:00"
 }

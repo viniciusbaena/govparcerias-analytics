@@ -103,5 +103,11 @@ Os saldos das contas não são somados entre si: as datas de referência informa
 pela fonte podem divergir. A interface preserva e exibe cada saldo com sua
 respectiva data.
 
+- 30.634 lançamentos de extrato bancário, vinculados às 1.963 contas, sem chave
+  duplicada, vínculo órfão ou erro.
+- 2.019 metas, 1.912 análises, 52 indicadores e 1.885 distribuições de recursos,
+  todos vinculados às propostas da carteira sem chave duplicada, vínculo órfão ou
+  erro.
+
 Essas contagens descrevem somente a carteira dos 121 municípios. Não houve
 consulta nacional seguida de filtragem.

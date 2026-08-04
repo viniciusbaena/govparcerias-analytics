@@ -1,4 +1,4 @@
-# GovParcerias Intelligence — v1.3.0-alpha
+# GovParcerias Intelligence — v1.4.0-alpha
 
 Plataforma independente de inteligência para transferências públicas, organizada em dois eixos complementares:
 
@@ -40,3 +40,16 @@ contas, ordens de pagamento e extratos. Consulte
 O ObrasGov é consultado primeiro por `cod_ibge` para descobrir somente projetos
 localizados na carteira. As demais entidades são consultadas por
 `id_projeto_investimento`. Consulte [`docs/OBRASGOV.md`](docs/OBRASGOV.md).
+
+## Estado da versão publicada
+
+A versão integrada preserva 3.118 contratos PNCP e publica o grafo oficial do
+Transferegov com propostas, parcerias, cronogramas, empenhos, documentos hábeis,
+ordens de pagamento, contas, extratos bancários, metas, análises, indicadores e
+recursos. Os contadores e a proveniência estão em
+ [`data/published/integrated_status.json`](data/published/integrated_status.json).
+
+SICONFI e Transferências Especiais foram auditados, mas não recebem carga até
+que as fontes confirmem uma chave de linha e o relacionamento territorial
+oficial. As decisões estão documentadas em [`docs/SICONFI.md`](docs/SICONFI.md) e
+[`docs/TRANSFERENCIAS_ESPECIAIS.md`](docs/TRANSFERENCIAS_ESPECIAIS.md).

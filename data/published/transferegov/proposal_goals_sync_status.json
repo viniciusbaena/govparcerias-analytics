@@ -1,13 +1,13 @@
 {
   "entity": "proposal_goals",
   "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/meta-proposta",
-  "finished_at": "2026-07-30T01:12:51.994500+00:00",
+  "finished_at": "2026-08-04T19:29:01.855615+00:00",
   "roots_total": 1935,
-  "records": 15,
+  "records": 2019,
   "errors": 0,
-  "pages_this_run": 5,
-  "partial": true,
-  "completed": false,
+  "pages_this_run": 1398,
+  "partial": false,
+  "completed": true,
   "primary_key": "id_meta_proposta",
   "parent_key": "id_proposta",
   "policy": "official_only"

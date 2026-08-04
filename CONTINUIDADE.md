@@ -1,8 +1,7 @@
 # Continuidade do desenvolvimento
 
-Última atualização: 29/07/2026, branch
-`agent/v1.3.0-alpha-modelo-integrado`, PR draft
-[#5](https://github.com/viniciusbaena/govparcerias-analytics/pull/5).
+Última atualização: 04/08/2026, branch
+`codex/v1.4.0-alpha-dados-completos`, preparando o PR da v1.4.0-alpha.
 
 ## Invariantes obrigatórios
 
@@ -37,26 +36,26 @@
 As contas possuem 1.963 chaves `id_parceria_conta` únicas, nenhuma chave
 ausente e nenhum vínculo órfão com as 1.935 parcerias.
 
-### Transferegov pausado com checkpoint
+### Transferegov v1.4.0 concluído e validado
 
 | Entidade | Registros preservados | Raízes processadas | Total | Erros |
 |---|---:|---:|---:|---:|
-| Extratos bancários | 21.657 | 837 | 1.963 contas | 0 |
-| Metas | 579 | 537 | 1.935 propostas | 0 |
-| Análises | 5 | 5 | 1.935 propostas | 0 |
-| Indicadores | 0 | 5 | 1.935 propostas | 0 |
-| Distribuições de recursos | 0 | 5 | 1.935 propostas | 0 |
+| Extratos bancários | 30.634 | 1.963 | 1.963 contas | 0 |
+| Metas | 2.019 | 1.935 | 1.935 propostas | 0 |
+| Análises | 1.912 | 1.935 | 1.935 propostas | 0 |
+| Indicadores | 52 | 1.935 | 1.935 propostas | 0 |
+| Distribuições de recursos | 1.885 | 1.935 | 1.935 propostas | 0 |
 
-Os pilotos comprovaram:
+As validações finais comprovaram:
 
 - extratos: `id_extrato_bancario` único e vínculo por
   `id_parceria_conta`;
 - metas: `id_meta_proposta` único e vínculo por `id_proposta`;
 - análises: `id_analise_proposta` único e vínculo por `id_proposta`;
-- indicadores e recursos: as cinco primeiras propostas retornaram conjuntos
-  vazios, sem erro. A ausência deve ser preservada como resposta da fonte.
+- indicadores e recursos: chaves oficiais únicas e vínculos pai válidos em toda a
+  carteira. Conjuntos vazios continuam preservados quando retornados pela fonte.
 
-Retomada:
+Os comandos abaixo só serão necessários para uma nova execução incremental:
 
 ```powershell
 python scripts/sync_transferegov_graph.py --entity bank_statements --page-size 200 --min-delay 0.2
@@ -108,15 +107,12 @@ além de `id_projeto_investimento`. Não criar chave composta por suposição.
 
 ## Próximas ações
 
-1. concluir extratos e metas a partir dos checkpoints;
-2. validar unicidade, chaves pai e totais finais;
-3. concluir análises e avaliar indicadores e recursos em toda a carteira;
-4. reconstruir `site/data/integrated.json`;
-5. executar `python -m pytest -q` e validar `site/assets/app.js`;
-6. fazer QA no navegador das páginas financeiras, dossiê, timeline e risco;
-7. auditar o catálogo oficial por outros conectores viáveis, sempre por chave
+1. validar a projeção final e os novos campos no navegador;
+2. executar `python -m pytest -q` e validar `site/assets/app.js`;
+3. fazer QA no navegador das páginas financeiras, dossiê, timeline e risco;
+4. auditar o catálogo oficial por outros conectores viáveis, sempre por chave
    territorial ou pai da carteira;
-8. manter o PR #5 draft até a entrega `v1.3.0-alpha` estar pronta para revisão.
+5. fazer commit, push e abrir o PR da `v1.4.0-alpha`.
 
 ## Arquivos locais que não pertencem à entrega
 

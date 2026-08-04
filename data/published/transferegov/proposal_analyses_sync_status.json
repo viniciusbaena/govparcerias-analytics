@@ -1,13 +1,13 @@
 {
   "entity": "proposal_analyses",
   "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/analise-proposta",
-  "finished_at": "2026-07-30T01:16:02.730060+00:00",
+  "finished_at": "2026-08-04T19:47:51.728701+00:00",
   "roots_total": 1935,
-  "records": 5,
+  "records": 1912,
   "errors": 0,
-  "pages_this_run": 5,
-  "partial": true,
-  "completed": false,
+  "pages_this_run": 1930,
+  "partial": false,
+  "completed": true,
   "primary_key": "id_analise_proposta",
   "parent_key": "id_proposta",
   "policy": "official_only"
