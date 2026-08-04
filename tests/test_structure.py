@@ -12,7 +12,7 @@ def test_release_audit_passes_with_documented_ambiguities():
     audit=json.loads((ROOT/'data/published/release_audit.json').read_text(encoding='utf-8'))
     assert audit['status']=='passed'
     assert audit['municipalities']==121
-    assert set(audit['documented_ambiguities']) == {'physical_execution','feasibility_studies'}
+    assert set(audit['documented_ambiguities']) == {'feasibility_studies'}
 
 def test_special_transferegov_graph_is_scoped_to_official_plan_ids():
     script=(ROOT/'scripts/sync_transferencias_especiais_graph.py').read_text(encoding='utf-8')
