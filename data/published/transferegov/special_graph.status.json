@@ -12,6 +12,14 @@
     "commitments": {
       "records": 1404,
       "errors": 0
+    },
+    "reports": {
+      "records": 123,
+      "errors": 0
+    },
+    "new_reports": {
+      "records": 582,
+      "errors": 0
     }
   },
   "errors": [],
