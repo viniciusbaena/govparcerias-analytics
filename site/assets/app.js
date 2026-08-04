@@ -231,8 +231,19 @@ function moneyBR(v){
   return Number.isFinite(n)?n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}):esc(v)
 }
 function contractHaystack(c){
-  const raw=[c.source_record_id,c.numero,c.number,c.numeroContratoEmpenho,c.ano,c.processo,c.objeto,c.objetoContrato,c.municipality_name,c.municipioNome,c.municipality_cnpj,c.orgao_cnpj,c.orgao_nome,c.fornecedor_nome,c.fornecedor_documento,c.nomeRazaoSocialFornecedor,c.niFornecedor,c.numeroControlePNCP,c.orgaoEntidade?.cnpj,c.orgaoEntidade?.razaoSocial,c.unidadeOrgao?.nomeUnidade].filter(Boolean).join(' ');
+  const raw=[c.source_record_id,c.numero,c.number,c.numeroContratoEmpenho,c.numeroConvenio,c.numero_convenio,c.codigoConvenio,c.codigo_convenio,c.ano,c.processo,c.objeto,c.objetoContrato,c.municipality_name,c.municipioNome,c.municipality_cnpj,c.orgao_cnpj,c.orgao_nome,c.fornecedor_nome,c.fornecedor_documento,c.nomeRazaoSocialFornecedor,c.niFornecedor,c.numeroControlePNCP,c.orgaoEntidade?.cnpj,c.orgaoEntidade?.razaoSocial,c.unidadeOrgao?.nomeUnidade].filter(Boolean).join(' ');
   return normalizeSearch(raw)+' '+digitsOnly(raw)
+}
+function primarySearchScore(value,query){
+  const q=normalizeSearch(query),digits=digitsOnly(query),number=normalizeSearch([value.numero,value.number,value.numeroContratoEmpenho,value.numeroConvenio,value.numero_convenio,value.codigoConvenio,value.codigo_convenio,value.numeroControlePNCP].filter(Boolean).join(' '));
+  const municipality=normalizeSearch([value.municipality_name,value.municipioNome,value.name].filter(Boolean).join(' '));
+  const cnpj=digitsOnly([value.municipality_cnpj,value.cnpj,value.orgao_cnpj].filter(Boolean).join(' '));
+  const ibge=digitsOnly(value.ibge_code);
+  if(q&&number.includes(q)||digits&&digits.length>3&&number.includes(digits))return 5;
+  if(q&&municipality.includes(q))return 4;
+  if(digits&&digits.length>5&&cnpj.includes(digits))return 3;
+  if(digits&&digits.length>5&&ibge.includes(digits))return 2;
+  return 1
 }
 function municipalityHaystack(m){
   const raw=[m.name,m.cnpj,m.ibge_code].filter(Boolean).join(' ');
@@ -291,6 +302,9 @@ function instrumentos(){
   const documents=(S.integrated?.documents||[]).filter(doc=>queryMatches(documentHaystack(doc),query));
   const paymentOrders=(S.integrated?.payment_orders||[]).filter(order=>queryMatches(paymentOrderHaystack(order),query));
   const accounts=(S.integrated?.accounts||[]).filter(account=>queryMatches(accountHaystack(account),query));
+  contracts.sort((a,b)=>primarySearchScore(b,query)-primarySearchScore(a,query));
+  municipalities.sort((a,b)=>primarySearchScore(b,query)-primarySearchScore(a,query));
+  proposals.sort((a,b)=>primarySearchScore(b,query)-primarySearchScore(a,query));
 
   const contractCards=contracts.slice(0,100).map(c=>{
     const idx=(S.contracts||[]).indexOf(c);
