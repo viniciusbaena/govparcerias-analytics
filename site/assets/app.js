@@ -67,7 +67,7 @@ async function boot(){
   show('inicio')
 }
 const nav=[['inicio','Visão integrada'],['municipios','Municípios'],['territorial','Gestão territorial'],['instrumentos','Contratos e propostas'],['dossie','Dossiê por contrato'],['financeiro','Inteligência financeira'],['engenharia','Obras e engenharia'],['documentos','Centro de documentos'],['timeline','Timeline integrada'],['riscos','Risco e conformidade'],['copiloto','Copiloto']];
-function renderShell(){$('#app').innerHTML=`<div class="layout"><aside class="sidebar"><div class="brand"><div class="logo">GP</div><div><strong>GovParcerias</strong><small>Intelligence</small></div></div><nav>${nav.map(([id,t])=>`<button data-view="${id}" data-action="show" data-value="${id}">${t}</button>`).join('')}</nav><div class="policy">Integridade official-only<br><small>Carteira administrativa separada da base pública oficial.</small></div></aside><main><header class="topbar"><div><strong>Operação por contrato · gestão por território</strong><small> Uma base, duas jornadas complementares</small></div><div><button id="cmd" data-action="open-palette">Ctrl K</button><button id="theme" data-action="toggle-theme">${S.theme==='dark'?'Claro':'Escuro'}</button><span class="badge">v1.4.0-alpha</span></div></header><section id="content"></section><footer>121 municípios · ${(S.proposals||[]).length} propostas Transferegov · ${(S.contracts||[]).length} contratos PNCP · official-only</footer></main></div><aside id="chat" class="chat"><header><div><strong>Copiloto verificável</strong><small>Território, município e contrato</small></div><button data-action="close-chat" aria-label="Fechar copiloto">×</button></header><div class="chat-body" id="chatBody"><div class="notice"><strong>Política ativa.</strong> A carteira identifica o universo de trabalho. Respostas sobre contratos, propostas, valores, obras e documentos exigem evidência pública oficial.</div></div><div class="chat-input"><input id="chatInput" placeholder="Pergunte por município, proposta ou contrato"><button data-action="assistant-query">Enviar</button></div></aside><div id="palette" class="palette"><div class="palette-box"><input id="paletteInput" placeholder="Digite uma página ou comando"><div>${nav.map(([id,t])=>`<button data-action="close-palette" data-value="${id}">${t}</button>`).join('')}</div></div></div>`}
+function renderShell(){$('#app').innerHTML=`<div class="layout"><aside class="sidebar"><div class="brand"><div class="logo">GP</div><div><strong>GovParcerias</strong><small>Intelligence</small></div></div><nav>${nav.map(([id,t])=>`<button data-view="${id}" data-action="show" data-value="${id}">${t}</button>`).join('')}</nav><div class="policy">Integridade official-only<br><small>Carteira administrativa separada da base pública oficial.</small></div></aside><main><header class="topbar"><div><strong>Operação por contrato · gestão por território</strong><small> Uma base, duas jornadas complementares</small></div><div><button id="cmd" data-action="open-palette">Ctrl K</button><button id="theme" data-action="toggle-theme">${S.theme==='dark'?'Claro':'Escuro'}</button><span class="badge">v1.5.0-alpha</span></div></header><section id="content"></section><footer>121 municípios · ${(S.proposals||[]).length} propostas Transferegov · ${(S.contracts||[]).length} contratos PNCP · official-only</footer></main></div><aside id="chat" class="chat"><header><div><strong>Copiloto verificável</strong><small>Território, município e contrato</small></div><button data-action="close-chat" aria-label="Fechar copiloto">×</button></header><div class="chat-body" id="chatBody"><div class="notice"><strong>Política ativa.</strong> A carteira identifica o universo de trabalho. Respostas sobre contratos, propostas, valores, obras e documentos exigem evidência pública oficial.</div></div><div class="chat-input"><input id="chatInput" placeholder="Pergunte por município, proposta ou contrato"><button data-action="assistant-query">Enviar</button></div></aside><div id="palette" class="palette"><div class="palette-box"><input id="paletteInput" placeholder="Digite uma página ou comando"><div>${nav.map(([id,t])=>`<button data-action="close-palette" data-value="${id}">${t}</button>`).join('')}</div></div></div>`}
 function toggleTheme(){S.theme=S.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=S.theme;localStorage.setItem('gpa:theme',S.theme);renderShell();show(S.view)}
 function show(v){S.view=v;document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));({inicio,municipios,territorial,instrumentos,dossie,financeiro,engenharia,documentos,timeline,riscos,copiloto}[v]||inicio)()}
 const head=(t,p,a='')=>`<div class="hero"><div><h1>${t}</h1><p>${p}</p></div>${a}</div>`;
@@ -78,14 +78,14 @@ function inicio(){
   const totalContracts=Array.isArray(S.contracts)?S.contracts.length:0;
   const totalProposals=Array.isArray(S.proposals)?S.proposals.length:0;
   $('#content').innerHTML=
-    head('Consulta unificada','Pesquise em um único campo por município, CNPJ, código IBGE, proposta, contrato, obra, documento, conta, processo, objeto, fornecedor, credor ou órgão.')
+    head('Consulta unificada','Comece pelo número do contrato/convênio ou pelo nome do município. CNPJ e IBGE são filtros secundários; propostas ficam disponíveis como consulta complementar.')
     +`<div class="home-search-grid">
       <article class="home-search-card">
         <span class="eyebrow">Busca integrada</span>
         <h2>Consultar propostas, contratos, obras, documentos e municípios</h2>
         <p>A pesquisa combina a carteira dos 121 municípios com registros oficiais do Transferegov, PNCP e ObrasGov.</p>
         <div class="home-search">
-          <input id="unifiedHomeSearch" value="${esc(S.homeQuery||'')}" placeholder="Ex.: Altamira, CNPJ, obra, documento, processo ou credor">
+          <input id="unifiedHomeSearch" value="${esc(S.homeQuery||'')}" placeholder="Ex.: contrato 123, Altamira, CNPJ, IBGE ou proposta">
           <button class="primary" id="unifiedSearchButton">Consultar</button>
         </div>
         <small>Resultados são exibidos somente quando existem nas bases oficiais sincronizadas.</small>
@@ -351,19 +351,19 @@ function instrumentos(){
     :`${proposals.length} proposta(s), ${contracts.length} contrato(s), ${projects.length} obra(s), ${documents.length} documento(s), ${paymentOrders.length} ordem(ns), ${accounts.length} conta(s) e ${municipalities.length} município(s) disponíveis.`;
 
   $('#content').innerHTML=
-    head('Consulta unificada','Pesquise por município, CNPJ, IBGE, proposta, contrato, obra, documento, conta, processo, objeto, fornecedor, credor ou órgão.',`<button id="backToHomeButton">← Voltar</button>`)
+    head('Consulta unificada','Ordem principal: contrato/convênio · município · CNPJ · IBGE · proposta. Obras, documentos, contas e pagamentos aparecem como evidências relacionadas.',`<button id="backToHomeButton">← Voltar</button>`)
     +`<div class="toolbar">
        <input id="contractSearch" value="${esc(query)}" placeholder="Digite qualquer termo da consulta">
        <button id="contractSearchButton">Pesquisar</button>
       </div>
       <div class="portfolio-meta"><span>${summary}</span><span>Propostas: ${(S.proposals||[]).length}</span><span>Contratos: ${(S.contracts||[]).length}</span><span>Modo: official-only</span></div>
-      ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
       ${contracts.length?`<h2>Contratos oficiais</h2><div class="cards">${contractCards}</div>`:''}
+      ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
+      ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
       ${projects.length?`<h2>Obras oficiais</h2><div class="cards">${projectCards}</div>`:''}
       ${documents.length?`<h2>Documentos hábeis oficiais</h2><div class="cards">${documentCards}</div>`:''}
       ${paymentOrders.length?`<h2>Ordens de pagamento oficiais</h2><div class="cards">${paymentOrderCards}</div>`:''}
       ${accounts.length?`<h2>Contas de parceria oficiais</h2><div class="cards">${accountCards}</div>`:''}
-      ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
       ${!proposals.length&&!contracts.length&&!projects.length&&!documents.length&&!paymentOrders.length&&!accounts.length&&!municipalities.length?empty('Nenhum resultado localizado',`A consulta por ${esc(query)} não encontrou registros oficiais na base sincronizada.`):''}`;
 
   $('#contractSearchButton').onclick=applyContractSearch;
