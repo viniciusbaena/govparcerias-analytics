@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.8.0-alpha
+
+- Adiciona sincronizador oficial de Transferências Especiais por CNPJ da carteira.
+- Publica 1.392 planos de ação com paginação, retry, checkpoint, hash e upsert preservador.
+- Percorre por lotes os relacionamentos oficiais e publica 1.367 executores, 1.368 planos de trabalho e 1.404 empenhos.
+
 ## v1.5.0-alpha
 
 - Inicia a etapa de auditoria funcional pós-merge da v1.4.0-alpha.

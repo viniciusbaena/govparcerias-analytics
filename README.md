@@ -49,7 +49,9 @@ ordens de pagamento, contas, extratos bancários, metas, análises, indicadores 
 recursos. Os contadores e a proveniência estão em
  [`data/published/integrated_status.json`](data/published/integrated_status.json).
 
-SICONFI e Transferências Especiais foram auditados, mas não recebem carga até
-que as fontes confirmem uma chave de linha e o relacionamento territorial
-oficial. As decisões estão documentadas em [`docs/SICONFI.md`](docs/SICONFI.md) e
+SICONFI permanece auditado sem carga por falta de chave dimensional oficial.
+Transferências Especiais já possui primeira carga por CNPJ, com 1.392 planos de
+ação publicados, além de executores, planos de trabalho e empenhos relacionados
+por IDs oficiais. As
+decisões estão documentadas em [`docs/SICONFI.md`](docs/SICONFI.md) e
 [`docs/TRANSFERENCIAS_ESPECIAIS.md`](docs/TRANSFERENCIAS_ESPECIAIS.md).

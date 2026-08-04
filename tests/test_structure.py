@@ -8,6 +8,13 @@ def test_readme_links_published_manifest():
     assert manifest.exists()
     assert 'data/published/integrated_status.json' in readme
 
+def test_special_transferegov_graph_is_scoped_to_official_plan_ids():
+    script=(ROOT/'scripts/sync_transferencias_especiais_graph.py').read_text(encoding='utf-8')
+    assert "special_action_plans.json" in script
+    assert "id_plano_acao" in script
+    assert "executor_especial" in script and "plano_trabalho_especial" in script and "empenho_especial" in script
+    assert "api.transferegov.gestao.gov.br/transferenciasespeciais" in script
+
 def test_official_only_dataset():
     data=json.loads((ROOT/'site/data/demo.json').read_text(encoding='utf-8'))
     assert data['data_mode']=='official_only'
@@ -93,6 +100,21 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert integrated['sync_status']['partnership_accounts']['completed'] is True
     assert integrated['sync_status']['partnership_accounts']['processed_roots'] == 1935
     assert integrated['financial']['records']['bank_statements'] == 30634
+    assert integrated['financial']['records']['special_action_plans'] == 1392
+    assert integrated['counts']['special_action_plans'] == 1392
+    assert integrated['sync_status']['special_action_plans']['completed'] is True
+    special = json.loads((ROOT / 'data/published/transferegov/special_action_plans.json').read_text(encoding='utf-8'))
+    allowed_cnpj = {''.join(ch for ch in row['cnpj'] if ch.isdigit()) for row in municipalities}
+    assert len(special) == 1392
+    assert len({row['source_record_id'] for row in special}) == len(special)
+    assert all(row['cnpj_beneficiario_plano_acao'] in allowed_cnpj for row in special)
+    assert all(row['source'] == 'Transferegov - Transferências Especiais' for row in special)
+    assert integrated['financial']['records']['special_executors'] == 1367
+    assert integrated['financial']['records']['special_work_plans'] == 1368
+    assert integrated['financial']['records']['special_commitments'] == 1404
+    assert integrated['sync_status']['special_executors']['completed'] is True
+    assert integrated['sync_status']['special_work_plans']['completed'] is True
+    assert integrated['sync_status']['special_commitments']['completed'] is True
     assert integrated['sync_status']['bank_statements']['completed'] is True
     assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
     assert integrated['financial']['records']['proposal_indicators'] == 52
