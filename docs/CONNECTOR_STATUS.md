@@ -8,7 +8,7 @@
 | ObrasGov | Concluído com ressalvas | Projetos e geometrias filtrados por IBGE; respostas sem chave própria permanecem não publicadas |
 | IBGE | Concluído | Enriquecimento territorial restrito à carteira |
 | SICONFI | Auditado, aguardando chave oficial | Piloto restrito; sem publicação enquanto a identidade dimensional não for confirmada |
-| Transferegov — Transferências Especiais | Concluído na primeira etapa do grafo | 1.392 planos, 1.367 executores, 1.368 planos de trabalho, 1.404 empenhos, 123 relatórios e 582 novos relatórios, relacionados por IDs oficiais |
+| Transferegov — Transferências Especiais | Grafo financeiro inicial concluído | 1.392 planos, 1.367 executores, 1.368 planos de trabalho, 1.404 empenhos, 123 relatórios, 582 novos relatórios, 1.337 documentos e 1.276 ordens |
 
 Todos os conectores publicados preservam dados anteriores em sincronização parcial,
 registram fonte/URL/hash e usam somente chaves oficiais. A ausência de um campo é
