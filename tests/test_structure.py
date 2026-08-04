@@ -59,9 +59,11 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert all(row['ibge_code'] in allowed_ibge for row in integrated['instrument_relations'])
     assert all({
         'partnership_ids', 'goal_count', 'schedule_count', 'analysis_count',
-        'indicator_count', 'resource_count', 'commitment_count',
+        'indicator_count', 'indicators', 'resource_count', 'resources', 'commitment_count',
         'payable_document_count', 'payment_order_count', 'bank_statement_count'
     } <= set(row) for row in integrated['instrument_relations'])
+    assert integrated['financial']['records']['proposal_indicators'] >= 0
+    assert integrated['financial']['records']['proposal_resources'] >= 0
     project_commitments = json.loads((ROOT / 'data/published/obrasgov/project_commitments.json').read_text(encoding='utf-8'))
     assert integrated['financial']['records']['project_commitments'] == 825
     assert integrated['financial']['obrasgov_commitment_total'] == sum(
@@ -82,6 +84,17 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert all(row['account_id'] and row['partnership_id'] and row['sha256'] for row in integrated['accounts'])
     assert integrated['sync_status']['partnership_accounts']['completed'] is True
     assert integrated['sync_status']['partnership_accounts']['processed_roots'] == 1935
+    assert integrated['financial']['records']['bank_statements'] == 30634
+    assert integrated['sync_status']['bank_statements']['completed'] is True
+    assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
+    assert integrated['financial']['records']['proposal_indicators'] == 52
+    assert integrated['financial']['records']['proposal_resources'] == 1885
+    assert integrated['financial']['records']['proposal_goals'] == 2019
+    assert integrated['financial']['records']['proposal_analyses'] == 1912
+    assert integrated['sync_status']['proposal_goals']['completed'] is True
+    assert integrated['sync_status']['proposal_analyses']['completed'] is True
+    assert integrated['sync_status']['proposal_indicators']['completed'] is True
+    assert integrated['sync_status']['proposal_resources']['completed'] is True
     assert integrated['sync_status']['disbursement_schedule']['completed'] is True
     assert integrated['sync_status']['commitments']['completed'] is True
     assert integrated['sync_status']['payable_documents']['completed'] is True

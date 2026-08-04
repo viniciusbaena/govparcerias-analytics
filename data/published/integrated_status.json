@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-30T01:33:24.008516+00:00",
+  "generated_at": "2026-08-04T19:59:59.103467+00:00",
   "counts": {
     "municipalities": 121,
     "proposals": 1935,
     "partnerships": 1935,
     "instruments": 1935,
-    "timeline_events": 9675,
+    "timeline_events": 11582,
     "engineering_projects": 891,
     "obrasgov_geometries": 1411
   },
@@ -16,11 +16,15 @@
     "project_commitments": 825,
     "payable_documents": 1143,
     "payment_orders": 1142,
+    "proposal_goals": 2019,
+    "proposal_analyses": 1912,
+    "proposal_indicators": 52,
+    "proposal_resources": 1885,
     "partnership_accounts": 1963,
-    "bank_statements": 21657
+    "bank_statements": 30634
   },
   "integrity": {
-    "records_assessed": 37557,
+    "records_assessed": 51818,
     "ambiguous_relationships": 2,
     "rules": [
       {
@@ -38,7 +42,7 @@
       {
         "id": "contract-term-ended",
         "label": "Contratos com fim de vigência anterior à data de referência",
-        "count": 2286,
+        "count": 2296,
         "basis": "Comparação determinística de vigencia_fim do PNCP com a data de geração.",
         "classification": "Atenção operacional; não presume irregularidade."
       },

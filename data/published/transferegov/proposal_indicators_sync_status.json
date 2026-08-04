@@ -1,13 +1,13 @@
 {
   "entity": "proposal_indicators",
   "endpoint": "https://api-publica.transferegov.gestao.gov.br/parcerias/proposta-resultado-indicador",
-  "finished_at": "2026-07-30T01:16:41.320636+00:00",
+  "finished_at": "2026-08-04T19:55:47.914484+00:00",
   "roots_total": 1935,
-  "records": 0,
+  "records": 52,
   "errors": 0,
-  "pages_this_run": 5,
-  "partial": true,
-  "completed": false,
+  "pages_this_run": 1930,
+  "partial": false,
+  "completed": true,
   "primary_key": "id_proposta_resultado_indicador",
   "parent_key": "id_proposta",
   "policy": "official_only"

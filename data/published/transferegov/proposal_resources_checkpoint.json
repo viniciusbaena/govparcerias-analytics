@@ -1,8 +1,8 @@
 {
   "entity": "proposal_resources",
-  "root_index": 5,
+  "root_index": 1935,
   "next_page": 1,
   "roots_total": 1935,
-  "completed": false,
-  "updated_at": "2026-07-30T01:16:50.220350+00:00"
+  "completed": true,
+  "updated_at": "2026-08-04T19:55:44.908085+00:00"
 }
