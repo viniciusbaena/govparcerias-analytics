@@ -6,6 +6,7 @@
 - Publica 1.392 planos de ação com paginação, retry, checkpoint, hash e upsert preservador.
 - Percorre por lotes os relacionamentos oficiais e publica 1.367 executores, 1.368 planos de trabalho e 1.404 empenhos.
 - Publica 123 relatórios de gestão e 582 novos relatórios relacionados aos planos de ação.
+- Publica 1.337 documentos hábeis e 1.276 ordens bancárias por relações oficiais encadeadas.
 
 ## v1.5.0-alpha
 

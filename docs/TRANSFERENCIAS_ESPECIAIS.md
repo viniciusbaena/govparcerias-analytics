@@ -25,3 +25,6 @@ retomada sem apagar registros anteriores.
 
 O mesmo grafo publicou ainda 123 relatórios de gestão e 582 novos relatórios de
 gestão, todos vinculados aos planos por `id_plano_acao`.
+
+O estágio financeiro publicou 1.337 documentos hábeis por `id_empenho` e 1.276
+ordens bancárias por `id_dh`, sem erros e sem consulta fora das relações oficiais.
