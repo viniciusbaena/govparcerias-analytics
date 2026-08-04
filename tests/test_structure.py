@@ -15,6 +15,18 @@ def test_special_transferegov_graph_is_scoped_to_official_plan_ids():
     assert "executor_especial" in script and "plano_trabalho_especial" in script and "empenho_especial" in script
     assert "api.transferegov.gestao.gov.br/transferenciasespeciais" in script
 
+def test_canonical_portfolio_and_special_plans_scope():
+    portfolio=json.loads((ROOT/'site/data/municipalities.json').read_text(encoding='utf-8'))
+    municipalities=portfolio['municipalities']
+    assert portfolio['manifest']['record_count'] == 121
+    assert len(municipalities) == 121
+    cnps={row['cnpj'].replace('.','').replace('/','').replace('-','') for row in municipalities}
+    ibges={str(row['ibge_code']) for row in municipalities}
+    plans=json.loads((ROOT/'data/published/transferegov/special_action_plans.json').read_text(encoding='utf-8'))
+    assert plans
+    assert all(str(row.get('cnpj_beneficiario_plano_acao','')) in cnps for row in plans)
+    assert all(str(row.get('ibge_code','')) in ibges for row in plans)
+
 def test_official_only_dataset():
     data=json.loads((ROOT/'site/data/demo.json').read_text(encoding='utf-8'))
     assert data['data_mode']=='official_only'
