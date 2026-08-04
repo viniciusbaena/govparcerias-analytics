@@ -159,6 +159,7 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     app = (ROOT / 'site/assets/app.js').read_text(encoding='utf-8')
     assert 'Programas especiais' in app
     assert 'Histórico de pagamentos' in app
+    assert 'v3.1.0-alpha' in app
     assert integrated['sync_status']['bank_statements']['completed'] is True
     assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
     assert integrated['financial']['records']['proposal_indicators'] == 52
