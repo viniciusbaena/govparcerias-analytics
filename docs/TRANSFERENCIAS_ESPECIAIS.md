@@ -22,3 +22,6 @@ O sincronizador `scripts/sync_transferencias_especiais_graph.py` percorreu os
 1.392 planos em lotes de IDs oficiais e publicou 1.367 executores, 1.368 planos
 de trabalho e 1.404 empenhos, todos sem erros. A carga é incremental e pode ser
 retomada sem apagar registros anteriores.
+
+O mesmo grafo publicou ainda 123 relatórios de gestão e 582 novos relatórios de
+gestão, todos vinculados aos planos por `id_plano_acao`.

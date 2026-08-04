@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT/'backend'))
 from app.connectors.transferegov import TransferegovConnector
 BASE='https://api.transferegov.gestao.gov.br/transferenciasespeciais'
-SPECS={'executors':('executor_especial','id_executor'),'work_plans':('plano_trabalho_especial','id_plano_trabalho'),'commitments':('empenho_especial','id_empenho')}
+SPECS={'executors':('executor_especial','id_executor'),'work_plans':('plano_trabalho_especial','id_plano_trabalho'),'commitments':('empenho_especial','id_empenho'),'reports':('relatorio_gestao_especial','id_relatorio_gestao'),'new_reports':('relatorio_gestao_novo_especial','id_relatorio_gestao_novo')}
 def read(p,f): return json.loads(p.read_text(encoding='utf-8')) if p.exists() else f
 def write(p,v): p.parent.mkdir(parents=True,exist_ok=True); p.write_text(json.dumps(v,ensure_ascii=False,indent=2),encoding='utf-8')
 def rows(x): return x if isinstance(x,list) else next((x[k] for k in ('data','items','content') if isinstance(x,dict) and isinstance(x.get(k),list)),[])

@@ -5,6 +5,7 @@
 - Adiciona sincronizador oficial de Transferências Especiais por CNPJ da carteira.
 - Publica 1.392 planos de ação com paginação, retry, checkpoint, hash e upsert preservador.
 - Percorre por lotes os relacionamentos oficiais e publica 1.367 executores, 1.368 planos de trabalho e 1.404 empenhos.
+- Publica 123 relatórios de gestão e 582 novos relatórios relacionados aos planos de ação.
 
 ## v1.5.0-alpha
 
