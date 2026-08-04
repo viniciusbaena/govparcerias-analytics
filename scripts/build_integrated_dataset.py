@@ -11,6 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLISHED = ROOT / "data/published/transferegov"
+ROOT_PUBLISHED = ROOT / "data/published"
 SITE = ROOT / "site/data"
 MISSING = "Não informado pela fonte"
 
@@ -118,6 +119,7 @@ def build() -> dict[str, Any]:
     special_pending_organs = read_json(PUBLISHED / "special_pending_organs.json", [])
     special_payment_history = read_json(PUBLISHED / "special_payment_history.json", [])
     special_programs = read_json(PUBLISHED / "special_programs.json", [])
+    sadipem_pvls = read_json(ROOT_PUBLISHED / "sadipem_pvls.json", [])
 
     partnership_by_proposal = index_many(partnerships, "id_proposta")
     goals_by_proposal = index_many(goals, "id_proposta")
@@ -400,6 +402,7 @@ def build() -> dict[str, Any]:
             "special_pending_organs": len(special_pending_organs),
             "special_payment_history": len(special_payment_history),
             "special_programs": len(special_programs),
+            "sadipem_pvls": len(sadipem_pvls),
         },
     }
     documents = [
@@ -517,7 +520,7 @@ def build() -> dict[str, Any]:
                 if str(row.get("error", "")).startswith("Ambiguous")
             )
     integrity = {
-        "records_assessed": sum(len(rows) for rows in (proposals, partnerships, goals, schedules, analyses, indicators, resources, commitments, payable_documents, accounts, payment_orders, statements, special_action_plans, special_executors, special_work_plans, special_commitments, special_reports, special_new_reports, special_documents, special_orders, special_purposes, special_goals, special_work_plan_analyses, special_pending_organs, special_payment_history, special_programs, geometries, projects, physical_execution, project_contracts, project_commitments, project_interruptions, feasibility_studies)),
+        "records_assessed": sum(len(rows) for rows in (proposals, partnerships, goals, schedules, analyses, indicators, resources, commitments, payable_documents, accounts, payment_orders, statements, special_action_plans, special_executors, special_work_plans, special_commitments, special_reports, special_new_reports, special_documents, special_orders, special_purposes, special_goals, special_work_plan_analyses, special_pending_organs, special_payment_history, special_programs, sadipem_pvls, geometries, projects, physical_execution, project_contracts, project_commitments, project_interruptions, feasibility_studies)),
         "ambiguous_relationships": len(ambiguity_errors),
         "rules": [
             {
@@ -584,6 +587,7 @@ def build() -> dict[str, Any]:
             "special_pending_organs": sync_state(PUBLISHED, "special_pending_organs", special_pending_organs),
             "special_payment_history": sync_state(PUBLISHED, "special_payment_history", special_payment_history),
             "special_programs": sync_state(PUBLISHED, "special_programs", special_programs),
+            "sadipem_pvls": sync_state(ROOT_PUBLISHED, "sadipem_pvls", sadipem_pvls),
             "physical_execution": sync_state(obras, "physical_execution", physical_execution),
             "project_contracts": sync_state(obras, "project_contracts", project_contracts),
             "project_commitments": sync_state(obras, "project_commitments", project_commitments),
@@ -620,6 +624,7 @@ def build() -> dict[str, Any]:
             "special_pending_organs": len(special_pending_organs),
             "special_payment_history": len(special_payment_history),
             "special_programs": len(special_programs),
+            "sadipem_pvls": len(sadipem_pvls),
         },
     }
     write_json(SITE / "integrated.json", output)

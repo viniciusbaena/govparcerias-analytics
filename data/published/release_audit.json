@@ -22,7 +22,8 @@
     "special_work_plan_analyses": 2989,
     "special_pending_organs": 41,
     "special_payment_history": 6125,
-    "special_programs": 10
+    "special_programs": 10,
+    "sadipem_pvls": 1276
   },
   "sync_status": {
     "partnerships": {
@@ -200,11 +201,18 @@
       "records": 10,
       "errors": 0
     },
+    "sadipem_pvls": {
+      "completed": true,
+      "processed_roots": 0,
+      "roots_total": 0,
+      "records": 1276,
+      "errors": 0
+    },
     "physical_execution": {
-      "completed": false,
-      "processed_roots": 589,
+      "completed": true,
+      "processed_roots": 891,
       "roots_total": 891,
-      "records": 331,
+      "records": 512,
       "errors": 1
     },
     "project_contracts": {
@@ -237,7 +245,7 @@
     }
   },
   "integrity": {
-    "records_assessed": 75029,
+    "records_assessed": 76486,
     "ambiguous_relationships": 2,
     "rules": [
       {
@@ -276,7 +284,6 @@
     ]
   },
   "documented_ambiguities": [
-    "physical_execution",
     "feasibility_studies"
   ],
   "errors": []

@@ -184,7 +184,9 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert integrated['sync_status']['payment_orders']['processed_roots'] == 1143
     assert integrated['sync_status']['project_commitments']['completed'] is True
     assert integrated['sync_status']['project_interruptions']['completed'] is True
-    assert integrated['sync_status']['physical_execution']['completed'] is False
+    assert integrated['sync_status']['physical_execution']['completed'] is True
+    assert integrated['financial']['records'].get('sadipem_pvls', 0) == 1276
+    assert integrated['sync_status']['sadipem_pvls']['completed'] is True
     assert integrated['sync_status']['physical_execution']['errors'] == 1
     assert integrated['sync_status']['feasibility_studies']['completed'] is False
     assert integrated['sync_status']['feasibility_studies']['errors'] == 1
