@@ -93,6 +93,15 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert integrated['sync_status']['partnership_accounts']['completed'] is True
     assert integrated['sync_status']['partnership_accounts']['processed_roots'] == 1935
     assert integrated['financial']['records']['bank_statements'] == 30634
+    assert integrated['financial']['records']['special_action_plans'] == 1392
+    assert integrated['counts']['special_action_plans'] == 1392
+    assert integrated['sync_status']['special_action_plans']['completed'] is True
+    special = json.loads((ROOT / 'data/published/transferegov/special_action_plans.json').read_text(encoding='utf-8'))
+    allowed_cnpj = {''.join(ch for ch in row['cnpj'] if ch.isdigit()) for row in municipalities}
+    assert len(special) == 1392
+    assert len({row['source_record_id'] for row in special}) == len(special)
+    assert all(row['cnpj_beneficiario_plano_acao'] in allowed_cnpj for row in special)
+    assert all(row['source'] == 'Transferegov - Transferências Especiais' for row in special)
     assert integrated['sync_status']['bank_statements']['completed'] is True
     assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
     assert integrated['financial']['records']['proposal_indicators'] == 52

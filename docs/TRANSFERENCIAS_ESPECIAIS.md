@@ -8,12 +8,12 @@
 
 O módulo oferece entidades com chaves declaradas (`id_beneficiario`, `id_plano_acao`, `id_plano_trabalho`, `id_empenho`, `id_dh`, `id_op_ob`, `id_executor` etc.), paginação e filtros por CNPJ em alguns endpoints.
 
-## Restrição territorial e ambiguidade
+## Restrição territorial e implementação
 
-O endpoint `/beneficiarios_especiais` documenta `id_ente` como “Identificador do Ente”, mas o OpenAPI não define que esse identificador seja o código IBGE. Pilotos limitados a 10 registros com `id_ente=4100459` (Altamira do Paraná) e `id_ente=4115200` (Maringá) retornaram resposta vazia, sem permitir inferir o relacionamento.
+O ambiente atualizado documenta filtros PostgREST por CNPJ. O endpoint `/plano_acao_especial` aceita `cnpj_beneficiario_plano_acao=eq.<CNPJ>`, além de `limit` e `offset`, sem depender de `id_ente` ou de uma inferência IBGE.
 
-Por isso, nenhuma carga de Transferências Especiais foi publicada. Não será tratado `id_ente` como IBGE nem será feita enumeração nacional para descobrir a relação. A implementação fica pendente de uma correspondência oficial entre os 121 entes da carteira e o identificador aceito pela API (ou de um endpoint oficial que aceite diretamente os CNPJs/IBGEs da carteira).
+O sincronizador `scripts/sync_transferencias_especiais.py` executou carga restrita aos 121 CNPJs da carteira, com paginação, retry, checkpoint, raw, hash e upsert preservador. Foram publicados 1.392 planos de ação com zero erros.
 
 ## Próximo passo seguro
 
-Com a correspondência oficial confirmada, iniciar por `/beneficiarios_especiais`, depois seguir as relações por IDs oficiais (`id_plano_acao`, `id_executor`, `id_empenho`, `id_dh`, `id_op_ob`). Usar paginação, retry para 429/5xx, checkpoint e upsert preservador; campos ausentes recebem `Não informado pela fonte`.
+O próximo passo é percorrer relações por IDs oficiais (`id_plano_acao`, `id_executor`, `id_empenho`, `id_dh`, `id_op_ob`) sem ampliar o escopo territorial. Campos ausentes recebem `Não informado pela fonte`.

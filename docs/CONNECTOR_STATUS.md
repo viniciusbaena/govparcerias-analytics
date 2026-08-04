@@ -8,7 +8,7 @@
 | ObrasGov | Concluído com ressalvas | Projetos e geometrias filtrados por IBGE; respostas sem chave própria permanecem não publicadas |
 | IBGE | Concluído | Enriquecimento territorial restrito à carteira |
 | SICONFI | Auditado, aguardando chave oficial | Piloto restrito; sem publicação enquanto a identidade dimensional não for confirmada |
-| Transferegov — Transferências Especiais | Auditado, aguardando relacionamento oficial | OpenAPI validada; sem carga enquanto `id_ente` não for relacionado oficialmente aos 121 municípios |
+| Transferegov — Transferências Especiais | Concluído na primeira entidade | 1.392 planos de ação filtrados diretamente pelos CNPJs dos 121 municípios; relações financeiras permanecem na próxima etapa |
 
 Todos os conectores publicados preservam dados anteriores em sincronização parcial,
 registram fonte/URL/hash e usam somente chaves oficiais. A ausência de um campo é
