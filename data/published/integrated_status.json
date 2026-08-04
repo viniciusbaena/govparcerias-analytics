@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T21:04:30.095977+00:00",
+  "generated_at": "2026-08-04T21:11:06.374373+00:00",
   "counts": {
     "municipalities": 121,
     "proposals": 1935,
@@ -11,7 +11,9 @@
     "special_action_plans": 1392,
     "special_executors": 1367,
     "special_work_plans": 1368,
-    "special_commitments": 1404
+    "special_commitments": 1404,
+    "special_reports": 123,
+    "special_new_reports": 582
   },
   "financial_records": {
     "contracts": 3118,
@@ -29,10 +31,12 @@
     "special_action_plans": 1392,
     "special_executors": 1367,
     "special_work_plans": 1368,
-    "special_commitments": 1404
+    "special_commitments": 1404,
+    "special_reports": 123,
+    "special_new_reports": 582
   },
   "integrity": {
-    "records_assessed": 57349,
+    "records_assessed": 58054,
     "ambiguous_relationships": 2,
     "rules": [
       {
