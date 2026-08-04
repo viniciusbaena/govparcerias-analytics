@@ -1,4 +1,4 @@
-# GovParcerias Intelligence — v1.4.0-alpha
+# GovParcerias Intelligence — v1.5.0-alpha
 
 Plataforma independente de inteligência para transferências públicas, organizada em dois eixos complementares:
 

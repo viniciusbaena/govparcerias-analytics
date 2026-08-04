@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.5.0-alpha
+
+- Inicia a etapa de auditoria funcional pós-merge da v1.4.0-alpha.
+- Mantém o inventário oficial, a proveniência e os bloqueios de fontes ambíguas.
+
 ## v1.4.0-alpha
 
 - Conclui o grafo Transferegov restrito às 1.935 propostas da carteira: 2.019 metas, 1.912 análises, 52 indicadores, 1.885 distribuições de recursos, 1.963 contas e 30.634 lançamentos bancários.
