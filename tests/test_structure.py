@@ -2,6 +2,12 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
+def test_readme_links_published_manifest():
+    readme=(ROOT/'README.md').read_text(encoding='utf-8')
+    manifest=ROOT/'data/published/integrated_status.json'
+    assert manifest.exists()
+    assert 'data/published/integrated_status.json' in readme
+
 def test_official_only_dataset():
     data=json.loads((ROOT/'site/data/demo.json').read_text(encoding='utf-8'))
     assert data['data_mode']=='official_only'
