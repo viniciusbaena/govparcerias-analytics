@@ -150,6 +150,12 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert integrated['sync_status']['special_payment_history']['completed'] is True
     assert integrated['financial']['records']['special_programs'] == 10
     assert integrated['sync_status']['special_programs']['completed'] is True
+    for filename in ('special_programs.json','special_work_plan_analyses.json','special_payment_history.json'):
+        rows=json.loads((ROOT/'data/published/transferegov'/filename).read_text(encoding='utf-8'))
+        assert rows
+        assert all(row.get('source') == 'Transferegov - Transferências Especiais' for row in rows)
+        assert all(row.get('source_url','').startswith('https://api.transferegov.gestao.gov.br/') for row in rows)
+        assert all(row.get('sha256') for row in rows)
     app = (ROOT / 'site/assets/app.js').read_text(encoding='utf-8')
     assert 'Programas especiais' in app
     assert 'Histórico de pagamentos' in app
