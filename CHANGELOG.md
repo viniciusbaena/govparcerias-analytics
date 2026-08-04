@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.6.0-alpha
+
+- Publica 10 programas oficiais referenciados pelos planos de ação de Transferências Especiais da carteira.
+- Mantém a consulta restrita aos `id_programa` encontrados nos 1.392 planos já carregados.
+
 ## v2.5.0-alpha
 
 - Publica 6.125 eventos oficiais de histórico de pagamento das 1.276 ordens de Transferências Especiais.
