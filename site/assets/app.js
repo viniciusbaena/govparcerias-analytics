@@ -1,4 +1,4 @@
-const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,pageSize:18};
+const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-action]');
@@ -14,6 +14,7 @@ document.addEventListener('click',event=>{
     'close-palette':()=>{closePalette();show(value)},
     'municipality-search':applyMunicipalitySearch,
     'municipality-page':()=>changeMunicipalityPage(Number(value)),
+    'instrument-contract-page':()=>{S.instrumentContractPage=Math.max(1,S.instrumentContractPage+Number(value));instrumentos()},
     'open-municipality':()=>openMunicipality(value),
     'municipality-tab':()=>showMunicipalityTab(value),
     'open-contract':()=>openContractResult(Number(value)),
@@ -117,10 +118,11 @@ function inicio(){
   $('#aiHomeButton').onclick=askHomeAI;
   $('#aiHomeInput').addEventListener('keydown',e=>{if(e.key==='Enter')askHomeAI()})
 }
-function searchMunicipalityHome(){S.homeQuery=$('#municipalityHomeSearch')?.value?.trim()||'';show('instrumentos')}
-function searchContractHome(){S.homeQuery=$('#contractHomeSearch')?.value?.trim()||'';show('instrumentos')}
+function searchMunicipalityHome(){S.homeQuery=$('#municipalityHomeSearch')?.value?.trim()||'';S.instrumentContractPage=1;show('instrumentos')}
+function searchContractHome(){S.homeQuery=$('#contractHomeSearch')?.value?.trim()||'';S.instrumentContractPage=1;show('instrumentos')}
 function searchUnifiedHome(){
   S.homeQuery=($('#unifiedHomeSearch')?.value||'').trim();
+  S.instrumentContractPage=1;
   show('instrumentos')
 }
 function askHomeAI(){
@@ -306,7 +308,10 @@ function instrumentos(){
   municipalities.sort((a,b)=>primarySearchScore(b,query)-primarySearchScore(a,query));
   proposals.sort((a,b)=>primarySearchScore(b,query)-primarySearchScore(a,query));
 
-  const contractCards=contracts.slice(0,100).map(c=>{
+  const contractPages=Math.max(1,Math.ceil(contracts.length/S.instrumentPageSize));
+  S.instrumentContractPage=Math.min(S.instrumentContractPage,contractPages);
+  const contractStart=(S.instrumentContractPage-1)*S.instrumentPageSize;
+  const contractCards=contracts.slice(contractStart,contractStart+S.instrumentPageSize).map(c=>{
     const idx=(S.contracts||[]).indexOf(c);
     return `<article>
       <span class="eyebrow">Contrato oficial · ${esc(c.source||'PNCP')}</span>
@@ -371,7 +376,7 @@ function instrumentos(){
        <button id="contractSearchButton">Pesquisar</button>
       </div>
       <div class="portfolio-meta"><span>${summary}</span><span>Propostas: ${(S.proposals||[]).length}</span><span>Contratos: ${(S.contracts||[]).length}</span><span>Modo: official-only</span></div>
-      ${contracts.length?`<h2>Contratos oficiais</h2><div class="cards">${contractCards}</div>`:''}
+      ${contracts.length?`<h2>Contratos oficiais</h2><div class="cards">${contractCards}</div><div class="pager"><button ${S.instrumentContractPage===1?'disabled':''} data-action="instrument-contract-page" data-value="-1">Anterior</button><span>Página ${S.instrumentContractPage} de ${contractPages} · ${contracts.length} resultado(s)</span><button ${S.instrumentContractPage===contractPages?'disabled':''} data-action="instrument-contract-page" data-value="1">Próxima</button></div>`:''}
       ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
       ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
       ${projects.length?`<h2>Obras oficiais</h2><div class="cards">${projectCards}</div>`:''}
@@ -387,7 +392,7 @@ function instrumentos(){
   const backButton=$('#backToHomeButton');
   if(backButton)backButton.onclick=()=>show('inicio')
 }
-function applyContractSearch(){S.homeQuery=($('#contractSearch')?.value||'').trim();instrumentos()}
+function applyContractSearch(){S.homeQuery=($('#contractSearch')?.value||'').trim();S.instrumentContractPage=1;instrumentos()}
 function openMunicipalityFromSearch(code){
   S.selectedMunicipality=(S.portfolio?.municipalities||[]).find(m=>String(m.ibge_code)===String(code));
   municipalityProfile()

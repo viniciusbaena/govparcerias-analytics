@@ -41,6 +41,7 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert "safeJson('data/proposals.json',[])" in app
     assert 'proposalHaystack' in app
     assert 'data-action="municipality-page"' in app
+    assert 'data-action="instrument-contract-page"' in app
     assert 'data-action="open-contract"' in app
     assert 'data-action="open-proposal"' in app
     assert 'data-action="show"' in app
