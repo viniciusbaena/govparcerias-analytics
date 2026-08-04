@@ -15,20 +15,24 @@ async def sync(limit=1000,max_plans=None):
   connector=TransferegovConnector(ROOT/'data/raw/transferegov/special_action_graph',min_delay=.35); result={}; errors=[]
   for entity,(endpoint,key) in SPECS.items():
     out=ROOT/f'data/published/transferegov/special_{entity}.json'; existing={str(x['source_record_id']):x for x in read(out,[]) if x.get('source_record_id')}
-    for plan_id in ids:
+    for start in range(0,len(ids),50):
+      plan_batch=ids[start:start+50]
       offset=0
       try:
         while True:
-          response=await connector.get_json(f'{BASE}/{endpoint}',{'id_plano_acao':f'eq.{plan_id}','limit':limit,'offset':offset})
+          response=await connector.get_json(f'{BASE}/{endpoint}',{'id_plano_acao':f'in.({",".join(plan_batch)})','limit':limit,'offset':offset})
           batch=rows(response.payload)
           for row in batch:
             official=row.get(key)
             if official is None: raise ValueError(f'registro sem {key}')
-            existing[str(official)]={'source':'Transferegov - Transferências Especiais','source_record_id':str(official),'id_plano_acao':plan_id,**row,'source_url':response.url,'fetched_at':response.fetched_at,'sha256':response.sha256}
+            existing[str(official)]={'source':'Transferegov - Transferências Especiais','source_record_id':str(official),'id_plano_acao':row.get('id_plano_acao'),**row,'source_url':response.url,'fetched_at':response.fetched_at,'sha256':response.sha256}
           if len(batch)<limit: break
           offset+=limit
-      except Exception as exc: errors.append({'entity':entity,'id_plano_acao':plan_id,'error':str(exc)})
-    write(out,list(existing.values())); result[entity]={'records':len(existing),'errors':sum(1 for e in errors if e['entity']==entity)}
+      except Exception as exc: errors.append({'entity':entity,'id_plano_acao':','.join(plan_batch),'error':str(exc)})
+    entity_errors=sum(1 for e in errors if e['entity']==entity)
+    write(out,list(existing.values())); result[entity]={'records':len(existing),'errors':entity_errors}
+    write(ROOT/f'data/published/transferegov/special_{entity}_sync_status.json',{'completed':entity_errors==0,'roots_total':len(ids)})
+    write(ROOT/f'data/published/transferegov/special_{entity}_errors.json',[e for e in errors if e['entity']==entity])
   write(ROOT/'data/published/transferegov/special_graph.status.json',{'plans':len(ids),'entities':result,'errors':errors,'status':'completed' if not errors else 'partial'})
   return result
 if __name__=='__main__':

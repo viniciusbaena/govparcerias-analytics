@@ -51,6 +51,7 @@ recursos. Os contadores e a proveniência estão em
 
 SICONFI permanece auditado sem carga por falta de chave dimensional oficial.
 Transferências Especiais já possui primeira carga por CNPJ, com 1.392 planos de
-ação publicados e relações financeiras reservadas para a próxima etapa. As
+ação publicados, além de executores, planos de trabalho e empenhos relacionados
+por IDs oficiais. As
 decisões estão documentadas em [`docs/SICONFI.md`](docs/SICONFI.md) e
 [`docs/TRANSFERENCIAS_ESPECIAIS.md`](docs/TRANSFERENCIAS_ESPECIAIS.md).

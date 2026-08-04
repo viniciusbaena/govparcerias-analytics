@@ -105,6 +105,9 @@ def build() -> dict[str, Any]:
     project_interruptions = read_json(obras / "project_interruptions.json", [])
     feasibility_studies = read_json(obras / "feasibility_studies.json", [])
     special_action_plans = read_json(PUBLISHED / "special_action_plans.json", [])
+    special_executors = read_json(PUBLISHED / "special_executors.json", [])
+    special_work_plans = read_json(PUBLISHED / "special_work_plans.json", [])
+    special_commitments = read_json(PUBLISHED / "special_commitments.json", [])
 
     partnership_by_proposal = index_many(partnerships, "id_proposta")
     goals_by_proposal = index_many(goals, "id_proposta")
@@ -374,6 +377,9 @@ def build() -> dict[str, Any]:
             "partnership_accounts": len(accounts),
             "bank_statements": len(statements),
             "special_action_plans": len(special_action_plans),
+            "special_executors": len(special_executors),
+            "special_work_plans": len(special_work_plans),
+            "special_commitments": len(special_commitments),
         },
     }
     documents = [
@@ -491,7 +497,7 @@ def build() -> dict[str, Any]:
                 if str(row.get("error", "")).startswith("Ambiguous")
             )
     integrity = {
-        "records_assessed": sum(len(rows) for rows in (proposals, partnerships, goals, schedules, analyses, indicators, resources, commitments, payable_documents, accounts, payment_orders, statements, special_action_plans, geometries, projects, physical_execution, project_contracts, project_commitments, project_interruptions, feasibility_studies)),
+        "records_assessed": sum(len(rows) for rows in (proposals, partnerships, goals, schedules, analyses, indicators, resources, commitments, payable_documents, accounts, payment_orders, statements, special_action_plans, special_executors, special_work_plans, special_commitments, geometries, projects, physical_execution, project_contracts, project_commitments, project_interruptions, feasibility_studies)),
         "ambiguous_relationships": len(ambiguity_errors),
         "rules": [
             {
@@ -545,6 +551,9 @@ def build() -> dict[str, Any]:
             "payment_orders": sync_state(PUBLISHED, "payment_orders", payment_orders),
             "bank_statements": sync_state(PUBLISHED, "bank_statements", statements),
             "special_action_plans": sync_state(PUBLISHED, "special_action_plans", special_action_plans),
+            "special_executors": sync_state(PUBLISHED, "special_executors", special_executors),
+            "special_work_plans": sync_state(PUBLISHED, "special_work_plans", special_work_plans),
+            "special_commitments": sync_state(PUBLISHED, "special_commitments", special_commitments),
             "physical_execution": sync_state(obras, "physical_execution", physical_execution),
             "project_contracts": sync_state(obras, "project_contracts", project_contracts),
             "project_commitments": sync_state(obras, "project_commitments", project_commitments),
@@ -568,6 +577,9 @@ def build() -> dict[str, Any]:
             "engineering_projects": len(engineering),
             "obrasgov_geometries": len(geometries),
             "special_action_plans": len(special_action_plans),
+            "special_executors": len(special_executors),
+            "special_work_plans": len(special_work_plans),
+            "special_commitments": len(special_commitments),
         },
     }
     write_json(SITE / "integrated.json", output)

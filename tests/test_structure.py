@@ -109,6 +109,12 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert len({row['source_record_id'] for row in special}) == len(special)
     assert all(row['cnpj_beneficiario_plano_acao'] in allowed_cnpj for row in special)
     assert all(row['source'] == 'Transferegov - Transferências Especiais' for row in special)
+    assert integrated['financial']['records']['special_executors'] == 1367
+    assert integrated['financial']['records']['special_work_plans'] == 1368
+    assert integrated['financial']['records']['special_commitments'] == 1404
+    assert integrated['sync_status']['special_executors']['completed'] is True
+    assert integrated['sync_status']['special_work_plans']['completed'] is True
+    assert integrated['sync_status']['special_commitments']['completed'] is True
     assert integrated['sync_status']['bank_statements']['completed'] is True
     assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
     assert integrated['financial']['records']['proposal_indicators'] == 52

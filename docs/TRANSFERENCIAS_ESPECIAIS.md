@@ -18,7 +18,7 @@ O sincronizador `scripts/sync_transferencias_especiais.py` executou carga restri
 
 O próximo passo é percorrer relações por IDs oficiais (`id_plano_acao`, `id_executor`, `id_empenho`, `id_dh`, `id_op_ob`) sem ampliar o escopo territorial. Campos ausentes recebem `Não informado pela fonte`.
 
-O sincronizador `scripts/sync_transferencias_especiais_graph.py` já foi validado
-em piloto com 10 planos: retornou 10 executores, 10 planos de trabalho e 10
-empenhos, todos com chaves oficiais e sem erros. A carga integral será executada
-em janela própria, pois percorre os 1.392 planos individualmente.
+O sincronizador `scripts/sync_transferencias_especiais_graph.py` percorreu os
+1.392 planos em lotes de IDs oficiais e publicou 1.367 executores, 1.368 planos
+de trabalho e 1.404 empenhos, todos sem erros. A carga é incremental e pode ser
+retomada sem apagar registros anteriores.
