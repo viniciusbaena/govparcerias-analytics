@@ -53,6 +53,9 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert 'data-action="open-proposal"' in app
     assert 'data-action="show"' in app
     assert 'data-action="assistant-query"' in app
+    assert 'Documentos especiais' in app
+    assert 'Ordens especiais' in app
+    assert 'Relatórios especiais' in app
     assert ' onclick="' not in app
 
 
