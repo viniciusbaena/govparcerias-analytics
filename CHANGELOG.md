@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.5.0-alpha
+
+- Publica 6.125 eventos oficiais de histórico de pagamento das 1.276 ordens de Transferências Especiais.
+- Mantém o vínculo exclusivamente por `id_op_ob`, com retry, paginação, hash, proveniência e upsert preservador.
+
 ## v2.4.0-alpha
 
 - Integra 2.989 análises de planos de trabalho e 41 pendências de órgãos das Transferências Especiais, sempre por `id_plano_trabalho` oficial.
