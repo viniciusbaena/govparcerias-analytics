@@ -1,4 +1,4 @@
-# Status dos conectores oficiais — v1.4.0-alpha
+# Status dos conectores oficiais — v2.8.0-alpha
 
 | Fonte/módulo | Estado | Escopo publicado |
 |---|---|---|
@@ -8,8 +8,14 @@
 | ObrasGov | Concluído com ressalvas | Projetos e geometrias filtrados por IBGE; respostas sem chave própria permanecem não publicadas |
 | IBGE | Concluído | Enriquecimento territorial restrito à carteira |
 | SICONFI | Auditado, aguardando chave oficial | Piloto restrito; sem publicação enquanto a identidade dimensional não for confirmada |
-| Transferegov — Transferências Especiais | Grafo financeiro inicial concluído | 1.392 planos, 1.367 executores, 1.368 planos de trabalho, 1.404 empenhos, 123 relatórios, 582 novos relatórios, 1.337 documentos e 1.276 ordens |
+| Transferegov — Transferências Especiais | Grafo ampliado concluído | 1.392 planos, 10 programas, 1.367 executores, 1.368 planos de trabalho, 2.989 análises, 41 pendências de órgãos, 1.404 empenhos, 123 relatórios, 582 novos relatórios, 1.337 documentos, 1.276 ordens e 6.125 eventos de histórico de pagamento |
 
 Todos os conectores publicados preservam dados anteriores em sincronização parcial,
 registram fonte/URL/hash e usam somente chaves oficiais. A ausência de um campo é
 representada por `Não informado pela fonte`.
+
+## Pendências explícitas
+
+- **SICONFI:** auditado em piloto restrito, mas não publicado porque a fonte não confirma uma chave oficial de linha; não é permitido criar chave sintética.
+- **ObrasGov:** medições de execução física e estudos de viabilidade sem chave própria permanecem fora da publicação, conforme `OBRASGOV.md`.
+- **Análises especiais:** as chaves foram confirmadas no OpenAPI antes da carga; respostas sem chave continuam sendo rejeitadas e registradas.
