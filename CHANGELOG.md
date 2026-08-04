@@ -5,6 +5,7 @@
 - Conclui o grafo Transferegov restrito às 1.935 propostas da carteira: 2.019 metas, 1.912 análises, 52 indicadores, 1.885 distribuições de recursos, 1.963 contas e 30.634 lançamentos bancários.
 - Integra indicadores e recursos oficiais ao dossiê da proposta e à inteligência financeira, mantendo fonte, URL e SHA-256.
 - Valida unicidade de todas as chaves oficiais e ausência de vínculos órfãos antes da publicação.
+- Audita SICONFI e Transferências Especiais com pilotos restritos; documenta e bloqueia cargas quando a fonte não permite confirmar a chave ou o relacionamento territorial oficial.
 
 ## v1.3.0-alpha
 
