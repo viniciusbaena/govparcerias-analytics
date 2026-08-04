@@ -123,6 +123,10 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert integrated['financial']['records']['special_orders'] == 1276
     assert integrated['sync_status']['special_documents']['completed'] is True
     assert integrated['sync_status']['special_orders']['completed'] is True
+    assert integrated['financial']['records']['special_purposes'] == 1367
+    assert integrated['financial']['records']['special_goals'] == 3830
+    assert integrated['sync_status']['special_purposes']['completed'] is True
+    assert integrated['sync_status']['special_goals']['completed'] is True
     assert integrated['sync_status']['bank_statements']['completed'] is True
     assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
     assert integrated['financial']['records']['proposal_indicators'] == 52

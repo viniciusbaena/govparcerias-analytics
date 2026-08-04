@@ -28,3 +28,6 @@ gestão, todos vinculados aos planos por `id_plano_acao`.
 
 O estágio financeiro publicou 1.337 documentos hábeis por `id_empenho` e 1.276
 ordens bancárias por `id_dh`, sem erros e sem consulta fora das relações oficiais.
+
+Por executor, foram publicados 1.367 finalidades e 3.830 metas relacionadas por
+`id_executor`.
