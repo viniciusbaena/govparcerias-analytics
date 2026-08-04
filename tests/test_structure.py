@@ -30,7 +30,7 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert len(contracts) >= 45
     assert len({row['source_record_id'] for row in contracts}) == len(contracts)
     assert all(row['source'] == 'PNCP' for row in contracts)
-    assert 'v1.3.0-alpha' in app
+    assert 'v1.4.0-alpha' in app
     assert "safeJson('data/proposals.json',[])" in app
     assert 'proposalHaystack' in app
     assert 'data-action="municipality-page"' in app
