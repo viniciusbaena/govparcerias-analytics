@@ -31,3 +31,6 @@ ordens bancárias por `id_dh`, sem erros e sem consulta fora das relações ofic
 
 Por executor, foram publicados 1.367 finalidades e 3.830 metas relacionadas por
 `id_executor`.
+### Análises de planos de trabalho (pendência documentada)
+
+Foi feita uma tentativa controlada, somente para os `id_plano_trabalho` já sincronizados, nos endpoints oficiais `plano_trabalho_analise_especial` e `orgao_analise_pendente_especial`. A resposta não expôs, nos registros retornados, as chaves presumidas `id_analise_plano_trabalho` e `id_orgao_analise_pendente`; portanto nenhum registro foi publicado e nenhum relacionamento foi inventado. A pendência permanece registrada nos arquivos `special_*_errors.json` e só deve ser retomada após confirmação da chave no contrato OpenAPI ou em resposta oficial.
