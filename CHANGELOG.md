@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.8.0-alpha
+
+- Atualiza o inventário de conectores para refletir o grafo completo de Transferências Especiais e as pendências de SICONFI/ObrasGov.
+- Torna explícitos os critérios de não publicação quando a fonte não fornece chave oficial.
+
 ## v2.6.0-alpha
 
 - Publica 10 programas oficiais referenciados pelos planos de ação de Transferências Especiais da carteira.
