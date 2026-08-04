@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.0-alpha
+
+- Integra 1.276 PVLs oficiais do SADIPEM, consultados por `id_ente` nos 121 municípios.
+- Corrige o sincronizador atual do ObrasGov para usar `id_execucao_fisica`, chave declarada no OpenAPI, e conclui 512 registros de execução física.
+- Audita o serviço de metadados IBGE; o endpoint HTTPS retornou 403 e não foi publicado sem resposta JSON verificável.
+
 ## v3.2.0-alpha
 
 - Adiciona auditoria determinística da release, verificando carteira, política official-only, sincronizações, integridade e ambiguidades documentadas.

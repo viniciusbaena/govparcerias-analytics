@@ -31,7 +31,7 @@ class Spec:
 
 CHILD_SPECS = {
     "projects": Spec("projects", "projeto-investimento", "id_projeto_investimento"),
-    "physical_execution": Spec("physical_execution", "execucao-fisica", "id_projeto_investimento"),
+    "physical_execution": Spec("physical_execution", "execucao-fisica", "id_execucao_fisica"),
     "project_contracts": Spec("project_contracts", "contrato", "id_contrato"),
     "project_commitments": Spec("project_commitments", "empenho", "nr_empenho"),
     "project_geometries": Spec("project_geometries", "geometria", "id_geometria"),
