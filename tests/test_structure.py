@@ -166,6 +166,9 @@ def test_v130_integrated_dataset_is_official_and_scoped():
     assert 'Programas especiais' in app
     assert 'Histórico de pagamentos' in app
     assert 'v3.1.0-alpha' in app
+    assert 'Obras e engenharia' in app and 'engineeringSearch' in app
+    assert 'documentsSearch' in app and 'timelineSearch' in app
+    assert 'Abrir dossiê do contrato' in app
     assert integrated['sync_status']['bank_statements']['completed'] is True
     assert integrated['sync_status']['bank_statements']['processed_roots'] == 1963
     assert integrated['financial']['records']['proposal_indicators'] == 52

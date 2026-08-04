@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.4.0-alpha
+
+- Reorganiza o detalhe municipal para iniciar por contratos/convênios e deixar propostas como referência complementar.
+- Adiciona pesquisa por município, IBGE, projeto e contrato na página Obras e engenharia.
+- Adiciona pesquisa e links de fonte no Centro de documentos e na Timeline integrada.
+
 ## v3.3.0-alpha
 
 - Integra 1.276 PVLs oficiais do SADIPEM, consultados por `id_ente` nos 121 municípios.
