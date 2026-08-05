@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.15.0-alpha
+
+- Adiciona botão explícito de consulta detalhada nos contratos PNCP e Transferegov.
+- Exibe pagamentos relacionados no detalhe do contrato Transferegov.
+
 ## v3.14.0-alpha
 
 - Timeline integrada passa a incluir contratos e pagamentos do Transferegov.
