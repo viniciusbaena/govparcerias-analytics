@@ -1,5 +1,15 @@
 # Changelog
 
+## v3.14.0-alpha
+
+- Timeline integrada passa a incluir contratos e pagamentos do Transferegov.
+- Pesquisa da timeline aceita contrato, convênio e identificador de pagamento.
+
+## v3.13.0-alpha
+
+- Exibe no dashboard e na inteligência financeira os convênios, contratos, pagamentos e desembolsos do Transferegov.
+- Carrega os fragmentos oficiais antes da renderização dos módulos.
+
 ## v3.12.0-alpha
 
 - Carrega no frontend os fragmentos oficiais do Transferegov sob demanda.
