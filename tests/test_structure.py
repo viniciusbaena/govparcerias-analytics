@@ -69,6 +69,9 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert 'data-action="instrument-contract-page"' in app
     assert 'data-action="open-contract"' in app
     assert 'data-action="open-proposal"' in app
+    assert 'data-action="dossier-search"' in app
+    assert 'dossierSearch' in app
+    assert 'PNCP:' in app
     assert 'data-action="show"' in app
     assert 'data-action="assistant-query"' in app
     assert 'Documentos especiais' in app
