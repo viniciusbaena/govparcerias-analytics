@@ -1,4 +1,4 @@
-const APP_VERSION='v3.14.0-alpha';
+const APP_VERSION='v3.15.0-alpha';
 const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},discretionary:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
@@ -20,6 +20,7 @@ document.addEventListener('click',event=>{
     'open-municipality':()=>openMunicipality(value),
     'municipality-tab':()=>showMunicipalityTab(value),
     'open-contract':()=>openContractResult(Number(value)),
+    'open-transfer-contract':()=>openTransferContract(value),
     'open-proposal':()=>openProposalResult(Number(value)),
     'select-section':()=>selectSection(value),
     'select-dossier-contract':()=>{S.selectedOfficialContract=(S.contracts||[])[Number(value)];S.selectedSection='identificacao';dossie()},
@@ -338,9 +339,10 @@ function instrumentos(){
       <p><strong>${esc(contractMunicipality(c))}</strong></p>
       <p>${esc(contractObject(c))}</p>
       <small>Processo: ${esc(c.processo||c.numeroProcesso||'Não informado pela fonte')} · Valor: ${moneyBR(c.valor_global??c.valorGlobal??c.valorInicial)}</small>
-      <button data-action="open-contract" data-value="${idx}">Abrir contrato</button>
+      <button class="primary" data-action="open-contract" data-value="${idx}">Consultar detalhamento</button>
     </article>`
   }).join('');
+  const transferContractCards=(S.discretionary?.contracts||[]).filter(c=>!query||[c.NR_CONTRATO,c.ID_CONTRATO,c.OBJETO_CONTRATO,c.NOME_FORNECEDOR_CONTRATO].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR').includes(query.toLocaleLowerCase('pt-BR'))).slice(0,50).map(c=>`<article><span class="eyebrow">Contrato Transferegov · ${esc(c.ID_CONTRATO||'Não informado pela fonte')}</span><h3>${esc(c.NR_CONTRATO||'Não informado pela fonte')}</h3><p>${esc(c.OBJETO_CONTRATO||'Não informado pela fonte')}</p><small>Fornecedor: ${esc(c.NOME_FORNECEDOR_CONTRATO||'Não informado pela fonte')} · Valor: ${moneyBR(c.VALOR_GLOBAL_CONTRATO)}</small><button class="primary" data-action="open-transfer-contract" data-value="${esc(c.ID_CONTRATO||'')}">Consultar detalhamento</button></article>`).join('');
 
   const proposalCards=proposals.slice(0,50).map(p=>proposalCard(p)).join('');
 
@@ -396,6 +398,7 @@ function instrumentos(){
       </div>
       <div class="portfolio-meta"><span>${summary}</span><span>Propostas: ${(S.proposals||[]).length}</span><span>Contratos: ${(S.contracts||[]).length}</span><span>Modo: official-only</span></div>
       ${contracts.length?`<h2>Contratos oficiais</h2><div class="cards">${contractCards}</div><div class="pager"><button ${S.instrumentContractPage===1?'disabled':''} data-action="instrument-contract-page" data-value="-1">Anterior</button><span>Página ${S.instrumentContractPage} de ${contractPages} · ${contracts.length} resultado(s)</span><button ${S.instrumentContractPage===contractPages?'disabled':''} data-action="instrument-contract-page" data-value="1">Próxima</button></div>`:''}
+      ${transferContractCards?`<h2>Contratos Transferegov</h2><div class="cards">${transferContractCards}</div>`:''}
       ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
       ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
       ${projects.length?`<h2>Obras oficiais</h2><div class="cards">${projectCards}</div>`:''}
@@ -417,6 +420,7 @@ function openMunicipalityFromSearch(code){
   municipalityProfile()
 }
 function openContractResult(index){S.selectedOfficialContract=(S.contracts||[])[index];contractDetail()}
+function openTransferContract(id){const c=(S.discretionary?.contracts||[]).find(row=>String(row.ID_CONTRATO)===String(id));if(!c)return;const payments=(S.discretionary?.payments||[]).filter(row=>String(row.NR_CONVENIO)===String(c.NR_CONVENIO));$('#content').innerHTML=head(`Contrato Transferegov ${c.NR_CONTRATO||id}`,'Detalhamento oficial do contrato e movimentações relacionadas.',`<button data-action="show" data-value="instrumentos">← Voltar aos contratos</button>`)+`<div class="field-grid">${field('Identificador',c.ID_CONTRATO)}${field('Licitação',c.ID_LICITACAO)}${field('Objeto',c.OBJETO_CONTRATO)}${field('Fornecedor',c.NOME_FORNECEDOR_CONTRATO)}${field('Valor global',moneyBR(c.VALOR_GLOBAL_CONTRATO))}${field('Vigência',`${c.DATA_INICIO_VIGENCIA_CONTRATO||'Não informado pela fonte'} a ${c.DATA_FIM_VIGENCIA_CONTRATO||'Não informado pela fonte'}`)}</div><h2>Pagamentos relacionados</h2>${payments.length?`<div class="cards">${payments.map(p=>`<article><span class="eyebrow">Pagamento ${esc(p.NR_MOV_FIN||'Não informado pela fonte')}</span><h3>${moneyBR(p.VL_PAGO)}</h3><p>Convênio ${esc(p.NR_CONVENIO||'Não informado pela fonte')}</p><small>Data: ${esc(p.DATA_PAG||'Não informado pela fonte')} · Fornecedor: ${esc(p.NOME_FORNECEDOR||'Não informado pela fonte')}</small></article>`).join('')}</div>`:empty('Nenhum pagamento relacionado','A fonte oficial não informou pagamentos para este convênio.')}`}
 function proposalCard(p){
   const idx=(S.proposals||[]).indexOf(p);
   return `<article>
