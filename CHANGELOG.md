@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.18.0-alpha
+
+- Adiciona dashboard gerencial por município, com filtros e acesso direto à carteira.
+
 ## v3.17.0-alpha
 
 - Acrescenta evidências de documentos, obras, timeline e sinais de atenção no dossiê operacional.
