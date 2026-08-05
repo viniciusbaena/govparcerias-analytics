@@ -1,5 +1,5 @@
-const APP_VERSION='v3.12.0-alpha';
-const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
+const APP_VERSION='v3.13.0-alpha';
+const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},discretionary:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-action]');
@@ -69,6 +69,7 @@ async function boot(){
   if(entries.length){
     const loaded=await Promise.all(entries.map(async([name,meta])=>[name,await safeJson(meta.path,[])]));
     S.integrated.transferegov_discretionary_records=Object.fromEntries(loaded);
+    S.discretionary=S.integrated.transferegov_discretionary_records;
   }
   if(!Array.isArray(S.contracts))S.contracts=S.contracts.items||S.contracts.contracts||S.contracts.data||[];
   if(!Array.isArray(S.proposals))S.proposals=S.proposals.items||S.proposals.proposals||S.proposals.data||[];
@@ -124,6 +125,9 @@ function inicio(){
       ${card('Valor empenhado',moneyBR(S.integrated?.financial?.commitment_total),'Transferegov oficial')}
       ${card('Documentos oficiais',S.integrated?.documents?.length||0,'Com proveniência e hash')}
       ${card('Eventos na timeline',S.integrated?.timeline?.length||0,'Registros oficiais')}
+      ${card('Convênios Transferegov',S.discretionary?.agreements?.length||0,'Discricionárias e Legais')}
+      ${card('Contratos Transferegov',S.discretionary?.contracts?.length||0,'Vinculados por licitação oficial')}
+      ${card('Pagamentos Transferegov',S.discretionary?.payments?.length||0,'Movimentações oficiais')}
       ${card('Integridade','Official-only','Sem valores ou registros inventados')}
     </div>
     <div class="truth-banner"><strong>Separação de confiança</strong><span>Municípios da carteira, propostas e contratos oficiais permanecem identificados por sua proveniência.</span></div>`;
@@ -532,6 +536,7 @@ function sectionView(){
 function generic(title,desc,detail){$('#content').innerHTML=head(title,desc)+empty(detail)}
 function financeiro(){
   const f=S.integrated?.financial||{records:{}};
+  const d=S.discretionary||{};
   const r=f.records||{};
   const accounts=S.integrated?.accounts||[];
   const commitmentSync=S.integrated?.sync_status?.commitments||{};
@@ -543,7 +548,7 @@ function financeiro(){
   const statementSync=S.integrated?.sync_status?.bank_statements||{};
   const statementLabel=`${r.bank_statements||0} lançamento(s)${statementSync.completed?'':' · sincronização parcial'}`;
   $('#content').innerHTML=head('Inteligência financeira','Valores agregados exclusivamente dos registros oficiais sincronizados.')
-    +`<div class="metric-grid">${card('Valor global dos contratos',moneyBR(f.contract_value_total),'PNCP')}${card('Cronograma de desembolso',moneyBR(f.scheduled_disbursement_total),`${r.schedules||0} registro(s)`)}${card('Empenhos',moneyBR(f.commitment_total),commitmentLabel)}${card('Ordens de pagamento',moneyBR(f.payment_order_total),orderLabel)}</div>
+    +`<div class="metric-grid">${card('Valor global dos contratos',moneyBR(f.contract_value_total),'PNCP')}${card('Cronograma de desembolso',moneyBR(f.scheduled_disbursement_total),`${r.schedules||0} registro(s)`)}${card('Empenhos',moneyBR(f.commitment_total),commitmentLabel)}${card('Ordens de pagamento',moneyBR(f.payment_order_total),orderLabel)}${card('Pagamentos Transferegov',d.payments?.length||0,'Download oficial filtrado')}${card('Desembolsos Transferegov',d.disbursements?.length||0,'Download oficial filtrado')}</div>
       <div class="cards"><article><h3>Empenhos de obras</h3><p>${moneyBR(f.obrasgov_commitment_total)}</p><small>${r.project_commitments||0} registro(s) ObrasGov; não somados aos empenhos de parcerias</small></article><article><h3>Documentos hábeis</h3><p>${moneyBR(f.payable_document_total)}</p><small>${r.payable_documents||0} registro(s) oficial(is)</small></article><article><h3>Recursos distribuídos em propostas</h3><p>${moneyBR(f.proposal_resource_total)}</p><small>${r.proposal_resources||0} registro(s) Transferegov</small></article><article><h3>Planos de ação especiais</h3><p>${r.special_action_plans||0}</p><small>Transferências Especiais filtradas por CNPJ da carteira</small></article><article><h3>Programas especiais</h3><p>${r.special_programs||0}</p><small>Programas oficiais referenciados pelos planos da carteira</small></article><article><h3>Análises de planos de trabalho</h3><p>${r.special_work_plan_analyses||0}</p><small>Análises oficiais vinculadas por ID do plano</small></article><article><h3>Histórico de pagamentos</h3><p>${r.special_payment_history||0}</p><small>Eventos oficiais vinculados às ordens bancárias</small></article><article><h3>Documentos especiais</h3><p>${r.special_documents||0}</p><small>Documentos hábeis relacionados por empenho oficial</small></article><article><h3>Ordens especiais</h3><p>${r.special_orders||0}</p><small>Ordens bancárias relacionadas por documento oficial</small></article><article><h3>Relatórios especiais</h3><p>${(r.special_reports||0)+(r.special_new_reports||0)}</p><small>Relatórios de gestão oficiais</small></article><article><h3>Finalidades e metas especiais</h3><p>${(r.special_purposes||0)+(r.special_goals||0)}</p><small>Relacionadas aos executores oficiais</small></article><article><h3>Contas de parceria</h3><p>${accountLabel}</p><small>Saldos exibidos individualmente porque as datas de referência podem divergir</small></article><article><h3>Movimentação bancária líquida</h3><p>${moneyBR(f.bank_movement_total)}</p><small>${statementLabel}</small><small>Créditos: ${moneyBR(f.bank_credit_total)} · Débitos: ${moneyBR(f.bank_debit_total)}</small></article><article><h3>Contratos considerados</h3><p>${r.contracts||0}</p><small>Registros PNCP com valor informado pela fonte</small></article></div>
       ${accounts.length?`<h2>Contas oficiais das parcerias</h2><div class="cards">${accounts.slice(0,100).map(account=>`<article><span class="eyebrow">${esc(account.type)} · parceria ${esc(account.partnership_id)}</span><h3>${esc(account.bank)}</h3><p>${esc(account.status)}</p><small>Agência: ${esc(account.branch_number)} ${esc(account.branch_name)} · Conta: ${esc(account.account_number)}</small><small>Saldo corrente: ${moneyBR(account.current_balance)} em ${esc(account.current_balance_at)} · Investimento: ${moneyBR(account.investment_balance)} em ${esc(account.investment_balance_at)}</small><small>Extratos: ${account.bank_statement_count||0} · Créditos: ${moneyBR(account.bank_credit_total)} · Débitos: ${moneyBR(account.bank_debit_total)}</small><small>Período dos lançamentos: ${esc(account.bank_statement_first_at)} a ${esc(account.bank_statement_last_at)}</small><a href="${esc(account.source_url)}" target="_blank" rel="noopener noreferrer">Abrir fonte oficial</a></article>`).join('')}</div>`:''}
       ${!(r.schedules||r.commitments||r.payment_orders)?empty('Execução financeira do Transferegov em sincronização','Os valores PNCP já estão disponíveis; cronogramas, empenhos e pagamentos serão incorporados por checkpoint.'):''}`
