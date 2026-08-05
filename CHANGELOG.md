@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.9.0-alpha
+
+- Adiciona mapa do Paraná na carteira de municípios.
+- Usa a malha municipal oficial do IBGE e exibe somente os municípios da carteira.
+- Identifica os marcadores como centroides geométricos derivados dos limites oficiais.
+
 ## v3.8.0-alpha
 
 - Centraliza a versão da aplicação em `APP_VERSION`.
