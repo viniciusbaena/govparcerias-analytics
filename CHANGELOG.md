@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.8.0-alpha
+
+- Centraliza a versão da aplicação em `APP_VERSION`.
+- Estabelece versionamento obrigatório: toda melhoria publicada deve incrementar a versão e atualizar este changelog.
+- Atualiza o selo e os nomes de exportação para a versão vigente.
+
 ## v3.4.0-alpha
 
 - Reorganiza o detalhe municipal para iniciar por contratos/convênios e deixar propostas como referência complementar.
