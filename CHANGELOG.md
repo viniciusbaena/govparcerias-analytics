@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.19.0-alpha
+
+- Busca principal passa a localizar contratos Transferegov e abrir o dossiê operacional completo.
+
 ## v3.18.0-alpha
 
 - Adiciona dashboard gerencial por município, com filtros e acesso direto à carteira.

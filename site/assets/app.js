@@ -1,4 +1,4 @@
-const APP_VERSION='v3.18.0-alpha';
+const APP_VERSION='v3.19.0-alpha';
 const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},discretionary:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
@@ -317,6 +317,7 @@ function contractObject(c){return c.objeto||c.objetoContrato||c.object||'Não in
 
 function instrumentos(){
   const query=S.homeQuery||'';
+  const discretionaryContracts=(S.discretionary?.contracts||[]).filter(c=>!query||[c.ID_CONTRATO,c.NR_CONTRATO,c.OBJETO_CONTRATO,c.NOME_FORNECEDOR_CONTRATO].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR').includes(query.toLocaleLowerCase('pt-BR')));
   const contracts=(S.contracts||[]).filter(c=>queryMatches(contractHaystack(c),query));
   const proposals=(S.proposals||[]).filter(p=>queryMatches(proposalHaystack(p),query));
   const municipalities=(S.portfolio?.municipalities||[]).filter(m=>queryMatches(municipalityHaystack(m),query));
@@ -397,7 +398,8 @@ function instrumentos(){
        <button id="contractSearchButton">Pesquisar</button>
       </div>
       <div class="portfolio-meta"><span>${summary}</span><span>Propostas: ${(S.proposals||[]).length}</span><span>Contratos: ${(S.contracts||[]).length}</span><span>Modo: official-only</span></div>
-      ${contracts.length?`<h2>Contratos oficiais</h2><div class="cards">${contractCards}</div><div class="pager"><button ${S.instrumentContractPage===1?'disabled':''} data-action="instrument-contract-page" data-value="-1">Anterior</button><span>Página ${S.instrumentContractPage} de ${contractPages} · ${contracts.length} resultado(s)</span><button ${S.instrumentContractPage===contractPages?'disabled':''} data-action="instrument-contract-page" data-value="1">Próxima</button></div>`:''}
+      ${contracts.length?`<h2>Contratos PNCP</h2><div class="cards">${contractCards}</div><div class="pager"><button ${S.instrumentContractPage===1?'disabled':''} data-action="instrument-contract-page" data-value="-1">Anterior</button><span>Página ${S.instrumentContractPage} de ${contractPages} · ${contracts.length} resultado(s)</span><button ${S.instrumentContractPage===contractPages?'disabled':''} data-action="instrument-contract-page" data-value="1">Próxima</button></div>`:''}
+      ${discretionaryContracts.length?`<h2>Contratos e convênios Transferegov</h2><div class="cards">${discretionaryContracts.slice(0,100).map(c=>`<article><span class="eyebrow">Contrato/convênio · Transferegov</span><h3>${esc(c.NR_CONTRATO||c.ID_CONTRATO||'Não informado pela fonte')}</h3><p>${esc(c.OBJETO_CONTRATO||'Não informado pela fonte')}</p><small>${esc(c.NOME_FORNECEDOR_CONTRATO||'Não informado pela fonte')} · Valor: ${moneyBR(c.VALOR_GLOBAL_CONTRATO)}</small><button class="primary" data-action="open-transfer-contract" data-value="${esc(c.ID_CONTRATO||'')}">Consultar dossiê completo</button></article>`).join('')}</div>`:''}
       ${transferContractCards?`<h2>Contratos Transferegov</h2><div class="cards">${transferContractCards}</div>`:''}
       ${municipalities.length?`<h2>Municípios</h2><div class="cards">${municipalityCards}</div>`:''}
       ${proposals.length?`<h2>Propostas oficiais</h2><div class="cards">${proposalCards}</div>`:''}
