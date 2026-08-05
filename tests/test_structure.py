@@ -71,6 +71,9 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert 'data-action="open-proposal"' in app
     assert 'data-action="dossier-search"' in app
     assert 'data-action="export-current"' in app
+    assert "'Obras identificadas'" in app
+    assert "'Valor contratado'" in app
+    assert "'Eventos na timeline'" in app
     assert 'govparcerias-${S.view||\'dados\'}-v3.4.0-alpha.csv' in app
     assert 'dossierSearch' in app
     assert 'PNCP:' in app
