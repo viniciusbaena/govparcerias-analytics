@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.16.0-alpha
+
+- Reconstrói o dossiê operacional Transferegov com vínculos contrato–licitação–convênio–execução.
+- Exibe pagamentos, desembolsos e empenhos diretamente no detalhamento do contrato.
+
+
 ## v3.15.0-alpha
 
 - Adiciona botão explícito de consulta detalhada nos contratos PNCP e Transferegov.
