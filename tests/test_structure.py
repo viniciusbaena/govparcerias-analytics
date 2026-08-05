@@ -61,7 +61,7 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert len(contracts) >= 45
     assert len({row['source_record_id'] for row in contracts}) == len(contracts)
     assert all(row['source'] == 'PNCP' for row in contracts)
-    assert 'v3.4.0-alpha' in app
+    assert "const APP_VERSION='v3.8.0-alpha'" in app
     assert 'contrato/convênio' in app
     assert "safeJson('data/proposals.json',[])" in app
     assert 'proposalHaystack' in app
@@ -74,7 +74,7 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert "'Obras identificadas'" in app
     assert "'Valor contratado'" in app
     assert "'Eventos na timeline'" in app
-    assert 'govparcerias-${S.view||\'dados\'}-v3.4.0-alpha.csv' in app
+    assert 'govparcerias-${S.view||\'dados\'}-${APP_VERSION}.csv' in app
     assert 'dossierSearch' in app
     assert 'PNCP:' in app
     assert 'data-action="show"' in app
