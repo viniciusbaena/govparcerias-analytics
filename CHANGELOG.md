@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.17.0-alpha
+
+- Acrescenta evidências de documentos, obras, timeline e sinais de atenção no dossiê operacional.
+
 ## v3.16.0-alpha
 
 - Reconstrói o dossiê operacional Transferegov com vínculos contrato–licitação–convênio–execução.
