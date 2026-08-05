@@ -1,4 +1,4 @@
-const APP_VERSION='v3.11.0-alpha';
+const APP_VERSION='v3.12.0-alpha';
 const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
@@ -64,6 +64,12 @@ async function boot(){
     safeJson('data/proposals.json',[]),
     safeJson('data/integrated.json',{counts:{},financial:{records:{}},timeline:[],integrity:{rules:[]}})
   ]);
+  const fragments=S.integrated?.transferegov_discretionary?.records||{};
+  const entries=Object.entries(fragments).filter(([,meta])=>meta?.path);
+  if(entries.length){
+    const loaded=await Promise.all(entries.map(async([name,meta])=>[name,await safeJson(meta.path,[])]));
+    S.integrated.transferegov_discretionary_records=Object.fromEntries(loaded);
+  }
   if(!Array.isArray(S.contracts))S.contracts=S.contracts.items||S.contracts.contracts||S.contracts.data||[];
   if(!Array.isArray(S.proposals))S.proposals=S.proposals.items||S.proposals.proposals||S.proposals.data||[];
   document.documentElement.dataset.theme=S.theme;

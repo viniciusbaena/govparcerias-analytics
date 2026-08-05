@@ -34,3 +34,20 @@ def test_atomic_integrated_write_retries_transient_windows_lock(tmp_path, monkey
     assert attempts["count"] == 3
     assert json.loads(target.read_text(encoding="utf-8")) == {"policy": "official_only"}
     assert list(tmp_path.glob("*.tmp")) == []
+
+
+def test_discretionary_fragments_preserve_official_relationships():
+    integrated = json.loads((ROOT / "site/data/integrated.json").read_text(encoding="utf-8"))
+    meta = integrated["transferegov_discretionary"]
+    assert meta["fragmented"] is True
+    records = {
+        name: json.loads((ROOT / "site" / entry["path"].replace("data/", "data/")).read_text(encoding="utf-8"))
+        for name, entry in meta["records"].items()
+    }
+    proposals = {str(row["ID_PROPOSTA"]) for row in records["proposals"]}
+    agreements = {str(row["NR_CONVENIO"]) for row in records["agreements"]}
+    procurements = {str(row["ID_LICITACAO"]) for row in records["procurements"]}
+    assert all(str(row["ID_PROPOSTA"]) in proposals for row in records["agreements"])
+    assert all(str(row["NR_CONVENIO"]) in agreements for row in records["procurements"])
+    assert all(str(row["ID_LICITACAO"]) in procurements for row in records["contracts"])
+    assert all(str(row["NR_CONVENIO"]) in agreements for kind in ("commitments", "disbursements", "payments") for row in records[kind])
