@@ -120,6 +120,24 @@ def build() -> dict[str, Any]:
     special_payment_history = read_json(PUBLISHED / "special_payment_history.json", [])
     special_programs = read_json(PUBLISHED / "special_programs.json", [])
     sadipem_pvls = read_json(ROOT_PUBLISHED / "sadipem_pvls.json", [])
+    # Download oficial Transferegov — Discricionárias e Legais. Estes arquivos
+    # já foram filtrados pelo sincronizador para a carteira dos 121 municípios.
+    discretionary_dir = ROOT_PUBLISHED / "transferegov_discricionarias"
+    discretionary = {
+        "proposals": read_json(discretionary_dir / "siconv_proposta.json", []),
+        "agreements": read_json(discretionary_dir / "siconv_convenio.json", []),
+        "procurements": read_json(discretionary_dir / "siconv_licitacao.json", []),
+        "contracts": read_json(discretionary_dir / "siconv_contrato.json", []),
+        "commitments": read_json(discretionary_dir / "siconv_empenho.json", []),
+        "disbursements": read_json(discretionary_dir / "siconv_desembolso.json", []),
+        "payments": read_json(discretionary_dir / "siconv_pagamento.json", []),
+    }
+    agreement_by_proposal = index_many(discretionary["agreements"], "ID_PROPOSTA")
+    procurement_by_agreement = index_many(discretionary["procurements"], "NR_CONVENIO")
+    contract_by_procurement = index_many(discretionary["contracts"], "ID_LICITACAO")
+    commitment_by_agreement = index_many(discretionary["commitments"], "NR_CONVENIO")
+    disbursement_by_agreement = index_many(discretionary["disbursements"], "NR_CONVENIO")
+    payment_by_agreement = index_many(discretionary["payments"], "NR_CONVENIO")
 
     partnership_by_proposal = index_many(partnerships, "id_proposta")
     goals_by_proposal = index_many(goals, "id_proposta")
@@ -561,6 +579,19 @@ def build() -> dict[str, Any]:
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "policy": "official_only",
+        "transferegov_discretionary": {
+            "source": "Transferegov - Discricionárias e Legais",
+            "scope": "121 municípios",
+            "records": discretionary,
+            "relations": {
+                "agreements_by_proposal": {key: len(value) for key, value in agreement_by_proposal.items()},
+                "procurements_by_agreement": {key: len(value) for key, value in procurement_by_agreement.items()},
+                "contracts_by_procurement": {key: len(value) for key, value in contract_by_procurement.items()},
+                "commitments_by_agreement": {key: len(value) for key, value in commitment_by_agreement.items()},
+                "disbursements_by_agreement": {key: len(value) for key, value in disbursement_by_agreement.items()},
+                "payments_by_agreement": {key: len(value) for key, value in payment_by_agreement.items()},
+            },
+        },
         "sync_status": {
             "partnerships": sync_state(PUBLISHED, "partnerships", partnerships),
             "proposal_goals": sync_state(PUBLISHED, "proposal_goals", goals),
@@ -625,8 +656,32 @@ def build() -> dict[str, Any]:
             "special_payment_history": len(special_payment_history),
             "special_programs": len(special_programs),
             "sadipem_pvls": len(sadipem_pvls),
+            "transferegov_discretionary_proposals": len(discretionary["proposals"]),
+            "transferegov_discretionary_agreements": len(discretionary["agreements"]),
+            "transferegov_discretionary_procurements": len(discretionary["procurements"]),
+            "transferegov_discretionary_contracts": len(discretionary["contracts"]),
+            "transferegov_discretionary_commitments": len(discretionary["commitments"]),
+            "transferegov_discretionary_disbursements": len(discretionary["disbursements"]),
+            "transferegov_discretionary_payments": len(discretionary["payments"]),
         },
     }
+    # O arquivo completo excede o limite de 100 MB do GitHub. Os registros
+    # volumosos do download oficial ficam em fragmentos; o dataset principal
+    # mantém metadados e vínculos, sem perda de informação.
+    fragment_dir = SITE / "integrated"
+    fragment_manifest = {}
+    for name, rows in discretionary.items():
+        fragment_name = f"transferegov_discretionary_{name}.json"
+        write_json(fragment_dir / fragment_name, rows)
+        fragment_manifest[name] = {
+            "path": f"data/integrated/{fragment_name}",
+            "records": len(rows),
+            "source": "Transferegov - Discricionárias e Legais",
+            "scope": "121 municípios",
+        }
+    output["transferegov_discretionary"]["records"] = fragment_manifest
+    output["transferegov_discretionary"]["fragmented"] = True
+    output["transferegov_discretionary"]["fragment_policy"] = "Os fragmentos são carregados sob demanda pelos módulos que os utilizarem."
     write_json(SITE / "integrated.json", output)
     write_json(ROOT / "data/published/integrated_status.json", {
         "generated_at": output["generated_at"],

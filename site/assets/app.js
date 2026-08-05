@@ -1,4 +1,4 @@
-const APP_VERSION='v3.10.0-alpha';
+const APP_VERSION='v3.11.0-alpha';
 const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
