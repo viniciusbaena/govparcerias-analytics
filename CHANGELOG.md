@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.10.0-alpha
+
+- Inicia o conector oficial dos CSVs de Transferências Discricionárias e Legais.
+- Adiciona catálogo XML oficial, filtragem por CNPJ/IBGE, status de sincronização e preservação do bruto nacional fora da publicação.
+
 ## v3.9.0-alpha
 
 - Adiciona mapa do Paraná na carteira de municípios.
