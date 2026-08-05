@@ -112,6 +112,11 @@ function inicio(){
       ${card('Municípios cadastrados',m.record_count||0,'Carteira de trabalho')}
       ${card('Propostas sincronizadas',totalProposals,'Fonte oficial Transferegov')}
       ${card('Contratos sincronizados',totalContracts,'Fonte oficial PNCP')}
+      ${card('Obras identificadas',S.integrated?.engineering?.length||0,'ObrasGov por IBGE')}
+      ${card('Valor contratado',moneyBR(S.integrated?.financial?.contract_value_total),'PNCP oficial')}
+      ${card('Valor empenhado',moneyBR(S.integrated?.financial?.commitment_total),'Transferegov oficial')}
+      ${card('Documentos oficiais',S.integrated?.documents?.length||0,'Com proveniência e hash')}
+      ${card('Eventos na timeline',S.integrated?.timeline?.length||0,'Registros oficiais')}
       ${card('Integridade','Official-only','Sem valores ou registros inventados')}
     </div>
     <div class="truth-banner"><strong>Separação de confiança</strong><span>Municípios da carteira, propostas e contratos oficiais permanecem identificados por sua proveniência.</span></div>`;
