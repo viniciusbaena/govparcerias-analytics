@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.11.0-alpha
+
+- Integra os dados oficiais filtrados do Transferegov — Discricionárias e Legais.
+- Publica propostas, convênios, licitações, contratos, empenhos, desembolsos e pagamentos com vínculos oficiais.
+- Preserva os dados PNCP e demais fontes já integradas.
+
 ## v3.10.0-alpha
 
 - Inicia o conector oficial dos CSVs de Transferências Discricionárias e Legais.

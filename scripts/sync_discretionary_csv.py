@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_URL = "https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/?restype=container&comp=list"
 BLOB_BASE = "https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/"
-DEFAULT_DATASETS = ("siconv_programa", "siconv_proposta", "siconv_convenio", "siconv_contrato", "siconv_empenho", "siconv_desembolso", "siconv_pagamento", "siconv_licitacao")
+DEFAULT_DATASETS = ("siconv_programa", "siconv_proposta", "siconv_convenio", "siconv_licitacao", "siconv_contrato", "siconv_empenho", "siconv_desembolso", "siconv_pagamento")
 
 def digits(value: object) -> str:
     return re.sub(r"\D", "", str(value or ""))
@@ -30,7 +30,22 @@ def catalog() -> dict[str, str]:
     root = ET.fromstring(urlopen(Request(CATALOG_URL, headers={"User-Agent": "GovParcerias/1.0"}), timeout=60).read())
     return {b.findtext("./{*}Name").removesuffix(".zip"): urljoin(BLOB_BASE, b.findtext("./{*}Name")) for b in root.findall(".//{*}Blob") if b.findtext("./{*}Name")}
 
-def row_is_scoped(row: dict[str, str], cnpjs: set[str], ibges: set[str]) -> bool:
+def related_ids(out_dir: Path) -> dict[str, set[str]]:
+    result = {}
+    for name in ("siconv_proposta", "siconv_convenio", "siconv_licitacao"):
+        path = out_dir / f"{name}.json"
+        if not path.exists():
+            continue
+        rows = json.loads(path.read_text(encoding="utf-8"))
+        if name == "siconv_proposta": result["propostas"] = {str(r.get("ID_PROPOSTA") or r.get("id_proposta")) for r in rows}
+        if name == "siconv_convenio": result["convenios"] = {str(r.get("NR_CONVENIO") or r.get("nr_convenio")) for r in rows}
+        if name == "siconv_licitacao": result["licitacoes"] = {str(r.get("ID_LICITACAO") or r.get("id_licitacao")) for r in rows}
+    return result
+
+def row_is_scoped(row: dict[str, str], cnpjs: set[str], ibges: set[str], related: dict[str, set[str]], dataset: str) -> bool:
+    if dataset == "siconv_convenio" and str(row.get("ID_PROPOSTA") or row.get("id_proposta")) in related.get("propostas", set()): return True
+    if dataset in {"siconv_empenho", "siconv_desembolso", "siconv_pagamento", "siconv_licitacao"} and str(row.get("NR_CONVENIO") or row.get("nr_convenio")) in related.get("convenios", set()): return True
+    if dataset == "siconv_contrato" and str(row.get("ID_LICITACAO") or row.get("id_licitacao")) in related.get("licitacoes", set()): return True
     for key, value in row.items():
         key_norm = re.sub(r"[^a-z0-9]", "", key.lower())
         value_digits = digits(value)
@@ -43,6 +58,7 @@ def row_is_scoped(row: dict[str, str], cnpjs: set[str], ibges: set[str]) -> bool
 def sync_dataset(name: str, url: str, out_dir: Path, cnpjs: set[str], ibges: set[str]) -> dict:
     raw = urlopen(Request(url, headers={"User-Agent": "GovParcerias/1.0"}), timeout=180).read()
     rows: list[dict[str, str]] = []
+    related = related_ids(out_dir)
     with zipfile.ZipFile(io.BytesIO(raw)) as archive:
         members = [m for m in archive.namelist() if m.lower().endswith(".csv")]
         if not members:
@@ -51,7 +67,7 @@ def sync_dataset(name: str, url: str, out_dir: Path, cnpjs: set[str], ibges: set
             wrapper = io.TextIOWrapper(stream, encoding="utf-8-sig", errors="replace", newline="")
             reader = csv.DictReader(wrapper, delimiter=";")
             for row in reader:
-                if row_is_scoped(row, cnpjs, ibges):
+                if row_is_scoped(row, cnpjs, ibges, related, name):
                     rows.append(dict(row))
     stamp = datetime.now(timezone.utc).isoformat()
     out_dir.mkdir(parents=True, exist_ok=True)
