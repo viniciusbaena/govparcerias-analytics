@@ -74,7 +74,7 @@ def test_v120_publishes_official_data_and_uses_csp_safe_actions():
     assert "'Obras identificadas'" in app
     assert "'Valor contratado'" in app
     assert "'Eventos na timeline'" in app
-    assert 'govparcerias-${S.view||\'dados\'}-v3.4.0-alpha.csv' in app
+    assert 'govparcerias-${S.view||\'dados\'}-${APP_VERSION}.csv' in app
     assert 'dossierSearch' in app
     assert 'PNCP:' in app
     assert 'data-action="show"' in app
