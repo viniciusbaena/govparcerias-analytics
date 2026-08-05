@@ -1,4 +1,4 @@
-const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
+const S={data:null,contract:null,portfolio:null,contracts:[],proposals:[],integrated:{},view:'inicio',homeQuery:'',dossierQuery:'',theme:localStorage.getItem('gpa:theme')||'dark',selectedSection:'identificacao',selectedMunicipality:null,selectedOfficialProposal:null,selectedOfficialContract:null,municipalityQuery:'',municipalityPage:1,instrumentContractPage:1,pageSize:18,instrumentPageSize:20};
 const $=q=>document.querySelector(q); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-action]');
@@ -21,6 +21,7 @@ document.addEventListener('click',event=>{
     'open-proposal':()=>openProposalResult(Number(value)),
     'select-section':()=>selectSection(value),
     'select-dossier-contract':()=>{S.selectedOfficialContract=(S.contracts||[])[Number(value)];S.selectedSection='identificacao';dossie()},
+    'dossier-search':applyDossierSearch,
     'open-chat':openChat,
   };
   if(actions[action]){
@@ -473,8 +474,11 @@ function contractDetail(){
 function dossie(){
   const c=S.selectedOfficialContract;
   if(!c){
-    const cards=(S.contracts||[]).slice(0,100).map((contract,index)=>`<article><span class="eyebrow">Contrato oficial · PNCP</span><h3>${esc(contractTitle(contract))}</h3><p><strong>${esc(contractMunicipality(contract))}</strong></p><p>${esc(clipText(contractObject(contract),180))}</p><button data-action="select-dossier-contract" data-value="${index}">Abrir dossiê</button></article>`).join('');
-    $('#content').innerHTML=head('Dossiê integral por contrato','Selecione um contrato oficial para consultar identificação, valores, vigência e proveniência.')+`<div class="portfolio-meta"><span>${(S.contracts||[]).length} contrato(s) disponível(is)</span><span>Exibindo os primeiros 100</span></div><div class="cards">${cards}</div>`;
+    const q=(S.dossierQuery||'').trim();
+    const contracts=(S.contracts||[]).filter(contract=>queryMatches(contractHaystack(contract),q));
+    const cards=contracts.slice(0,100).map(contract=>{const index=(S.contracts||[]).indexOf(contract);return `<article><span class="eyebrow">Contrato oficial · PNCP</span><h3>${esc(contractTitle(contract))}</h3><p><strong>${esc(contractMunicipality(contract))}</strong></p><p>${esc(clipText(contractObject(contract),180))}</p><small>Processo: ${esc(contract.processo||contract.numeroProcesso||'Não informado pela fonte')} · PNCP: ${esc(contract.source_record_id||'Não informado pela fonte')}</small><button data-action="select-dossier-contract" data-value="${index}">Abrir dossiê</button></article>`}).join('');
+    $('#content').innerHTML=head('Dossiê integral por contrato','Pesquise por número de contrato/convênio, município, CNPJ, processo ou identificador PNCP.')+`<div class="toolbar"><input id="dossierSearch" value="${esc(q)}" placeholder="Contrato, convênio, município, CNPJ ou PNCP"><button data-action="dossier-search">Pesquisar</button></div><div class="portfolio-meta"><span>${contracts.length} contrato(s) encontrado(s)</span><span>Fonte: PNCP</span><span>Campos ausentes: Não informado pela fonte</span></div><div class="cards">${cards||empty('Nenhum contrato encontrado','Tente o número do contrato, município ou identificador oficial.')}</div>`;
+    $('#dossierSearch').addEventListener('keydown',e=>{if(e.key==='Enter')applyDossierSearch()});
     return
   }
   const sections=[
@@ -486,6 +490,7 @@ function dossie(){
   $('#content').innerHTML=head(`Dossiê do contrato ${esc(contractTitle(c))}`,'Dados oficiais sincronizados do PNCP.',`<button data-action="show" data-value="instrumentos">← Consulta unificada</button>`)
     +`<div class="dossier"><aside class="tabs">${sections.map(([id,title])=>`<button class="${S.selectedSection===id?'active':''}" data-action="select-section" data-value="${id}">${title}</button>`).join('')}</aside><section class="dossier-main">${sectionView()}</section></div>`
 }
+function applyDossierSearch(){S.dossierQuery=$('#dossierSearch')?.value?.trim()||'';S.selectedOfficialContract=null;dossie()}
 function selectSection(id){S.selectedSection=id;dossie()}
 function field(label,value){return `<div class="field"><label>${esc(label)}</label><strong>${esc(value??'Não informado pela fonte')}</strong></div>`}
 function sectionView(){
