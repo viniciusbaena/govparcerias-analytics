@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.12.0-alpha
+
+- Carrega no frontend os fragmentos oficiais do Transferegov sob demanda.
+- Adiciona testes de integridade para propostas, convênios, licitações, contratos e movimentações financeiras.
+
 ## v3.11.0-alpha
 
 - Integra os dados oficiais filtrados do Transferegov — Discricionárias e Legais.
