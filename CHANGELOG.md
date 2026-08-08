@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.21.0-alpha
+
+- Reorganiza o dashboard por perfil de uso, com visão macro e fila municipal operacional.
+- Explicita escopo, fontes e acesso direto a contratos e financeiro.
+
 ## v3.20.0-alpha
 
 - Reconstrói o shell visual com navegação orientada a tarefas, busca persistente e área de trabalho operacional.
