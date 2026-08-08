@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.20.0-alpha
+
+- Reconstrói o shell visual com navegação orientada a tarefas, busca persistente e área de trabalho operacional.
+
 ## v3.19.0-alpha
 
 - Busca principal passa a localizar contratos Transferegov e abrir o dossiê operacional completo.
